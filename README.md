@@ -1,6 +1,6 @@
-# Gold Smart Money
+# REFINED Liquidity Cycle
 
-Gold Smart Money is the public showcase for an ongoing MetaTrader 5 trading research project. It documents the project direction, architecture, and collaboration boundaries without exposing the private Expert Advisor source code or proprietary signal logic.
+REFINED Liquidity Cycle is the public showcase for an ongoing MetaTrader 5 trading research project. It documents the project direction, architecture, and collaboration boundaries without exposing the private Expert Advisor source code or proprietary signal logic.
 
 ## Overview
 
