@@ -45,28 +45,38 @@ nav{position:sticky;top:0;z-index:100;background:rgba(245,241,232,.93);backdrop-
 @media(max-width:800px){.nav-links{display:none}}
 
 /* ═══ HERO ═══ */
-.hero{padding:80px 0 88px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(245,241,232,1) 0%,rgba(245,241,232,.97) 50%,rgba(232,192,96,.08) 100%)}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 20% 30%, rgba(192,138,8,.06) 0%, transparent 50%),radial-gradient(circle at 80% 70%, rgba(60,85,55,.04) 0%, transparent 50%);animation:drift 20s ease-in-out infinite;z-index:0}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,30px)}}
-.hero > *{position:relative;z-index:1}
+.hero{padding:80px 0 88px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(165deg,#1a1815 0%,#221e1a 45%,#2a2420 100%)}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 700px 500px at 50% 10%, rgba(192,138,8,.08) 0%, transparent 55%);z-index:0;pointer-events:none}
+.hero > *{position:relative;z-index:2}
 
-.hero-clock{font-family:var(--sm);font-size:11px;letter-spacing:.14em;color:var(--ds);margin-bottom:44px;display:flex;align-items:center;justify-content:center;gap:14px}
+/* Code Pattern Overlay */
+.hero-code{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero-code span{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#C08A08;opacity:.1;letter-spacing:.05em;white-space:nowrap;animation:codeFloat 8s ease-in-out infinite}
+.hero-code span:nth-child(even){animation-delay:-3s;font-size:11px;opacity:.07}
+.hero-code span:nth-child(3n){animation-delay:-5s;font-size:15px;opacity:.12}
+@keyframes codeFloat{0%,100%{transform:translateY(0);opacity:.06}50%{transform:translateY(12px);opacity:.13}}
+
+.hero-clock{font-family:var(--sm);font-size:11px;letter-spacing:.14em;color:rgba(237,232,220,.5);margin-bottom:44px;display:flex;align-items:center;justify-content:center;gap:14px}
 .hero-clock .dot{width:5px;height:5px;border-radius:50%;background:var(--gd);display:inline-block;animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--gd)}50%{opacity:.8;box-shadow:0 0 0 4px rgba(192,138,8,.2)}}
-.hl1{display:block;font-family:var(--sf);font-weight:700;font-size:clamp(76px,13.5vw,188px);letter-spacing:.08em;color:var(--ink);line-height:.9;text-shadow:0 4px 20px rgba(0,0,0,.05)}
-.hl2{display:block;font-family:var(--sf);font-weight:300;font-style:italic;font-size:clamp(54px,9.8vw,134px);letter-spacing:.02em;color:var(--i2);line-height:.9;margin-top:.06em}
-.hl2 b{font-style:normal;font-weight:700;color:var(--ink)}
-.hero-rule{width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--gm),transparent);margin:40px auto;box-shadow:0 0 12px rgba(192,138,8,.3)}
-.sub{font-size:17px;color:var(--wm);max-width:480px;margin:0 auto 44px;line-height:1.7}
-.sub strong{color:var(--ink);font-weight:500}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--gd)}50%{opacity:.8;box-shadow:0 0 0 4px rgba(192,138,8,.3)}}
+
+/* Code/Algorithm Aesthetic */
+.code-accent{position: relative; z-index: 0;}
+.code-accent::before{content: attr(data-code); position: absolute; top: -30px; right: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gd); opacity: 0.15; white-space: pre; letter-spacing: 0.05em; pointer-events: none; z-index: -1;}
+.hl1{display:block;font-family:var(--sf);font-weight:700;font-size:clamp(76px,13.5vw,188px);letter-spacing:.08em;color:var(--cr);line-height:.9;text-shadow:0 8px 24px rgba(0,0,0,.5)}
+.hl2{display:block;font-family:var(--sf);font-weight:300;font-style:italic;font-size:clamp(54px,9.8vw,134px);letter-spacing:.02em;color:var(--gd);line-height:.9;margin-top:.06em;text-shadow:0 4px 16px rgba(192,138,8,.3)}
+.hl2 b{font-style:normal;font-weight:700;color:var(--cr)}
+.hero-rule{width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--gd),transparent);margin:40px auto;box-shadow:0 0 16px rgba(192,138,8,.4)}
+.sub{font-size:17px;color:rgba(237,232,220,.8);max-width:480px;margin:0 auto 44px;line-height:1.7}
+.sub strong{color:var(--cr);font-weight:500}
 
 /* Interactive Pills */
 .hero-pills{display:flex;justify-content:center;gap:12px;margin-bottom:42px;flex-wrap:wrap}
-.pill{font-family:var(--sm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border:1.5px solid var(--rl);color:var(--ds);cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
-.pill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(192,138,8,.06);transition:left .3s ease}
-.pill:hover{border-color:var(--gm);color:var(--ink);box-shadow:0 4px 12px rgba(192,138,8,.15)}
+.pill{font-family:var(--sm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border:1.5px solid rgba(237,232,220,.3);color:rgba(237,232,220,.6);cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
+.pill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(192,138,8,.1);transition:left .3s ease}
+.pill:hover{border-color:var(--gd);color:var(--cr);box-shadow:0 4px 12px rgba(192,138,8,.25)}
 .pill:hover::before{left:0}
-.pill.on{border-color:var(--gm);color:var(--gd);background:rgba(192,138,8,.04);box-shadow:0 4px 16px rgba(192,138,8,.2)}
+.pill.on{border-color:var(--gd);color:var(--gd);background:rgba(192,138,8,.08);box-shadow:0 4px 16px rgba(192,138,8,.3)}
 
 /* Pill Info Tooltip */
 .pill-tooltip{position:fixed;bottom:20px;right:20px;background:var(--ink);color:var(--cr);padding:16px 20px;border-radius:4px;font-size:13px;max-width:300px;animation:slideIn .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:999}
@@ -75,20 +85,20 @@ nav{position:sticky;top:0;z-index:100;background:rgba(245,241,232,.93);backdrop-
 .pill-tooltip strong{color:var(--gd);display:block;margin-bottom:6px}
 .sess-bar{display:flex;justify-content:center;align-items:center;gap:36px;margin-bottom:48px;flex-wrap:wrap}
 .sess{display:flex;align-items:center;gap:9px;font-family:var(--sm);font-size:12px}
-.sess .sn{color:var(--ds);letter-spacing:.1em;font-size:10px;text-transform:uppercase}
-.sess .sv{color:var(--ink);font-size:14px;margin-left:3px;font-weight:500}
-.sess .sd{width:7px;height:7px;border-radius:50%;background:var(--rl)}
+.sess .sn{color:rgba(237,232,220,.5);letter-spacing:.1em;font-size:10px;text-transform:uppercase}
+.sess .sv{color:var(--cr);font-size:14px;margin-left:3px;font-weight:500}
+.sess .sd{width:7px;height:7px;border-radius:50%;background:rgba(237,232,220,.2)}
 .sess.live .sd{background:var(--sg);animation:pulse 2s infinite}
 .sess.live .sv{color:var(--sg)}
-.sess-sep{width:1px;height:22px;background:var(--rl)}
+.sess-sep{width:1px;height:22px;background:rgba(237,232,220,.1)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(60,85,55,.4)}50%{box-shadow:0 0 0 5px rgba(60,85,55,0)}}
 .ctas{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
 .cta{font-size:15px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:gap .18s,color .18s}
-.cta.pri{color:var(--ink);border-bottom:1.5px solid var(--gm);padding-bottom:2px}
+.cta.pri{color:var(--cr);border-bottom:1.5px solid var(--gd);padding-bottom:2px}
 .cta.pri:hover{gap:14px;color:var(--gd)}
-.cta.sec{color:var(--wm);border-bottom:1px solid var(--rl);padding-bottom:2px}
-.cta.sec:hover{gap:14px;color:var(--ink)}
-.cta-div{color:var(--rl);font-size:20px}
+.cta.sec{color:rgba(237,232,220,.7);border-bottom:1px solid rgba(237,232,220,.2);padding-bottom:2px}
+.cta.sec:hover{gap:14px;color:var(--cr)}
+.cta-div{color:rgba(237,232,220,.2);font-size:20px}
 
 /* ═══ SIGNAL TICKER ═══ */
 .ticker-wrap{border-top:1px solid var(--rl);border-bottom:1px solid var(--rl);overflow:hidden;padding:12px 0;background:var(--pw)}
@@ -323,6 +333,24 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
 
 <!-- HERO -->
 <header class="hero w">
+  <!-- Code Pattern Overlay -->
+  <div class="hero-code" aria-hidden="true">
+    <span style="top:8%;left:6%">0x4A1E2F</span>
+    <span style="top:14%;left:22%">11010101</span>
+    <span style="top:10%;left:78%">EQH_SWEEP</span>
+    <span style="top:20%;left:88%">0xFF2E</span>
+    <span style="top:32%;left:4%">CHoCH→BOS</span>
+    <span style="top:44%;left:84%">RR≥1:4.0</span>
+    <span style="top:58%;left:8%">10110010</span>
+    <span style="top:64%;left:90%">0x7D3A</span>
+    <span style="top:72%;left:18%">SWEEP_OK</span>
+    <span style="top:78%;left:74%">CONF=95</span>
+    <span style="top:88%;left:12%">0xB3E5C1</span>
+    <span style="top:84%;left:62%">EXEC()</span>
+    <span style="top:26%;left:48%">SESSION:NY</span>
+    <span style="top:52%;left:42%">ATR_FILTER</span>
+  </div>
+
   <div class="hero-clock rv" style="transition-delay:0ms">
     <span class="dot"></span>
     <span id="gmt" style="font-family:var(--sm)">-- : -- : -- GMT</span>
@@ -355,7 +383,7 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
   </div>
 
   <div class="ctas rv" style="transition-delay:420ms">
-    <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener" class="cta pri">Start Learning →</a>
+    <a href="#learn" class="cta pri">Start Learning →</a>
     <span class="cta-div">·</span>
     <a href="#algo" class="cta sec">Explore the System →</a>
   </div>
@@ -425,6 +453,15 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
         <span class="c-eyebrow">RLCTA Algorithm</span>
         <h2 class="c-head rv">The methodology,<br><em>automated.</em></h2>
         <p class="c-body rv">All three pillars — structure, liquidity, timing — encoded into an MQL5 expert advisor running live on MT5. Fully backtested. Open source.</p>
+        
+        <!-- Code Flow Visualization -->
+        <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(0, 0, 0, 0.3); border-left: 2px solid rgba(192, 138, 8, 0.4); font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(192, 138, 8, 0.6); line-height: 1.6; overflow-x: auto;">
+          <div>IF (Structure == HH/HL) → BIAS = BULLISH</div>
+          <div>IF (EQH_SWEEP detected) → CONFIDENCE++</div>
+          <div style="color: rgba(192, 138, 8, 0.8); font-weight: bold;">IF (London OR Killzone) → EXECUTE_SIGNAL()</div>
+          <div>RISK = 0.5% | RR_MINIMUM = 1:4</div>
+          <div style="color: rgba(192, 138, 8, 0.5);">RETURN → NEXT_SESSION ✓</div>
+        </div>
 
         <div class="bot-term rv">
           <div class="bot-term-bar">
