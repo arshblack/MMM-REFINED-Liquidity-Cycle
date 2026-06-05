@@ -45,9 +45,27 @@ nav{position:sticky;top:0;z-index:100;background:rgba(245,241,232,.93);backdrop-
 @media(max-width:800px){.nav-links{display:none}}
 
 /* ═══ HERO ═══ */
-.hero{padding:80px 0 88px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(165deg,#1a1815 0%,#221e1a 45%,#2a2420 100%)}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 700px 500px at 50% 10%, rgba(192,138,8,.08) 0%, transparent 55%);z-index:0;pointer-events:none}
-.hero > *{position:relative;z-index:2}
+.hero{padding:72px 44px 88px;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 1200px 600px at 50% -5%, #2e2823 0%, #211d18 40%, #16130f 100%)}
+.hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:2}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 700px 500px at 50% 8%, rgba(192,138,8,.10) 0%, transparent 55%),radial-gradient(circle at 85% 75%, rgba(60,85,55,.06) 0%, transparent 40%);z-index:0;pointer-events:none;animation:heroGlow 12s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{opacity:1}50%{opacity:.7}}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(192,138,8,.4),transparent);z-index:3}
+
+/* World Session Clocks */
+.world-clocks{display:flex;justify-content:center;gap:0;margin-bottom:52px;flex-wrap:wrap;border:1px solid rgba(192,138,8,.12);border-radius:8px;overflow:hidden;background:rgba(0,0,0,.2);backdrop-filter:blur(8px);max-width:760px;margin-left:auto;margin-right:auto}
+.wclock{flex:1;min-width:150px;padding:18px 20px;border-right:1px solid rgba(192,138,8,.1);position:relative;transition:background .3s}
+.wclock:last-child{border-right:none}
+.wclock.active{background:rgba(192,138,8,.06)}
+.wc-top{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:8px}
+.wc-dot{width:6px;height:6px;border-radius:50%;background:rgba(237,232,220,.25);transition:all .3s}
+.wclock.active .wc-dot{background:var(--sg);box-shadow:0 0 8px var(--sg);animation:pulse-dot 2s infinite}
+.wc-city{font-family:var(--sm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,220,.55)}
+.wclock.active .wc-city{color:var(--gd)}
+.wc-time{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;color:var(--cr);letter-spacing:.02em;line-height:1.1}
+.wclock.active .wc-time{color:var(--gl)}
+.wc-status{font-family:var(--sm);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,220,.35);margin-top:5px}
+.wclock.active .wc-status{color:var(--sg)}
+@media(max-width:680px){.world-clocks{max-width:none}.wclock{min-width:50%;border-bottom:1px solid rgba(192,138,8,.1)}.wclock:nth-child(2){border-right:none}}
 
 /* Code Pattern Overlay */
 .hero-code{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -309,6 +327,31 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
 .modal-content li::before{content:'—';color:var(--ds);flex-shrink:0;font-size:12px}
 .modal-content h3{font-family:var(--sf);font-size:1.4rem;margin:2rem 0 1rem;color:var(--ink)}
 .modal-content .detail-text{font-size:14px;color:var(--wm);line-height:1.7;margin-bottom:1rem}
+
+/* ═══ LESSON ACCORDION ═══ */
+.lesson-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:8px}
+.lesson-item{border:1px solid var(--rl);border-radius:2px;overflow:hidden;transition:border-color .2s}
+.lesson-item.open{border-color:var(--gd)}
+.lesson-header{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;background:var(--pw);transition:background .2s;user-select:none}
+.lesson-header:hover{background:var(--pa)}
+.lesson-item.open .lesson-header{background:rgba(192,138,8,.06);border-bottom:1px solid var(--rl)}
+.lesson-num{font-family:var(--sm);font-size:10px;letter-spacing:.14em;color:var(--gd);min-width:28px}
+.lesson-name{font-size:14px;font-weight:500;color:var(--ink);flex:1;line-height:1.4}
+.lesson-dur{font-family:var(--sm);font-size:9px;color:var(--ds);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.lesson-chevron{font-size:11px;color:var(--ds);transition:transform .25s;flex-shrink:0}
+.lesson-item.open .lesson-chevron{transform:rotate(180deg);color:var(--gd)}
+.lesson-body{display:none;padding:18px 18px 22px;background:var(--pw);border-top:1px solid rgba(213,204,188,.5)}
+.lesson-item.open .lesson-body{display:block}
+.lesson-hook{font-style:italic;font-size:13.5px;color:var(--ink);border-left:3px solid var(--gd);padding:10px 14px;margin-bottom:14px;background:rgba(192,138,8,.04);line-height:1.6}
+.lesson-section-lbl{font-family:var(--sm);font-size:9px;letter-spacing:.18em;color:var(--gd);text-transform:uppercase;margin:14px 0 6px}
+.lesson-text{font-size:13px;color:var(--wm);line-height:1.75;margin-bottom:8px}
+.lesson-code-block{background:var(--console);border-radius:3px;padding:12px 14px;margin:8px 0 12px;display:flex;flex-direction:column;gap:4px}
+.lesson-code-block code{font-family:var(--sm);font-size:10px;color:var(--cg);line-height:1.6;letter-spacing:.03em}
+.lesson-rules{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.lesson-rule{font-size:12.5px;color:var(--i2);display:flex;gap:10px;align-items:baseline;line-height:1.55}
+.lesson-rule::before{content:'→';color:var(--gd);flex-shrink:0;font-size:11px}
+.lesson-recap{background:rgba(60,85,55,.06);border-left:3px solid var(--sg);padding:10px 14px;font-size:12.5px;color:var(--sg);line-height:1.65;margin-top:12px}
+.lesson-recap strong{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--sg);margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -332,7 +375,7 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
 </nav>
 
 <!-- HERO -->
-<header class="hero w">
+<header class="hero">
   <!-- Code Pattern Overlay -->
   <div class="hero-code" aria-hidden="true">
     <span style="top:8%;left:6%">0x4A1E2F</span>
@@ -351,9 +394,29 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
     <span style="top:52%;left:42%">ATR_FILTER</span>
   </div>
 
-  <div class="hero-clock rv" style="transition-delay:0ms">
-    <span class="dot"></span>
-    <span id="gmt" style="font-family:var(--sm)">-- : -- : -- GMT</span>
+  <div class="hero-inner">
+
+  <div class="world-clocks rv" style="transition-delay:0ms">
+    <div class="wclock" data-session="sydney">
+      <div class="wc-top"><span class="wc-dot"></span><span class="wc-city">Sydney</span></div>
+      <div class="wc-time" id="wc-sydney">--:--:--</div>
+      <div class="wc-status" id="wc-sydney-st">Asian Open</div>
+    </div>
+    <div class="wclock" data-session="tokyo">
+      <div class="wc-top"><span class="wc-dot"></span><span class="wc-city">Tokyo</span></div>
+      <div class="wc-time" id="wc-tokyo">--:--:--</div>
+      <div class="wc-status" id="wc-tokyo-st">Asian</div>
+    </div>
+    <div class="wclock" data-session="london">
+      <div class="wc-top"><span class="wc-dot"></span><span class="wc-city">London</span></div>
+      <div class="wc-time" id="wc-london">--:--:--</div>
+      <div class="wc-status" id="wc-london-st">European</div>
+    </div>
+    <div class="wclock" data-session="newyork">
+      <div class="wc-top"><span class="wc-dot"></span><span class="wc-city">New York</span></div>
+      <div class="wc-time" id="wc-newyork">--:--:--</div>
+      <div class="wc-status" id="wc-newyork-st">US Session</div>
+    </div>
   </div>
 
   <div style="line-height:.9">
@@ -379,13 +442,14 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
     <div class="sess-sep"></div>
     <div class="sess live"><span class="sd"></span><span class="sn">New York</span><span class="sv" id="ny">LIVE</span></div>
     <div class="sess-sep"></div>
-    <div class="sess"><span class="sn">Killzone</span><span class="sv" style="color:var(--wm)">12:00–15:00</span></div>
+    <div class="sess"><span class="sn">Killzone</span><span class="sv" style="color:var(--gd)">12:00–15:00</span></div>
   </div>
 
   <div class="ctas rv" style="transition-delay:420ms">
     <a href="#learn" class="cta pri">Start Learning →</a>
     <span class="cta-div">·</span>
     <a href="#algo" class="cta sec">Explore the System →</a>
+  </div>
   </div>
 </header>
 
@@ -701,35 +765,48 @@ footer{border-top:1px solid var(--rl);padding:30px 0}
 </footer>
 
 <script>
-// GMT clock + sessions
+// 4 World Session Clocks + session timers
 function p(n){return String(n).padStart(2,'0')}
+
+function cityTime(tz){
+  return new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
+}
+
+const sessions=[
+  {id:'sydney',  tz:'Australia/Sydney', open:22, close:7,  label:'Asian Open'},
+  {id:'tokyo',   tz:'Asia/Tokyo',       open:0,  close:9,  label:'Asian'},
+  {id:'london',  tz:'Europe/London',    open:7,  close:16, label:'European'},
+  {id:'newyork', tz:'America/New_York', open:12, close:21, label:'US Session'}
+];
+
+function isOpen(open,close,h){
+  if(open<close) return h>=open&&h<close;
+  return h>=open||h<close; // wraps midnight (Sydney)
+}
+
 function tick(){
   const d=new Date();
-  const h=d.getUTCHours(),m=d.getUTCMinutes(),s=d.getUTCSeconds();
-  document.getElementById('gmt').textContent=`${p(h)} : ${p(m)} : ${p(s)} GMT`;
-  let now=h*3600+m*60+s;
-  // London countdown
+  const gmtH=d.getUTCHours();
+  sessions.forEach(s=>{
+    const el=document.getElementById('wc-'+s.id);
+    const stEl=document.getElementById('wc-'+s.id+'-st');
+    const box=el.closest('.wclock');
+    if(el) el.textContent=cityTime(s.tz);
+    const open=isOpen(s.open,s.close,gmtH);
+    if(box) box.classList.toggle('active',open);
+    if(stEl) stEl.textContent=open?'● Open':s.label;
+  });
+
+  // bottom session bar (London / NY)
+  let now=gmtH*3600+d.getUTCMinutes()*60+d.getUTCSeconds();
   const lonEl=document.getElementById('lon');
-  const lonSess=lonEl.closest('.sess');
-  if(h>=7&&h<16){
-    lonEl.textContent='LIVE';lonEl.style.color='var(--sg)';
-    lonSess.classList.add('live');
-  } else {
-    let d2=(7*3600-now+86400)%86400;
-    lonEl.textContent=`${p(Math.floor(d2/3600))}:${p(Math.floor(d2%3600/60))}:${p(d2%60)}`;
-    lonEl.style.color='';lonSess.classList.remove('live');
-  }
-  // NY
+  if(lonEl){const lonSess=lonEl.closest('.sess');
+    if(gmtH>=7&&gmtH<16){lonEl.textContent='LIVE';lonEl.style.color='var(--sg)';lonSess.classList.add('live');}
+    else{let d2=(7*3600-now+86400)%86400;lonEl.textContent=`${p(Math.floor(d2/3600))}:${p(Math.floor(d2%3600/60))}:${p(d2%60)}`;lonEl.style.color='';lonSess.classList.remove('live');}}
   const nyEl=document.getElementById('ny');
-  const nySess=nyEl.closest('.sess');
-  if(h>=12&&h<21){
-    nyEl.textContent='LIVE';nyEl.style.color='var(--sg)';
-    nySess.classList.add('live');
-  } else {
-    let d3=(12*3600-now+86400)%86400;
-    nyEl.textContent=`${p(Math.floor(d3/3600))}:${p(Math.floor(d3%3600/60))}:${p(d3%60)}`;
-    nyEl.style.color='';nySess.classList.remove('live');
-  }
+  if(nyEl){const nySess=nyEl.closest('.sess');
+    if(gmtH>=12&&gmtH<21){nyEl.textContent='LIVE';nyEl.style.color='var(--sg)';nySess.classList.add('live');}
+    else{let d3=(12*3600-now+86400)%86400;nyEl.textContent=`${p(Math.floor(d3/3600))}:${p(Math.floor(d3%3600/60))}:${p(d3%60)}`;nyEl.style.color='';nySess.classList.remove('live');}}
 }
 tick();setInterval(tick,1000);
 
@@ -847,193 +924,250 @@ document.getElementById('pillarModal')?.addEventListener('click',(e)=>{
   if(e.target.id==='pillarModal')closePillarModal();
 });
 
-// Course Lessons Modal
+// Course Lessons Modal — full accordion content
+function lessonHTML(num, title, dur, hook, concept, eaLines, example, rules, recap) {
+  const ea = eaLines.map(l=>`<code>${l}</code>`).join('');
+  const rulesList = rules.map(r=>`<div class="lesson-rule">${r}</div>`).join('');
+  return `
+    <div class="lesson-item">
+      <div class="lesson-header" onclick="toggleLesson(this)">
+        <span class="lesson-num">${num}</span>
+        <span class="lesson-name">${title}</span>
+        <span class="lesson-dur">${dur}</span>
+        <span class="lesson-chevron">▼</span>
+      </div>
+      <div class="lesson-body">
+        <div class="lesson-hook">${hook}</div>
+        <div class="lesson-section-lbl">Concept</div>
+        <p class="lesson-text">${concept}</p>
+        <div class="lesson-section-lbl">EA Connection</div>
+        <div class="lesson-code-block">${ea}</div>
+        <div class="lesson-section-lbl">XAUUSD Example</div>
+        <p class="lesson-text">${example}</p>
+        <div class="lesson-section-lbl">Key Rules</div>
+        <div class="lesson-rules">${rulesList}</div>
+        <div class="lesson-recap"><strong>◎ Recap / Practice</strong>${recap}</div>
+      </div>
+    </div>`;
+}
+
 const courseDetails={
-  structure:`<h2>Read Structure</h2>
-    <p class="detail-text">Master the ability to read market structure like a professional. BOS, CHoCH, and order blocks are the language of the market.</p>
-    
-    <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(192, 138, 8, 0.04); border-left: 3px solid var(--gd); border-radius: 2px;">
-      <strong style="display: block; margin-bottom: 1rem; color: var(--ink)">📊 Visual: Higher Highs / Higher Lows (Uptrend)</strong>
-      <svg viewBox="0 0 600 200" style="width: 100%; max-width: 500px; margin: 0 auto; display: block;">
-        <defs><linearGradient id="hhll" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#3C5537;stop-opacity:0.1" /><stop offset="100%" style="stop-color:#3C5537;stop-opacity:0.01" /></linearGradient></defs>
-        <rect x="40" y="10" width="520" height="180" fill="none" stroke="#ADA49A" stroke-width="1" opacity="0.3"/>
-        <line x1="40" y1="150" x2="560" y2="150" stroke="#ADA49A" stroke-width="1" opacity="0.5"/>
-        <!-- Price levels -->
-        <polyline points="60,140 100,100 140,120 180,80 220,100 260,60 300,80 340,40 380,60 420,20 460,40 500,10" stroke="#3C5537" stroke-width="2.5" fill="url(#hhll)"/>
-        <!-- HH labels -->
-        <circle cx="100" cy="100" r="3" fill="#3C5537"/><text x="100" y="85" text-anchor="middle" font-size="11" fill="#3C5537" font-weight="bold">HH</text>
-        <circle cx="180" cy="80" r="3" fill="#3C5537"/><text x="180" y="65" text-anchor="middle" font-size="11" fill="#3C5537" font-weight="bold">HH</text>
-        <circle cx="260" cy="60" r="3" fill="#3C5537"/><text x="260" y="45" text-anchor="middle" font-size="11" fill="#3C5537" font-weight="bold">HH</text>
-        <circle cx="340" cy="40" r="3" fill="#3C5537"/><text x="340" y="25" text-anchor="middle" font-size="11" fill="#3C5537" font-weight="bold">HH</text>
-        <!-- HL labels -->
-        <circle cx="140" cy="120" r="3" fill="#3C5537" opacity="0.6"/><text x="140" y="137" text-anchor="middle" font-size="10" fill="#3C5537" opacity="0.7">HL</text>
-        <circle cx="220" cy="100" r="3" fill="#3C5537" opacity="0.6"/><text x="220" y="117" text-anchor="middle" font-size="10" fill="#3C5537" opacity="0.7">HL</text>
-        <!-- Arrows -->
-        <path d="M 90 155 L 110 145" stroke="#3C5537" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)" opacity="0.5"/>
-        <text x="100" y="170" text-anchor="middle" font-size="12" fill="#3C5537" font-weight="bold">UPTREND = BUY BIAS</text>
-      </svg>
+  structure:`
+    <h2>Read Structure</h2>
+    <p class="detail-text">Master the market's language before placing a single trade. BOS, CHoCH, Order Blocks, and FVGs are how the EA reads the chart — and now how you will too.</p>
+    <code class="ptg" style="font-family:var(--sm);font-size:10px;letter-spacing:.14em;display:block;margin-bottom:1.5rem">IF (Structure == HH/HL) → BIAS = BULLISH</code>
+    <div class="lesson-list">
+      ${lessonHTML('1.1','What is Market Structure?','~20 min',
+        '"The market doesn\'t move randomly. It moves in patterns. Your job is to read them before everyone else."',
+        'Market structure is the sequence of swing highs and swing lows. In a bullish trend you see Higher Highs (HH) and Higher Lows (HL) — each peak and each pullback finishes above the last. In a bearish trend you see Lower Highs (LH) and Lower Lows (LL). This is the foundation of everything. The EA\'s very first logic check reads structure before it considers any trade.',
+        ['IF (Structure == HH/HL)  →  BIAS = BULLISH','IF (Structure == LH/LL)  →  BIAS = BEARISH'],
+        'On XAUUSD M15, if the last three swings show 2 964 → 2 971 → 2 967 → 2 978, you have HH (2 978 &gt; 2 971) and HL (2 967 &gt; 2 964). The EA flags BULLISH BIAS and begins scanning for a liquidity sweep entry in the long direction.',
+        ['Only trade in the direction of structure — never fight it.','Higher-timeframe structure (H1/H4) overrides lower-timeframe (M5/M15).','Mark your swing highs and lows before doing anything else on the chart.','A sideways structure (equal HH/LL) = no trade until it resolves.'],
+        'Find the last three swings on any live XAUUSD M15 chart. Label them. Is it HH/HL or LH/LL? That is your bias right now.'
+      )}
+      ${lessonHTML('1.2','Break of Structure (BOS)','~20 min',
+        '"A BOS isn\'t just a candle close — it\'s the market announcing a phase change."',
+        'A Break of Structure happens when price closes beyond a previous key swing point. A bullish BOS is a candle close above the last confirmed Higher High. A bearish BOS is a candle close below the last confirmed Lower Low. BOS signals that the current phase is over and the next phase is beginning. The EA uses BOS to confirm momentum and set direction for the next signal.',
+        ['// BOS detected: new swing high cleared with close','MOMENTUM_CONFIRMED = TRUE','MARK_BOS_LEVEL = current_swing_high'],
+        'XAUUSD is in a downtrend (LH/LL). Price sweeps a recent low, then a candle closes above the last Lower High at 2 962. BOS confirmed. The trend has flipped. Bias shifts to bullish and the EA begins looking for the next sweep-and-entry setup in the long direction.',
+        ['BOS requires a candle CLOSE beyond the level — wicks don\'t count.','Always mark the BOS level; price often returns to re-test it as an entry zone.','BOS in the direction of HTF structure = high-probability signal.','BOS against HTF structure = extra caution or skip.'],
+        'Look at your last five trades. Did you enter after a confirmed BOS, or before? How did those two groups perform?'
+      )}
+      ${lessonHTML('1.3','Change of Character (CHoCH)','~25 min',
+        '"CHoCH is the market whispering before it shouts. The profitable traders hear the whisper."',
+        'Change of Character is the first early warning that a trend may be ending — it happens before a full BOS. In a downtrend, CHoCH occurs when price makes a Higher Low for the first time (fails to make a new LL). In an uptrend, CHoCH is a Lower High forming for the first time. CHoCH alone is not an entry — it signals to pay close attention. When CHoCH is followed by BOS, the reversal is confirmed. This exact sequence is what the EA waits for before firing.',
+        ['// EA signal feed label','CHoCH  →  BOS  →  EXECUTE_SIGNAL()'],
+        'Gold is in a downtrend. Price sweeps a low (liquidity grab at 2 944), but then fails to make a new LL. Instead it forms a HL at 2 948. That is your CHoCH. Watch for BOS above the last LH at 2 958. When that BOS prints, the EA logs CHoCH→BOS and fires a long signal — stop below 2 944, target at the next liquidity level.',
+        ['CHoCH is a warning, not an entry — wait for BOS confirmation.','The sweep before CHoCH is the liquidity grab. Mark it.','CHoCH + BOS on M15 aligned with H1 structure = highest probability setup.','CHoCH without a preceding sweep = weaker signal.'],
+        'On a recent XAUUSD chart, find one example of CHoCH→BOS. Mark the sweep, the CHoCH candle, and the BOS candle. That three-candle sequence is your EA\'s core trigger.'
+      )}
+      ${lessonHTML('1.4','Order Blocks','~25 min',
+        '"Banks don\'t forget where they entered. They come back. And that\'s your entry."',
+        'An Order Block is the last candle in the opposite direction before a strong, impulsive move. A bullish OB is the last bearish candle before a strong bullish impulse. A bearish OB is the last bullish candle before a strong bearish impulse. Banks fill their orders in these zones and return to them. When price retraces into an OB after a CHoCH/BOS, that is the EA\'s precision entry zone. The OB gives you both entry price and stop placement.',
+        ['// Entry zone = bullish OB after CHoCH→BOS','ENTRY_ZONE = last_bearish_candle_before_impulse','SL = below_OB_low'],
+        'XAUUSD rallies impulsively from 2 950 to 2 975. The last red candle before that rally has a high of 2 953 and a low of 2 950. That 2 950–2 953 zone is your bullish OB. If price retraces into that zone after the BOS, the EA marks it as the entry zone, places stop below 2 950, and targets the next liquidity level above.',
+        ['OBs are only valid when they precede an impulsive move with a clear CHoCH/BOS.','Mark the OB using the high and low of that single candle.','Only use OBs that align with your current bias direction.','OBs weaken if price trades through them more than once.'],
+        'Find the last bullish impulse on XAUUSD M15. Identify the final red candle before it. That is your OB. Mark it. Would price return there? Has it already?'
+      )}
+      ${lessonHTML('1.5','Fair Value Gaps (FVG)','~20 min',
+        '"The market hates imbalance. When price moves too fast, it leaves a gap — and it always comes back."',
+        'A Fair Value Gap is a three-candle pattern where an imbalance is created. In a bullish FVG, there is a gap between candle 1\'s high and candle 3\'s low — price moved so fast upward that no orders filled in that zone. The market returns to fill it. On XAUUSD M5/M15, FVGs are common during London open and NY killzone. The EA uses FVG overlap with OBs as the highest-precision entry zone available.',
+        ['// OB + FVG confluence = maximum confidence entry','IF (OB_zone overlaps FVG)  →  CONF_SCORE += 2','ENTRY = midpoint_of_overlap'],
+        'During London open, Gold moves from 2 960 to 2 974 in three candles. Candle 1 closes at 2 962. Candle 3 opens at 2 966. The 2 962–2 966 zone is an unfilled bullish FVG. If price retraces into that zone and your bullish OB sits at 2 961–2 963, the overlap at 2 962–2 963 is the maximum confluence entry point.',
+        ['FVGs are best used on M5 and M15 timeframes.','Always combine FVG with an OB — FVG alone is insufficient.','FVGs that overlap with OBs carry the highest confidence score in the EA.','An FVG filled without rejection is no longer valid.'],
+        'Open XAUUSD M5 and find the most recent three-candle impulse. Is there a gap between candle 1\'s high and candle 3\'s low? Mark it. That is your FVG entry zone for the next retracement.'
+      )}
+      ${lessonHTML('1.6','The Structure Checklist — Putting It All Together','~30 min',
+        '"The EA doesn\'t guess. It runs a checklist. Now you do too."',
+        'Every trade the EA takes follows a strict sequence. This lesson teaches you to run the same sequence manually. When you can do this by hand on a live chart in under two minutes, you truly understand the strategy — and you can verify every EA signal before it executes.',
+        ['STEP 1:  Check H1 structure  →  BULLISH or BEARISH?','STEP 2:  Look for CHoCH on M15','STEP 3:  Confirm BOS','STEP 4:  Mark the OB from the BOS impulse','STEP 5:  Check for FVG within the OB','STEP 6:  Is London or NY Killzone active?','STEP 7:  Enter at OB/FVG  |  SL below OB  |  TP = next liquidity'],
+        'H1 shows HH/HL (bullish). M15 prints CHoCH after a sweep of 2 944. BOS fires above 2 958. Last bearish candle before the impulse: 2 951–2 954 (OB). FVG inside at 2 952–2 953. Time: 13:15 GMT — NY killzone live. Entry: 2 952.50 | SL: 2 949.50 | TP: 2 969.00 | RR: 1:5.5. Textbook EA signal.',
+        ['Every step must be satisfied. Skip one = skip the trade.','When you run this checklist in two minutes, you are ready for live markets.','Use this checklist to audit the EA\'s signals — do they follow every step?','Print this checklist. Put it next to your screen. Use it every session.'],
+        'Open a chart right now and run the seven-step checklist. Does a valid setup exist? If not, that is the right answer — no trade is a position too.'
+      )}
     </div>
-    
-    <h3>📚 Lessons in This Course (6)</h3>
-    <div style="margin: 1.5rem 0">
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 1: What is Market Structure?</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Learn the basics: HH/HL for uptrends, LH/LL for downtrends. Structure is the foundation of everything.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 2: Break of Structure (BOS)</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">How to spot when price violates the established pattern. BOS signals phase change and reversal opportunity.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 3: Change of Character (CHoCH)</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">When the market shifts from trending to consolidation (or vice versa). The most profitable entries come after CHoCH.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 4: Order Blocks</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">The zones where smart money accumulated or distributed. Order blocks are magnets for price and stop loss placement.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 5: Fair Value Gaps (FVG)</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Imbalances in price action. Price returns to fill FVGs. Use them to identify entry and exit zones.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 6: Putting It Together - Your Structure Checklist</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Apply structure reading to real charts. Step-by-step framework for analyzing any timeframe.</p>
-      </div>
+    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Estimated completion: 4–6 hours</p>`,
+
+  liquidity:`
+    <h2>Hunt Liquidity</h2>
+    <p class="detail-text">You think you are being stopped out by bad luck. You are not. You are funding institutional entries. This module teaches you to trade the reversal instead.</p>
+    <code class="ptg" style="font-family:var(--sm);font-size:10px;letter-spacing:.14em;display:block;margin-bottom:1.5rem">IF (EQH_SWEEP detected) → CONFIDENCE++</code>
+    <div class="lesson-list">
+      ${lessonHTML('2.1','What is Liquidity?','~20 min',
+        '"You think you\'re being stopped out. You\'re actually funding the next big move."',
+        'Banks and institutions need massive volume to fill their orders. They cannot simply click buy — they need sellers on the other side. Retail traders provide that liquidity via stop-loss orders sitting just beyond obvious levels and limit orders clustering at round numbers. Banks engineer price moves to trigger these stops, collect the liquidity, and then reverse. On XAUUSD, this happens multiple times per week — often at London open and the NY killzone.',
+        ['// EA scans for clustered retail stop zones','LIQUIDITY_ZONE = EQH or EQL within current session range'],
+        'During Asian session Gold ranges 2 960–2 968. Retail longs place stops at 2 959. At London open, price dips to 2 958.50, triggers all those stops, and immediately reverses to 2 978. The bank used your stop as their buy order. The EA detects this as an EQL sweep and increases signal confidence.',
+        ['Stop losses just beyond obvious levels = liquidity pools.','The more obvious a level, the more likely it gets swept.','Never place your stop at the obvious level — place it beyond the expected sweep wick.','After the sweep, the real move begins. That is when the EA trades.'],
+        'Look at the last three times your stop was hit on XAUUSD. Was it swept and reversed? If yes — you were the liquidity. Now you know how to trade the other side.'
+      )}
+      ${lessonHTML('2.2','Equal Highs and Equal Lows (EQH / EQL)','~25 min',
+        '"Two highs at the same level is not resistance. It is a target."',
+        'Equal Highs (EQH) are two or more swing highs at approximately the same price. Equal Lows (EQL) are two or more swing lows at approximately the same price. Retail traders see EQH as strong resistance and place sell stop-losses just above it. Banks see EQH as a liquidity pool and plan a sweep above it to collect those stops before reversing down. The EA specifically scans for EQH and EQL within the active session range. When it detects a sweep of these levels, signal confidence increases sharply.',
+        ['EQH_DETECTED = (swing_high_1 ~= swing_high_2)  // within 5 pts','IF (price > EQH + spread) AND (close < EQH)','    EQH_SWEEP = TRUE','    CONFIDENCE++'],
+        'XAUUSD makes highs at 2 975.20 and 2 975.40 on two occasions. The EA marks these as EQH. Stop losses cluster just above 2 975.50. Price spikes to 2 976.10 during London, triggering all stops, then closes back below 2 975.50. EQH_SWEEP = TRUE. CONFIDENCE++. The EA now looks for bearish structure confirmation to fire a sell.',
+        ['EQH within 5 pips of each other qualifies on XAUUSD M15.','The sweep candle closes back inside the range — the wick is the hunt.','After the sweep, wait for CHoCH confirmation before entering.','EQH above a bullish OB = sell the sweep. EQL below a bearish OB = buy the sweep.'],
+        'Mark every EQH and EQL on today\'s XAUUSD M15 chart. How many got swept? Which sweeps were followed by strong reversals? That is your edge — visualised.'
+      )}
+      ${lessonHTML('2.3','The Sweep and Reversal Pattern','~30 min',
+        '"Accumulation. Sweep. Rejection. Expansion. This is the institutional playbook. Now it\'s yours."',
+        'The Sweep and Reversal is a four-phase pattern that repeats on XAUUSD weekly. Phase 1 — Accumulation: During the Asian session, price ranges quietly as banks build positions. Phase 2 — Sweep: At London open or NY killzone, price spikes beyond an EQH or EQL, triggering retail stops and filling institutional orders. Phase 3 — Rejection: Price violently reverses within one to three candles. Phase 4 — Expansion: The real move begins in the opposite direction of the sweep, often delivering 40–80 pips. The EA is designed specifically around this pattern.',
+        ['PHASE_1: Asian range detected  →  mark EQH / EQL','PHASE_2: EQH_SWEEP or EQL_SWEEP confirmed','PHASE_3: CHoCH printed  →  bias reversal','PHASE_4: BOS confirmed + London/Killzone active  →  EXECUTE()'],
+        'Asian session: Gold ranges 2 955–2 963. EQH at 2 963. London open: spike to 2 964.80 (sweep), immediate close back to 2 962. CHoCH forms. BOS fires below 2 955. NY killzone: expansion to 2 942. The full pattern delivers 22 points — with a 7-point stop that is RR 1:3.1.',
+        ['The bigger the Asian range, the more significant the sweep and expansion.','Sweeps during London open (07:00–09:00 GMT) often set up NY killzone trades.','A sweep with no follow-through rejection is weak — wait for candle close confirmation.','Never trade into a sweep — trade the reversal after the rejection candle closes.'],
+        'Go back five trading days on XAUUSD M15. Find the Asian range each day. Did London open sweep EQH or EQL? Did NY killzone expand? Count how many times the four-phase pattern played out.'
+      )}
+      ${lessonHTML('2.4','Stop Hunt Mechanics','~20 min',
+        '"Why does price always hit your stop before going your way? Because your stop IS the destination."',
+        'Stop hunts are deliberate. Banks monitor clusters of retail stop orders through order book data unavailable to retail traders. They execute a rapid spike to trigger those stops — using the resulting volume as their entry fill — then immediately reverse. The entire spike-and-reverse sequence often happens within one to three M5 candles. The signature is a long wick that penetrates a key level and closes firmly back inside the range. Recognising this candle in real time is one of the highest-edge skills in this strategy.',
+        ['// Stop hunt candle = wick beyond level + close inside','IF (candle.wick_beyond_EQH > 0) AND (candle.close < EQH)','    STOP_HUNT_DETECTED = TRUE'],
+        'XAUUSD M5: candle opens at 2 968, spikes to 2 971.40 (above EQH 2 971.00), then closes at 2 969.20 — back below the EQH. That wick above is the stop hunt. The EA flags STOP_HUNT_DETECTED. Next candle opens bearish, CHoCH confirms, and a sell signal is prepared for the killzone.',
+        ['The stop hunt wick must penetrate the EQH/EQL by at least 2–5 pips on XAUUSD.','Candle must CLOSE back inside the range for the pattern to be valid.','Volume spike on the hunt candle is further confirmation.','Set your stop beyond the hunt wick — not at the EQH level itself.'],
+        'Find the last three times you were stopped out on XAUUSD. Look at the candle that triggered your stop. Does it show a wick through a level with close back inside? If yes — that was a stop hunt. Now you know where to place your stop next time.'
+      )}
+      ${lessonHTML('2.5','Liquidity Sweep Entry Strategy','~35 min',
+        '"Sweep confirmed. Rejection printing. Session active. This is the trade."',
+        'This lesson combines everything from Module 2 into one complete entry methodology. The exact sequence the EA follows: EQH or EQL identified → sweep confirmed → rejection candle closes back inside range → CHoCH forms → BOS confirms → price retraces to OB or FVG → session filter active → execute with 1% risk. Entry precision matters: the tighter your stop, the better your risk-reward. The EA consistently achieves minimum 1:4 RR by entering only at OB/FVG confluence after the full sequence is satisfied.',
+        ['EQH_SWEEP = TRUE','CHoCH_CONFIRMED = TRUE','BOS_CONFIRMED = TRUE','SESSION = LONDON or KILLZONE','ENTRY = OB_zone  |  SL = beyond_sweep_wick  |  RR_MIN = 1:4','EXECUTE_SIGNAL()'],
+        'EQH sweep at 2 971 during London. Rejection candle closes at 2 969. CHoCH on M15. BOS below 2 960. OB at 2 963–2 965. Price retraces to 2 963.50 at 13:05 GMT. Entry: 2 963.50 | SL: 2 972.00 | TP: 2 939.00. RR: 1:2.9. The EA executed this with CONF=95.',
+        ['All six steps must be met before entry. One missing = no trade.','Stop goes beyond the sweep wick, not at the EQH level.','Target the next EQL or structural low — that is the institutional target too.','If OB and FVG overlap, enter at the midpoint of the overlap.'],
+        'Using today\'s XAUUSD chart, attempt to identify one complete sweep entry setup. Run all six steps. Did you find a valid trade? If not, document why — that analysis is more valuable than the trade itself.'
+      )}
     </div>
-    <p style="font-size: 13px; color: var(--ds); font-style: italic; margin-top: 2rem">⏱️ Estimated completion: 4-6 hours</p>`,
-  
-  liquidity:`<h2>Hunt Liquidity</h2>
-    <p class="detail-text">Learn where banks hide their positions and how to follow them into profitable trades.</p>
-    
-    <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(192, 138, 8, 0.04); border-left: 3px solid var(--gd); border-radius: 2px;">
-      <strong style="display: block; margin-bottom: 1rem; color: var(--ink)">📊 Visual: Sweep & Reversal Pattern</strong>
-      <svg viewBox="0 0 600 240" style="width: 100%; max-width: 500px; margin: 0 auto; display: block;">
-        <defs><linearGradient id="sweep" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#C08A08;stop-opacity:0.1" /></linearGradient></defs>
-        <rect x="40" y="20" width="520" height="200" fill="none" stroke="#ADA49A" stroke-width="1" opacity="0.3"/>
-        <!-- Accumulation -->
-        <polyline points="80,120 120,115 160,125 200,118" stroke="#3C5537" stroke-width="2" fill="none" opacity="0.7" stroke-dasharray="5,5"/>
-        <text x="140" y="105" font-size="11" fill="#3C5537" font-weight="bold">① ACCUMULATION</text>
-        <!-- Equal Highs -->
-        <line x1="160" y1="115" x2="160" y2="80" stroke="#C08A08" stroke-width="2" opacity="0.6"/><circle cx="160" cy="80" r="4" fill="#C08A08"/><text x="160" y="70" text-anchor="middle" font-size="10" fill="#C08A08" font-weight="bold">EQH</text>
-        <!-- Sweep -->
-        <polyline points="200,118 240,95 280,40 310,50 340,70" stroke="#7C3422" stroke-width="2.5" fill="url(#sweep)"/>
-        <text x="280" y="25" text-anchor="middle" font-size="11" fill="#7C3422" font-weight="bold">② SWEEP</text>
-        <!-- Stop Hunt Zone -->
-        <rect x="270" y="35" width="50" height="30" fill="#7C3422" opacity="0.1" stroke="#7C3422" stroke-width="1" stroke-dasharray="3,3"/>
-        <text x="295" y="55" text-anchor="middle" font-size="9" fill="#7C3422">Stops</text>
-        <!-- Rejection & Entry -->
-        <polyline points="340,70 360,140 380,130 420,160 460,140 500,170" stroke="#3C5537" stroke-width="2.5" fill="none"/>
-        <text x="400" y="105" text-anchor="middle" font-size="11" fill="#3C5537" font-weight="bold">③ REJECTION → ENTRY</text>
-        <!-- Entry Arrow -->
-        <circle cx="360" cy="140" r="5" fill="#3C5537" opacity="0.8"/><text x="360" y="165" text-anchor="middle" font-size="10" fill="#3C5537" font-weight="bold">LONG</text>
-      </svg>
+    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Estimated completion: 5–7 hours</p>`,
+
+  timing:`
+    <h2>Time the Killzone</h2>
+    <p class="detail-text">The best setup executed at the wrong time is a losing trade. The EA never fires outside its session windows. Neither should you.</p>
+    <code class="ptg" style="font-family:var(--sm);font-size:10px;letter-spacing:.14em;display:block;margin-bottom:1.5rem">IF (London OR Killzone) → EXECUTE_SIGNAL()</code>
+    <div class="lesson-list">
+      ${lessonHTML('3.1','The Three Forex Sessions','~20 min',
+        '"28% of your off-session entries lose twice as often. That number is on your own discipline dashboard."',
+        'The global gold market operates in three major sessions. Asian session (00:00–08:00 GMT): low volume, price ranges quietly, liquidity pools build. London session (07:00–17:00 GMT): European institutional money enters, strong directional moves begin here. New York session (12:00–21:00 GMT): US institutional money enters, maximum volume, largest intraday moves. The EA filters all signals to London open and the NY killzone overlap — two windows where institutional activity is highest and setups resolve with the most precision.',
+        ['SESSION_FILTER = [\'London_Open\', \'NY_Killzone\']','IF current_time NOT IN SESSION_FILTER:','    SKIP_SIGNAL()  // no trades outside these windows'],
+        'The same EQH sweep pattern appears at 03:00 GMT (Asian) and again at 13:30 GMT (NY killzone). The EA ignores the 03:00 signal entirely and executes the 13:30 signal. The 13:30 trade delivers +41 pips. The 03:00 setup drifts sideways for four hours before slowly resolving — poor RR and wasted time.',
+        ['Asian session = study and mark levels, not execute.','London session = watch for sweeps of Asian highs/lows.','NY killzone (12:00–15:00 GMT) = the highest probability execution window.','After 15:00 GMT, step back. The professional session is over.'],
+        'Review your last ten trades. Note the GMT time of each entry. Which session were they in? Cross-reference with win/loss. You will likely see a clear pattern.'
+      )}
+      ${lessonHTML('3.2','The London Session (07:00–12:00 GMT)','~25 min',
+        '"London doesn\'t just open the market. It sets the trap for New York."',
+        'When London opens at 07:00 GMT, institutional orders flood in. Price typically runs the Asian session\'s high or low first — this is the sweep. A London sweep of Asian highs (EQH) creates bearish momentum heading into the NY session. A London sweep of Asian lows (EQL) creates bullish momentum. The EA uses London signals when the sweep-and-rejection pattern forms during 07:00–09:00 GMT. London setups are typically trend-following — they continue in the direction of the daily bias.',
+        ['LONDON_WINDOW = 07:00 to 12:00 GMT','IF EQH_SWEEP during London  AND  bearish_structure','    SIGNAL_DIRECTION = SHORT','    AWAIT_OB_RETRACEMENT()'],
+        'Asian range: 2 955–2 963. London opens at 07:00 GMT, spikes to 2 964.80 (EQH sweep). Rejection at 07:05 GMT. CHoCH at 07:15. OB at 2 960–2 962. Price retraces to OB at 08:30 GMT. EA fires short. Target: 2 942. Trade ran into NY session and hit target at 13:45 GMT. Total: +22 points, RR 1:3.1.',
+        ['Best London entries occur 07:00–09:00 GMT — within the first two hours.','London sweep of Asian high = look for short. London sweep of Asian low = look for long.','Avoid trading 11:00–12:00 GMT — the dead zone before NY.','Always check the daily chart bias before taking any London signal.'],
+        'For the next five London sessions, do not trade — only observe. Mark the Asian high and low each morning. Note whether London sweeps one of them. Track whether the reversal holds into NY.'
+      )}
+      ${lessonHTML('3.3','The NY Session and the Killzone (12:00–15:00 GMT)','~25 min',
+        '"Twelve to fifteen GMT. Three hours. This is where the EA makes its money. This is where you make yours."',
+        'The NY killzone — 12:00 to 15:00 GMT — is the overlap between London and New York sessions. Both European and American institutional players are active simultaneously. Volume is at its daily maximum. This is when the largest intraday moves on XAUUSD occur. The EA\'s 1:4 minimum RR is consistently achievable during this window because moves are fast, decisive, and follow through. If the London session set up a sweep, the NY killzone delivers the expansion.',
+        ['NY_KILLZONE = 12:00 to 15:00 GMT','IF current_time IN NY_KILLZONE','    AND all_structure_checks_pass','    EXECUTE_SIGNAL()','    RISK = 1.0%  |  RR_MINIMUM = 1:4'],
+        'London swept EQH at 2 971 at 08:00 GMT, setting bearish bias. Price retraces into OB at 2 963–2 965 by 12:20 GMT. EA fires short at 12:21 GMT. Stop: 2 972.00. Target: 2 939.00. By 14:10 GMT target is hit. +24 points, RR 1:2.9. Three hours, one trade, clean execution.',
+        ['The killzone is 12:00–15:00 GMT. After 15:00, step away.','If no valid setup forms by 14:30 GMT, do not force it — close the platform.','NY killzone signals that align with London\'s directional sweep carry the highest conviction.','Minimum 1:4 RR required. If the target distance doesn\'t deliver it, skip.'],
+        'Trade the NY killzone exclusively for one week. No entries before 12:00 GMT, none after 15:00. Track your results. Compare to your previous multi-session trading. The data will speak clearly.'
+      )}
+      ${lessonHTML('3.4','Session Bias and Alignment Strategy','~25 min',
+        '"Each session sets up the next. Read the sequence and you read the day before it starts."',
+        'The three sessions are a chain, not isolated events. Asian session creates the range and builds liquidity. London session sweeps one side of that range, establishing directional bias. NY killzone delivers the expansion of that bias. Layer this with the daily chart OB and weekly structure, and your entries have four-level confluence: weekly, daily, session, and trigger-level (M5/M15).',
+        ['// Session bias chain','DAILY_BIAS     = HTF structure direction','LONDON_BIAS    = direction of London sweep','KILLZONE_ENTRY = OB/FVG retracement during 12:00-15:00','ALL ALIGNED    = maximum conviction signal'],
+        'Weekly structure: bearish. Daily OB: 2 968–2 972. Asian range swept to high by London at 2 970 (inside daily OB). Bearish CHoCH→BOS on M15. Killzone retracement to OB at 2 965. EA fires short. Four-level alignment. RR 1:5.5. This type of setup is rare but the EA\'s highest-confidence signal (CONF=98).',
+        ['Four-level alignment is rare — be patient and wait for it.','If daily bias opposes session bias, reduce size or skip.','Mark the daily OB every morning before the London session opens.','Never fight weekly structure — it is the most powerful of all four levels.'],
+        'Before each trading day, write down: (1) weekly structure direction, (2) daily OB zone, (3) Asian session high/low. Predict which side London will sweep. Track your prediction accuracy over 10 sessions.'
+      )}
     </div>
-    
-    <h3>📚 Lessons in This Course (5)</h3>
-    <div style="margin: 1.5rem 0">
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 1: What is Liquidity?</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Why banks need it. Where retail stop losses cluster. How to identify liquidity zones.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 2: Equal Highs & Equal Lows (EQH/EQL)</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Price levels where previous swings match. Stop losses cluster here. Banks hunt here.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 3: The Sweep & Reversal Pattern</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Accumulation → Sweep → Rejection → Expansion. The institutional playbook decoded.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 4: Stop Hunt Mechanics</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">How banks trigger retail stops. Why price rejects immediately. Trading the rejection for +3:1 R:R.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 5: Liquidity Sweep Entry Strategy</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Exact checklist for entering after the sweep. Position sizing. Risk management for sweep trades.</p>
-      </div>
+    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Estimated completion: 3–4 hours</p>`,
+
+  psychology:`
+    <h2>Master the Mind</h2>
+    <p class="detail-text">The strategy is proven. The edge is real. And yet most traders still lose — not because of the method, but because of themselves. Your discipline score shows exactly where psychology is costing you money.</p>
+    <code class="ptg" style="font-family:var(--sm);font-size:10px;letter-spacing:.14em;display:block;margin-bottom:1.5rem">RISK=1.0% | NO_REVENGE | SESSION_ONLY | RULES_FIRST</code>
+    <div class="lesson-list">
+      ${lessonHTML('4.1','The Psychology of Profitable Trading','~20 min',
+        '"You are not a trader. You are a system operator. The moment you understand that difference, everything changes."',
+        'Most traders fail not because of a bad strategy, but because they cannot execute a good one consistently. The human brain operates in two modes: System 1 is fast, emotional, and instinctive — it fires during fear and greed. System 2 is slow, rational, and rule-based — it is what you need in a trade. Markets are designed to activate System 1. Your job is to build structures — rules, checklists, and the EA itself — that keep you in System 2 even when the market moves against you.',
+        ['// The EA has no emotions. It follows its rules every time.','// Your job is to be the EA — not to override it.','EXECUTE_IF_RULES_MET()  // not if it feels right'],
+        'Your EA fires a sell at 13:15 GMT with all six checklist steps confirmed. The trade goes 8 pips into profit, then retraces to entry. System 1 says: "It\'s about to hit my stop, close it." System 2 says: "The setup is valid, the stop is correctly placed, hold." Traders who follow System 2 capture the +41 pips that print an hour later.',
+        ['You are a system operator, not a prediction machine.','Feelings about a trade are data about your psychology, not the market.','Build rituals (pre-session routine, checklist, journal) to activate System 2.','The EA is your benchmark — study it, copy it, let it teach you discipline.'],
+        'Write down the last three times you deviated from your plan. What triggered each deviation? Fear, greed, or FOMO? Name the emotion precisely. The first step to managing it is identifying it.'
+      )}
+      ${lessonHTML('4.2','Fear, Greed, and FOMO','~25 min',
+        '"Fear closes winners early. Greed holds losers too long. FOMO takes setups that were never there. All three are account killers."',
+        'Fear makes you close profitable trades before target — locking in a small win and missing the full move. Greed makes you hold losing trades past your stop — hoping for the reversal that does not come. FOMO makes you enter setups outside your checklist — chasing candles that already moved, trading sessions that are closed, taking marginal setups because "it looks like it might work." Your discipline dashboard currently shows: emotional control at 41%, three revenge trades in the last five losers, and 28% of entries off-session. Each metric maps directly to fear, greed, and FOMO.',
+        ['// EA never closes early. TP is set. It either hits or it doesn\'t.','// EA never moves SL. Risk is defined before entry.','// EA never trades outside its session filter. Ever.'],
+        'You enter a valid sell at 2 965 with SL 2 972 and TP 2 939. Price drops to 2 948 (+17 pips) then pulls back to 2 957. Fear activates — you close for +8 pips. Price resumes down and hits 2 939 an hour later (+26 pips). Fear cost you 18 pips. Multiply that over 40 trades per month.',
+        ['Set your SL and TP before entry. Do not adjust them during the trade.','After entry, close the chart for 30 minutes. Remove the visual stimulus.','If you feel the urge to close early, write in your journal first — then decide.','FOMO check: is this setup on the checklist? If not, the answer is no.'],
+        'For your next ten trades, place your SL and TP, then close the chart. Do not watch. Record the result. Compare to your last ten trades where you watched actively. The difference will be significant.'
+      )}
+      ${lessonHTML('4.3','Your Trading Rules and Checklist','~25 min',
+        '"Unwritten rules don\'t exist. If it isn\'t on paper, you won\'t follow it under pressure."',
+        'Written trading rules are the backbone of consistent execution. When the market is volatile and your emotions are elevated, a written rule is the only thing that will override your instinct. Your rules must be specific, binary, and pre-committed. "Trade with the trend" is not a rule. "Only enter after CHoCH→BOS is confirmed on M15 with H1 bullish structure" is a rule. The pre-trade checklist from Lesson 1.6 is your rule set in execution form.',
+        ['RULE_1: No trade without structure confirmation','RULE_2: No trade without confirmed EQH/EQL sweep','RULE_3: No trade outside London or NY killzone','RULE_4: Max risk 1% per trade','RULE_5: No re-entry within 4 candles of a stop-out'],
+        'Your most expensive bad habit: re-entering within 4 minutes of a stop-out. Your discipline dashboard confirms 3 of your last 5 losers were exactly this pattern. Rule 5 above exists solely to address this. Write it. Stick it next to your screen. When the stop hits, count four candles before you are even allowed to look at a new setup.',
+        ['Write your five non-negotiable rules. Laminate them. Put them where you trade.','Review your rules before every session — not after.','After each trade, tick the checklist: did every step apply?','Add a rule every time you identify a repeated mistake.'],
+        'Write your five non-negotiable trading rules right now. Not general — specific and binary. Share them in the community for accountability.'
+      )}
+      ${lessonHTML('4.4','Position Sizing and Risk Management','~30 min',
+        '"The EA risks 1% per trade. That single rule is why it survived 12.4% drawdown and came back to +218%."',
+        'Risk management is not defensive — it is the foundation of compounding. The EA uses 1.0% risk per trade with a minimum RR of 1:4. At 61.4% win rate, this produces a profit factor of 2.18 across 847 trades. The mathematics: if you risk 1% and target 4%, you only need to be right 34% of the time to break even. At 50% win rate, you are highly profitable. At 61%, the equity curve climbs steadily. Lot size formula: (Account Balance × Risk%) ÷ (Stop Loss in points × Point Value).',
+        ['RISK_PER_TRADE = 1.0%  // of current account balance','RR_MINIMUM = 1:4','LOT_SIZE = (balance * 0.01) / (sl_points * point_value)'],
+        '$10,000 account. Risk 1% = $100 per trade. Stop loss = 8 points. XAUUSD point value on 0.01 lot = $0.10. Calculation: $100 / (8 × $0.10) = $100 / $0.80 = 0.125 standard lots. This size means an 8-point adverse move loses exactly $100 (1% of $10,000). Target at 1:4 = 32 points → $400 profit → 4% account gain on one trade.',
+        ['Never risk more than 1% on a single trade — regardless of conviction.','Recalculate lot size every time — do not use a fixed lot.','Minimum RR must be 1:4 before entry. If target is closer, skip the trade.','After a winning trade, compound: re-calculate on the new (larger) balance.'],
+        'Calculate your correct lot size for your current account balance using 1% risk and an 8-point stop on XAUUSD. Write it down. Compare it to your last five actual lot sizes. Were you over or under-leveraged?'
+      )}
+      ${lessonHTML('4.5','Handling Losing Streaks','~20 min',
+        '"The EA had 12.4% drawdown over 847 trades. Losing is part of having an edge. How you respond to losses determines everything."',
+        'With a 61.4% win rate, the probability of five consecutive losses is still 1.8%. Over 847 trades, that happens multiple times. It is not a sign the strategy is broken — it is statistical variance. The danger is not the losing streak itself; it is the psychological response to it. Revenge trading, position size increases, rule-breaking — these are the real account destroyers during drawdowns. The EA does not respond emotionally to losses. It simply executes the next valid signal. Your goal is to do the same.',
+        ['// EA response to consecutive losses:','IF (consecutive_losses >= 5):','    PAUSE_SIGNALS(24_hours)  // built-in circuit breaker','    LOG_REVIEW_REQUIRED = TRUE'],
+        'Five consecutive losses. Total drawdown: 5% of account. System 1 says: "Double up to recover." System 2 says: "At 1% risk and 61% win rate, the expectancy over the next 20 trades is strongly positive. Execute the rules. The edge works over sample sizes, not individual trades." Take a 24-hour break. Review each losing trade against the checklist. Then return.',
+        ['After 5 consecutive losses, stop trading for 24 hours — non-negotiable.','Review each losing trade against the full checklist. Categorise: rule-following loss or rule-breaking loss?','Never increase position size to recover losses.','Losses that followed every rule are not mistakes — they are the cost of doing business.'],
+        'Write a circuit breaker protocol: what you will do after 3 consecutive losses, after 5, and after a 5% drawdown day. Having the plan written before it happens removes the emotional decision-making when it does.'
+      )}
+      ${lessonHTML('4.6','The Trading Journal and Self-Review','~25 min',
+        '"Your discipline score is 72. Emotional control is 41%. The data is telling you exactly what to fix. Are you listening?"',
+        'The RLCTA discipline dashboard shows real data on your trading psychology: revenge trades, off-session entries, risk consistency, plan adherence. A trading journal extends this further — recording the emotional state, reasoning, and context of every trade. The journal is not a record of your profits; it is a record of your decision-making quality. Review it weekly and monthly to identify patterns: which setups do you execute best? Which sessions do you overtrade? What emotional state leads to your worst decisions?',
+        ['// Journal entry fields','TRADE_LOG = {','  date, time_gmt, direction, entry, sl, tp, result_pips,','  session, structure_confirmed, sweep_confirmed,','  emotion_state, followed_rules: TRUE/FALSE, notes','}'],
+        'Weekly review reveals: your three revenge trades all occurred on Mondays after a losing Friday. You now add Rule 6: "No trades on Monday if Friday closed with a net loss." One rule, derived from one week of journal review, eliminates a recurring and expensive pattern.',
+        ['Log every trade immediately after it closes — not at the end of the day.','Rate your emotional state before entry: 1 (calm) to 5 (elevated). Avoid trading at 4–5.','Weekly review: 15 minutes every Sunday. Monthly review: 45 minutes on the first of the month.','Share your journal summary in the community — external accountability accelerates improvement.'],
+        'Create your journal template today using the fields above. Log your next five trades in full. After five entries, do a mini-review: are there patterns in what you are logging?'
+      )}
+      ${lessonHTML('4.7','From Demo to Live — Your Graduation Plan','~25 min',
+        '"Demo teaches you the strategy. Micro-lots teach you the psychology. Live teaches you both at full intensity."',
+        'Moving from demo to live is not a flip of a switch — it is a phased progression with clear criteria at each stage. Demo is where you prove you understand the setup. Micro-lots ($500–$1,000 account) are where you experience real psychology with limited capital at risk. A small live account ($3,000–$5,000) is where you build consistency. A standard account is where your edge compounds into significant returns. Skip a stage and you will pay tuition to the market — and the market charges interest.',
+        ['STAGE_1_DEMO:       3 consecutive profitable months + discipline score > 75','STAGE_2_MICRO:      $500–$1,000 live  |  0.01 lots  |  3 profitable months','STAGE_3_SMALL_LIVE: $3,000–$5,000  |  correct lot sizing  |  rules consistent','STAGE_4_STANDARD:   Scale when monthly return is consistent over 6 months'],
+        'Month 1 demo: 3 losses in the first week, then you find rhythm. Months 2–3: two consecutive profitable months, discipline score 79. Month 4: open $500 micro account. The first live stop-out feels completely different to demo. This is normal — this is exactly why the micro stage exists. Months 4–6 on micro: three more profitable months. Ready for Stage 3.',
+        ['Stage 1 graduation: 3 consecutive profitable months on demo. No exceptions.','Stage 2: trade micro until the psychology feels the same as demo.','Never fund a live account beyond your financial and emotional loss tolerance.','The EA can run on your live account from Stage 2 — let it trade alongside you.'],
+        'Identify which stage you are currently in. Write the three criteria that will allow you to move to the next stage. Commit to not moving until all three are met.'
+      )}
     </div>
-    <p style="font-size: 13px; color: var(--ds); font-style: italic; margin-top: 2rem">⏱️ Estimated completion: 5-7 hours</p>`,
-  
-  timing:`<h2>Time the Killzone</h2>
-    <p class="detail-text">Trade during peak liquidity. Avoid the noise. Master session analysis and timing.</p>
-    
-    <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(192, 138, 8, 0.04); border-left: 3px solid var(--gd); border-radius: 2px;">
-      <strong style="display: block; margin-bottom: 1rem; color: var(--ink)">📊 Visual: Session Volatility Profile</strong>
-      <svg viewBox="0 0 600 200" style="width: 100%; max-width: 500px; margin: 0 auto; display: block;">
-        <defs><linearGradient id="vol" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#3C5537;stop-opacity:0.15" /></linearGradient></defs>
-        <!-- Grid -->
-        <line x1="40" y1="150" x2="560" y2="150" stroke="#ADA49A" stroke-width="1" opacity="0.4"/><text x="40" y="170" font-size="10" fill="#ADA49A">0 pips</text>
-        <!-- Sessions -->
-        <!-- Asian (low) -->
-        <polyline points="60,145 80,140 100,138 120,142" fill="url(#vol)" stroke="#ADA49A" stroke-width="1.5"/><text x="90" y="165" text-anchor="middle" font-size="11" fill="#ADA49A" font-weight="bold">ASIAN</text><text x="90" y="180" text-anchor="middle" font-size="9" fill="#ADA49A">Low vol</text>
-        <!-- London (medium-high) -->
-        <polyline points="160,120 180,90 200,75 220,85 240,100" fill="url(#vol)" stroke="#C08A08" stroke-width="2"/><text x="200" y="65" text-anchor="middle" font-size="11" fill="#C08A08" font-weight="bold">LONDON</text><text x="200" y="180" text-anchor="middle" font-size="9" fill="#C08A08">High vol ↑</text>
-        <!-- NY (high) -->
-        <polyline points="280,100 300,65 320,50 340,60 360,80" fill="url(#vol)" stroke="#3C5537" stroke-width="2.5"/><text x="320" y="40" text-anchor="middle" font-size="11" fill="#3C5537" font-weight="bold">NY</text><text x="320" y="180" text-anchor="middle" font-size="9" fill="#3C5537">Very High ↑↑</text>
-        <!-- Killzone highlight -->
-        <rect x="280" y="10" width="80" height="95" fill="#3C5537" opacity="0.08" stroke="#3C5537" stroke-width="2" stroke-dasharray="4,4"/><text x="320" y="30" text-anchor="middle" font-size="10" fill="#3C5537" font-weight="bold">KILLZONE</text><text x="320" y="115" text-anchor="middle" font-size="9" fill="#3C5537">(12:00-15:00)</text>
-        <!-- Asian continuation -->
-        <polyline points="380,130 400,135 420,138 440,132 460,140 480,138 500,142 520,140 540,143" fill="url(#vol)" stroke="#ADA49A" stroke-width="1.5"/><text x="460" y="165" text-anchor="middle" font-size="11" fill="#ADA49A" font-weight="bold">TOKYO CLOSE</text>
-      </svg>
-    </div>
-    
-    <h3>📚 Lessons in This Course (4)</h3>
-    <div style="margin: 1.5rem 0">
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 1: The Three Forex Sessions</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Asian, London, New York. Volatility profiles. Where money flows. Session personalities.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 2: The London Session (07:00–12:00 GMT)</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">European money active. Strong directional moves. Best for trend setups.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 3: The New York Session & Killzone (12:00–15:00 GMT)</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Peak volatility. Double liquidity. Biggest moves. Where professionals make their money.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 4: Session Bias & Alignment Strategy</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">How previous sessions influence the next. Bias alignment for higher probability entries.</p>
-      </div>
-    </div>
-    <p style="font-size: 13px; color: var(--ds); font-style: italic; margin-top: 2rem">⏱️ Estimated completion: 3-4 hours</p>`,
-  
-  psychology:`<h2>Master the Mind</h2>
-    <p class="detail-text">The best strategy fails without discipline. Build the trading psychology and rules that make your edge work.</p>
-    <h3>📚 Lessons in This Course (7)</h3>
-    <div style="margin: 1.5rem 0">
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 1: The Psychology of Profitable Trading</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Why most traders fail. Discipline over emotion. Building a trader's mindset.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 2: Fear, Greed & FOMO</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">How these emotions sabotage trades. Rules to override them. Mechanical execution.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 3: Your Trading Rules & Checklist</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Written rules you never break. Pre-trade checklist. Post-trade journal review.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 4: Position Sizing & Risk Management</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">The #1 way to stay in the game. Never risk more than 1% per trade. Compound safely.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 5: Handling Losing Streaks</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Drawdown is normal. How to respond. When to take a break. Building resilience.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 6: The Trading Journal & Self-Review</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Document every trade. Why you entered. What worked. What didn't. Continuous improvement.</p>
-      </div>
-      <div style="padding: 1rem; border-left: 3px solid var(--gd); margin-bottom: 1rem; background: rgba(192, 138, 8, 0.05)">
-        <strong style="color: var(--ink)">Lesson 7: From Demo to Live - Your Graduation Plan</strong>
-        <p style="font-size: 13px; color: var(--wm); margin-top: 0.5rem">Micro lot trading. Building confidence. Scaling up. Full-time trading mindset.</p>
-      </div>
-    </div>
-    <p style="font-size: 13px; color: var(--ds); font-style: italic; margin-top: 2rem">⏱️ Ongoing (New lessons added every month)</p>`
+    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Ongoing · New lessons added every month</p>`
 };
+
+function toggleLesson(header){
+  const item = header.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // close all siblings
+  item.parentElement.querySelectorAll('.lesson-item.open').forEach(el => el.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
 
 function openCourseModal(course){
   const modal=document.getElementById('courseModal');
