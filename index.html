@@ -3,980 +3,853 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RLCTA · Refined Liquidity Cycle Trading Academy</title>
+<title>Refined Liquidity — Trade the Cycle</title>
+<meta name="description" content="Refined Liquidity — the Liquidity Cycle methodology for institutional gold trading, taught by Arshly Phiri and executed by the MMM algorithm. Education, psychology, automation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cr:#F5F1E8;--pa:#EDE8D9;--pw:#FAF8F3;
-  --ink:#14110E;--i2:#3C362C;--wm:#6E6056;--ds:#ADA49A;--rl:#D5CCBC;
-  --gd:#C08A08;--gm:#D4A020;--gl:#E8C060;
-  --sg:#3C5537;--rs:#7C3422;
-  --console:#0E0C0A;--c2:#161412;--ct:#EDE8DC;--cr2:rgba(255,255,255,.07);--cg:#D4A020;
-  --live:#2A8F5F;
-  --sf:'Cormorant Garamond',Georgia,serif;
-  --ss:'Instrument Sans',system-ui,sans-serif;
-  --sm:'IBM Plex Mono',monospace;
+  --bg:#08090D; --bg2:#0C0E14; --surf:#12151E; --surf2:#191D28; --surf3:#222736;
+  --line:rgba(233,201,122,.16); --line2:rgba(255,255,255,.07); --line3:rgba(63,224,197,.18);
+  --gold:#E9C97A; --goldd:#C9A227; --goldl:#F4E3B0;
+  --aqua:#3FE0C5; --aquad:#1FB89E; --aqual:#86F2DF;
+  --ink:#F3F2EC; --ink2:#C9CCD4; --mut:#878D9C; --mut2:#565C6E;
+  --rs:#E0683F;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --sans:'Space Grotesk',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --maxw:1200px;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--cr);color:var(--ink);font-family:var(--ss);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.w{max-width:1140px;margin:0 auto;padding:0 44px}
-.hl{width:100%;height:1px;background:var(--rl)}
-.lbl{display:flex;align-items:center;gap:18px;font-family:var(--sm);font-size:10px;letter-spacing:.22em;color:var(--ds);text-transform:uppercase}
-.lbl::before,.lbl::after{content:'';flex:1;height:1px;background:var(--rl)}
-.rv{opacity:0;transform:translateY(16px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.2,1)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(63,224,197,.25);color:#fff}
+a{color:inherit;text-decoration:none}
+.w{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+@media(max-width:640px){.w{padding:0 22px}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
-.bp{padding:72px 44px 48px}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{animation:none!important}}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(245,241,232,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--rl)}
-.nav-in{display:flex;align-items:center;height:58px;justify-content:space-between}
-.brand{font-family:var(--sm);font-size:14px;font-weight:500;letter-spacing:.1em;color:var(--ink);display:flex;align-items:center;gap:12px}
-.brand span{color:var(--rl);font-size:16px;font-weight:300}
-.brand em{font-style:normal;font-size:11px;color:var(--gd)}
-.nav-links{display:flex;gap:28px}
-.nav-links a{font-size:13.5px;color:var(--wm);text-decoration:none;transition:color .2s}
-.nav-links a:hover,.nav-links a.on{color:var(--ink)}
-.nav-r{display:flex;align-items:center;gap:24px;font-size:13.5px}
-.nav-r a{color:var(--wm);text-decoration:none}
-.nav-r .get{color:var(--gd);font-weight:500;border-bottom:1px solid var(--gm);padding-bottom:1px}
-@media(max-width:800px){.nav-links{display:none}}
+.ey{font-family:var(--mono);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--mut);display:inline-flex;align-items:center;gap:14px}
+.ey::before{content:'';width:26px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
 
-/* HERO */
-.hero{padding:72px 44px 88px;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 1200px 600px at 50% -5%,#2e2823 0%,#211d18 40%,#16130f 100%)}
-.hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:2}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 700px 500px at 50% 8%,rgba(192,138,8,.10) 0%,transparent 55%),radial-gradient(circle at 85% 75%,rgba(60,85,55,.06) 0%,transparent 40%);z-index:0;pointer-events:none;animation:heroGlow 12s ease-in-out infinite}
-@keyframes heroGlow{0%,100%{opacity:1}50%{opacity:.7}}
-.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(192,138,8,.4),transparent);z-index:3}
-.hero-code{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.hero-code span{position:absolute;font-family:var(--sm);font-size:13px;color:#C08A08;opacity:.1;letter-spacing:.05em;white-space:nowrap;animation:codeFloat 8s ease-in-out infinite}
-.hero-code span:nth-child(even){animation-delay:-3s;font-size:11px;opacity:.07}
-.hero-code span:nth-child(3n){animation-delay:-5s;font-size:15px;opacity:.12}
-@keyframes codeFloat{0%,100%{transform:translateY(0);opacity:.06}50%{transform:translateY(12px);opacity:.13}}
-.hl1{display:block;font-family:var(--sf);font-weight:700;font-size:clamp(76px,13.5vw,188px);letter-spacing:.08em;color:var(--cr);line-height:.9;text-shadow:0 8px 24px rgba(0,0,0,.5)}
-.hl2{display:block;font-family:var(--sf);font-weight:300;font-style:italic;font-size:clamp(54px,9.8vw,134px);letter-spacing:.02em;color:var(--gd);line-height:.9;margin-top:.06em;text-shadow:0 4px 16px rgba(192,138,8,.3)}
-.hl2 b{font-style:normal;font-weight:700;color:var(--cr)}
-.hero-rule{width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--gd),transparent);margin:40px auto;box-shadow:0 0 16px rgba(192,138,8,.4)}
-.sub{font-size:17px;color:rgba(237,232,220,.8);max-width:480px;margin:0 auto 44px;line-height:1.7}
-.sub strong{color:var(--cr);font-weight:500}
-.hero-pills{display:flex;justify-content:center;gap:12px;margin-bottom:42px;flex-wrap:wrap}
-.pill{font-family:var(--sm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border:1.5px solid rgba(237,232,220,.3);color:rgba(237,232,220,.6);cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
-.pill::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(192,138,8,.1);transition:left .3s ease}
-.pill:hover{border-color:var(--gd);color:var(--cr)}
-.pill:hover::before{left:0}
-.cta{display:inline-block;text-decoration:none;font-size:14px;font-weight:500;transition:all .2s}
-.cta.pri{color:var(--gd);border-bottom:1px solid var(--gd);padding-bottom:2px}
-.cta.sec{color:rgba(237,232,220,.6)}
-.cta.pri:hover{color:var(--gl)}
-.ctas{display:flex;justify-content:center;align-items:center;gap:20px}
-.cta-div{color:rgba(237,232,220,.25);font-size:14px}
+/* ─────────── NAV ─────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,9,13,.6);backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--line2);transition:background .3s}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.02em}
+.brand .mk{width:26px;height:26px;flex-shrink:0}
+.brand b{font-weight:600}
+.brand span{color:var(--gold)}
+.nlinks{display:flex;gap:34px}
+.nlinks a{font-size:13px;color:var(--ink2);letter-spacing:.01em;position:relative;padding:4px 0;transition:color .2s}
+.nlinks a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--aqua);transition:width .25s}
+.nlinks a:hover{color:var(--ink)}.nlinks a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:22px}
+.nav-cta .sign{font-size:13px;color:var(--mut)}
+.nav-cta .join{font-size:13px;font-weight:600;color:var(--ink);border:1px solid var(--line);padding:9px 18px;border-radius:100px;transition:all .25s;background:linear-gradient(180deg,rgba(233,201,122,.08),transparent)}
+.nav-cta .join:hover{border-color:var(--gold);box-shadow:0 0 24px -6px rgba(233,201,122,.5);color:var(--goldl)}
+.burger{display:none}
+@media(max-width:860px){.nlinks,.nav-cta .sign{display:none}.burger{display:block;font-size:22px;color:var(--ink);background:none;border:none;cursor:pointer}}
 
-/* ANALOG CLOCKS */
-.world-clocks{display:flex;justify-content:center;gap:0;margin-bottom:52px;flex-wrap:wrap;border:1px solid rgba(192,138,8,.12);border-radius:8px;overflow:hidden;background:rgba(0,0,0,.2);backdrop-filter:blur(8px);max-width:860px;margin-left:auto;margin-right:auto}
-.wclock{flex:1;min-width:160px;padding:20px 16px 16px;border-right:1px solid rgba(192,138,8,.1);position:relative;transition:background .3s;text-align:center}
-.wclock:last-child{border-right:none}
-.wclock.active{background:rgba(192,138,8,.06)}
-.wc-city{font-family:var(--sm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,220,.55);margin-bottom:12px}
-.wclock.active .wc-city{color:var(--gd)}
-.analog-clock{display:block;margin:0 auto 10px;width:64px;height:64px}
-.clock-face{fill:rgba(0,0,0,.3);stroke:rgba(192,138,8,.25);stroke-width:1.5}
-.wclock.active .clock-face{stroke:rgba(192,138,8,.6)}
-.clock-center{fill:var(--gd)}
-.hand-h{stroke:rgba(237,232,220,.9);stroke-width:2.5;stroke-linecap:round;transform-origin:32px 32px}
-.hand-m{stroke:var(--gd);stroke-width:1.8;stroke-linecap:round;transform-origin:32px 32px}
-.hand-s{stroke:#E8C060;stroke-width:1;stroke-linecap:round;transform-origin:32px 32px}
-.tick{stroke:rgba(237,232,220,.2);stroke-width:1}
-.tick-major{stroke:rgba(237,232,220,.45);stroke-width:1.5}
-.wc-digital{font-family:var(--sm);font-size:16px;font-weight:500;color:var(--cr);letter-spacing:.06em;line-height:1.2}
-.wclock.active .wc-digital{color:var(--gl)}
-.wc-status{font-family:var(--sm);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,232,220,.35);margin-top:4px}
-.wclock.active .wc-status{color:var(--sg)}
-.wc-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:rgba(237,232,220,.25);margin-right:4px;vertical-align:middle}
-.wclock.active .wc-dot{background:var(--sg);box-shadow:0 0 6px var(--sg);animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--sg)}50%{opacity:.8;box-shadow:0 0 0 4px rgba(60,85,55,.3)}}
-@media(max-width:680px){.world-clocks{max-width:none}.wclock{min-width:50%;border-bottom:1px solid rgba(192,138,8,.1)}.wclock:nth-child(2){border-right:none}}
+/* ─────────── HERO ─────────── */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
+/* 3D perspective grid floor */
+.grid3d{position:absolute;inset:0;z-index:0;perspective:340px;perspective-origin:50% 42%;pointer-events:none}
+.grid3d::before{content:'';position:absolute;left:-30%;right:-30%;top:54%;height:120%;
+  background-image:linear-gradient(rgba(63,224,197,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(233,201,122,.10) 1px,transparent 1px);
+  background-size:54px 54px;
+  transform:rotateX(74deg);transform-origin:50% 0;
+  -webkit-mask-image:linear-gradient(transparent,#000 38%,#000 72%,transparent);mask-image:linear-gradient(transparent,#000 38%,#000 72%,transparent);
+  animation:gridrun 7s linear infinite}
+@keyframes gridrun{to{background-position:0 54px}}
+.aurora{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(60% 40% at 50% 8%,rgba(233,201,122,.14),transparent 70%),
+   radial-gradient(50% 50% at 78% 70%,rgba(63,224,197,.10),transparent 70%),
+   radial-gradient(40% 40% at 20% 60%,rgba(63,224,197,.06),transparent 70%);
+  animation:auroraPulse 11s ease-in-out infinite}
+@keyframes auroraPulse{0%,100%{opacity:1}50%{opacity:.62}}
+.scan{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.012) 3px 4px)}
+.hfloat{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hfloat span{position:absolute;font-family:var(--mono);font-size:11px;color:var(--gold);opacity:.14;letter-spacing:.06em;white-space:nowrap;animation:floaty 9s ease-in-out infinite}
+.hfloat span:nth-child(even){color:var(--aqua);opacity:.13;animation-delay:-4s;font-size:10px}
+.hfloat span:nth-child(3n){animation-delay:-6s;font-size:12px;opacity:.1}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
 
-/* METHODOLOGY — FLIP CARDS */
-#methodology{background:var(--pw)}
-.meth-eq{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;padding:40px 44px;font-family:var(--sf);font-size:clamp(15px,2.5vw,22px);font-weight:600;letter-spacing:.04em;color:var(--wm);border-top:1px solid var(--rl)}
-.meth-eq span{color:var(--gd)}
-.meth-eq em{font-style:normal;color:var(--ink);margin:0 8px}
-.meth-eq small{font-family:var(--sm);font-size:10px;color:var(--ds);letter-spacing:.14em;text-transform:uppercase;margin:0 6px}
+.hero-in{position:relative;z-index:5;max-width:980px}
+.hbadge{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line2);border-radius:100px;padding:7px 16px;margin-bottom:34px;background:rgba(18,21,30,.5)}
+.hbadge .pip{width:6px;height:6px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 0 var(--aqua);animation:pip 2.4s infinite}
+@keyframes pip{0%{box-shadow:0 0 0 0 rgba(63,224,197,.5)}70%{box-shadow:0 0 0 7px rgba(63,224,197,0)}100%{box-shadow:0 0 0 0 rgba(63,224,197,0)}}
+.htitle{font-family:var(--display);font-weight:300;line-height:.92;letter-spacing:-.01em}
+.htitle .l1{display:block;font-size:clamp(58px,11vw,150px);font-weight:600;color:var(--ink);text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.htitle .l2{display:block;font-style:italic;font-weight:300;font-size:clamp(44px,8vw,112px);background:linear-gradient(100deg,var(--goldl),var(--gold) 40%,var(--aqua) 130%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:.02em}
+.hsub{font-size:clamp(15px,1.7vw,18px);color:var(--ink2);max-width:560px;margin:30px auto 0;line-height:1.7}
+.hsub b{color:var(--ink);font-weight:600}
+.hsub .gold{color:var(--gold)}
+.hcta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:42px}
+.btn{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.01em;padding:14px 26px;border-radius:100px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:1px solid transparent;transition:all .28s cubic-bezier(.2,.7,.2,1)}
+.btn .ar{transition:transform .28s}
+.btn:hover .ar{transform:translateX(5px)}
+.btn-p{background:linear-gradient(180deg,var(--goldl),var(--gold));color:#19140a;box-shadow:0 8px 30px -8px rgba(233,201,122,.6)}
+.btn-p:hover{box-shadow:0 12px 40px -6px rgba(233,201,122,.8);transform:translateY(-2px)}
+.btn-g{border-color:var(--line);color:var(--ink);background:rgba(18,21,30,.4)}
+.btn-g:hover{border-color:var(--aqua);color:var(--aqual);box-shadow:0 0 30px -10px rgba(63,224,197,.5)}
+.hmeta{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:50px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
+.hmeta b{color:var(--ink2);font-weight:500}
+.hscroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;color:var(--mut2);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px}
+.hscroll i{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:scrolldrop 2.2s ease-in-out infinite}
+@keyframes scrolldrop{0%{opacity:0;transform:scaleY(.3) translateY(-10px)}50%{opacity:1}100%{opacity:0;transform:scaleY(.3) translateY(10px)}}
 
-.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;padding-bottom:48px}
-@media(max-width:760px){.pillar-grid{grid-template-columns:1fr}}
+/* ─────────── SECTION SHELL ─────────── */
+section{position:relative;padding:120px 0}
+.shead{margin-bottom:62px}
+.shead h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,60px);line-height:1.04;letter-spacing:-.01em;margin-top:20px;max-width:760px}
+.shead h2 em{font-style:italic;color:var(--gold)}
+.shead .intro{color:var(--ink2);max-width:560px;margin-top:18px;font-size:16px}
 
-/* 3-D flip card */
-.pillar-flip{perspective:1000px;height:340px;cursor:pointer}
-.pillar-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
-.pillar-flip.flipped .pillar-inner{transform:rotateY(180deg)}
-.pillar-front,.pillar-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--rl);padding:32px 28px;display:flex;flex-direction:column}
-.pillar-front{background:var(--pw);transition:border-color .2s,background .2s}
-.pillar-flip:hover .pillar-front{border-color:rgba(192,138,8,.4);background:var(--pa)}
-.pillar-back{background:var(--console);border-color:rgba(192,138,8,.25);transform:rotateY(180deg)}
-.pil-num{font-family:var(--sf);font-size:56px;font-weight:700;color:var(--rl);line-height:1;margin-bottom:12px}
-.pil-title{font-family:var(--sf);font-size:24px;font-weight:600;margin-bottom:6px}
-.pil-tag{font-size:13px;color:var(--wm);margin-bottom:14px;line-height:1.5}
-.pil-body{font-size:13.5px;color:var(--wm);line-height:1.65;margin-bottom:16px;flex:1}
-.pil-list{list-style:none;display:flex;flex-direction:column;gap:5px}
-.pil-list li{font-family:var(--sm);font-size:10px;letter-spacing:.08em;color:var(--ds)}
-.pil-list li::before{content:'— ';color:var(--gd)}
-.pil-hint{font-family:var(--sm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(192,138,8,.5);margin-top:auto;padding-top:14px}
-/* back face */
-.pb-label{font-family:var(--sm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gd);margin-bottom:12px}
-.pb-title{font-family:var(--sf);font-size:20px;color:var(--ct);margin-bottom:14px;font-weight:600}
-.pb-ea{background:rgba(192,138,8,.07);border-left:2px solid var(--gd);padding:10px 12px;margin-bottom:14px;font-family:var(--sm);font-size:10px;color:var(--cg);line-height:1.7;letter-spacing:.02em}
-.pb-insight{font-size:13px;color:rgba(237,232,220,.65);line-height:1.7;flex:1}
-.pb-cta{display:inline-block;margin-top:14px;font-family:var(--sm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gd);border-bottom:1px solid rgba(192,138,8,.4);padding-bottom:2px;text-decoration:none;cursor:pointer}
-.pb-hint{font-family:var(--sm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,220,.2);margin-top:10px}
+/* ─────────── CYCLE ENGINE (signature) ─────────── */
+#cycle{background:
+   radial-gradient(70% 60% at 50% 40%,rgba(13,16,22,.0),var(--bg)),
+   linear-gradient(180deg,var(--bg),var(--bg2) 50%,var(--bg))}
+.cycle-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+@media(max-width:900px){.cycle-wrap{grid-template-columns:1fr;gap:40px}}
+.stage{position:relative;height:480px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line2);border-radius:20px;overflow:hidden;background:radial-gradient(circle at 50% 45%,#0e1018,#08090d 75%)}
+.stage canvas#matrix{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5}
+.stage .ring-svg{position:relative;z-index:2;width:100%;height:100%;max-width:480px}
+.stage .hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut2);display:flex;align-items:center;gap:8px;pointer-events:none}
+.stage .hint i{width:5px;height:5px;border-radius:50%;background:var(--aqua);box-shadow:0 0 8px var(--aqua)}
+/* svg node interactivity */
+.cnode{cursor:pointer}
+.cnode .hit{fill:transparent}
+.cnode .glow{fill:var(--goldd);opacity:0;transition:opacity .3s}
+.cnode.aq .glow{fill:var(--aquad)}
+.cnode .dot{fill:var(--mut2);transition:all .3s;stroke:rgba(255,255,255,.12);stroke-width:1}
+.cnode .ringo{fill:none;stroke:transparent;stroke-width:1.5;transition:all .3s}
+.cnode .ctext{font-family:var(--mono);font-size:10px;letter-spacing:.1em;fill:var(--mut);text-transform:uppercase;transition:fill .3s;text-anchor:middle}
+.cnode .cnum{font-family:var(--mono);font-size:8px;fill:var(--mut2);text-anchor:middle;transition:fill .3s}
+.cnode:hover .dot{fill:var(--ink2)}
+.cnode:hover .ctext{fill:var(--ink2)}
+.cnode:hover .ringo{stroke:var(--line)}
+.cnode.on .dot{fill:var(--gold);stroke:var(--goldl)}
+.cnode.on.aq .dot{fill:var(--aqua);stroke:var(--aqual)}
+.cnode.on .glow{opacity:.5}
+.cnode.on .ctext{fill:var(--ink)}
+.cnode.on .cnum{fill:var(--gold)}
+.cnode.on.aq .cnum{fill:var(--aqua)}
+.cnode.on .ringo{stroke:var(--gold);animation:nodering 1.6s ease-out infinite}
+.cnode.on.aq .ringo{stroke:var(--aqua)}
+@keyframes nodering{0%{r:14px;opacity:.7}100%{r:26px;opacity:0}}
+.ccore-bg{fill:url(#coreGrad);stroke:var(--line)}
+.ccore-num{font-family:var(--display);font-size:34px;font-weight:600;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
+.ccore-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;fill:var(--mut);text-anchor:middle}
+.cflow{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;filter:drop-shadow(0 0 4px var(--gold))}
+.ctrack{fill:none;stroke:rgba(255,255,255,.06);stroke-width:1}
+.cprogress{fill:none;stroke:url(#progGrad);stroke-width:2.5;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)}
 
-/* ALGO / SYSTEM */
-#algo{background:var(--console);padding:88px 0}
-.algo-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
-@media(max-width:820px){.algo-grid{grid-template-columns:1fr}}
-.algo-lbl{font-family:var(--sm);font-size:10px;letter-spacing:.2em;color:var(--gd);text-transform:uppercase;margin-bottom:8px}
-.algo-h{font-family:var(--sf);font-size:clamp(30px,4.5vw,52px);color:var(--ct);font-weight:300;line-height:1.1;margin-bottom:24px}
-.algo-h em{font-style:italic;color:var(--gd)}
-.algo-body{font-size:14.5px;color:rgba(237,232,220,.6);line-height:1.75;margin-bottom:28px}
-.code-block{background:rgba(255,255,255,.04);border:1px solid rgba(192,138,8,.15);border-radius:4px;padding:20px 22px;font-family:var(--sm);font-size:11.5px;color:var(--cg);line-height:1.9;letter-spacing:.03em;margin-bottom:20px}
-.code-block .cm{color:rgba(237,232,220,.3)}
-.ea-specs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(192,138,8,.12);border-radius:3px;overflow:hidden;margin-top:24px}
-.ea-spec{padding:12px 16px;border-bottom:1px solid rgba(192,138,8,.08);border-right:1px solid rgba(192,138,8,.08)}
-.ea-spec:nth-child(even){border-right:none}
-.ea-spec-k{font-family:var(--sm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,232,220,.35);margin-bottom:3px}
-.ea-spec-v{font-family:var(--sm);font-size:12px;color:var(--cg);font-weight:500}
-.repo-card{border:1px solid rgba(192,138,8,.15);border-radius:4px;padding:20px 22px;margin-top:24px}
-.repo-icon{font-size:20px;margin-bottom:8px}
-.repo-title{font-family:var(--sm);font-size:13px;color:var(--cg);margin-bottom:4px}
-.repo-desc{font-size:13px;color:rgba(237,232,220,.5);line-height:1.6;margin-bottom:12px}
-.repo-meta{display:flex;gap:16px;font-family:var(--sm);font-size:10px;color:rgba(237,232,220,.3)}
-.repo-actions{display:flex;gap:12px;margin-top:12px}
-.repo-btn{font-family:var(--sm);font-size:10px;letter-spacing:.1em;padding:7px 14px;border:1px solid rgba(192,138,8,.3);color:var(--gd);text-decoration:none;transition:all .2s}
-.repo-btn:hover{background:rgba(192,138,8,.08);border-color:var(--gd)}
+.cyc-info{position:relative}
+.cyc-step{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--aqua);text-transform:uppercase}
+.cyc-info h3{font-family:var(--display);font-size:clamp(30px,4vw,46px);font-weight:500;margin:10px 0 6px;line-height:1.05}
+.cyc-info .ph-sub{color:var(--gold);font-size:14px;font-family:var(--mono);letter-spacing:.04em;margin-bottom:18px}
+.cyc-info p{color:var(--ink2);font-size:15.5px;line-height:1.75;margin-bottom:22px}
+.cyc-nav{display:flex;gap:8px;flex-wrap:wrap}
+.cyc-chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:9px 13px;border:1px solid var(--line2);border-radius:100px;cursor:pointer;transition:all .22s;background:var(--surf)}
+.cyc-chip:hover{color:var(--ink2);border-color:var(--line)}
+.cyc-chip.on{color:#19140a;background:linear-gradient(180deg,var(--goldl),var(--gold));border-color:transparent;font-weight:600}
+.cyc-meta{margin-top:26px;display:flex;gap:26px;font-family:var(--mono);font-size:11px;color:var(--mut);flex-wrap:wrap}
+.cyc-meta b{color:var(--ink2);display:block;font-size:18px;font-family:var(--sans);margin-bottom:2px}
 
-/* SIGNALS */
-#signals{background:var(--console);border-top:1px solid rgba(192,138,8,.1);padding:80px 0}
-.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
-@media(max-width:820px){.sig-grid{grid-template-columns:1fr}}
-.sig-feed{display:flex;flex-direction:column;gap:12px}
-.sig-item{border:1px solid rgba(192,138,8,.12);border-radius:3px;padding:16px 18px}
-.sig-item.active{border-color:rgba(60,85,55,.5);background:rgba(60,85,55,.06)}
-.sig-meta{font-family:var(--sm);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,220,.3);margin-bottom:6px}
-.sig-dir{font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.08em;margin-bottom:2px}
-.sig-dir.buy{color:var(--sg)}
-.sig-dir.sell{color:var(--rs)}
-.sig-sym{font-family:var(--sf);font-size:18px;color:var(--ct);font-weight:600}
-.sig-price{font-family:var(--sm);font-size:22px;color:var(--ct);font-weight:500;letter-spacing:.02em}
-.sig-row{display:flex;gap:20px;margin-top:8px;flex-wrap:wrap}
-.sig-kv{font-family:var(--sm);font-size:10px;color:rgba(237,232,220,.45)}
-.sig-kv span{color:rgba(237,232,220,.7)}
-.sig-result{font-family:var(--sm);font-size:11px;font-weight:700;margin-top:6px}
-.sig-result.win{color:var(--sg)}
-.sig-result.loss{color:var(--rs)}
-.sig-result.live{color:var(--gd)}
-.eq-wrap{overflow:hidden;border:1px solid rgba(192,138,8,.12);border-radius:3px;padding:20px 18px}
-.eq-lbl{font-family:var(--sm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,232,220,.4);margin-bottom:14px}
-.eq-chart{width:100%;height:120px}
+/* ─────────── PILLARS ─────────── */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:18px;overflow:hidden}
+@media(max-width:820px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--surf);padding:38px 32px 34px;cursor:pointer;position:relative;transition:background .3s;overflow:hidden}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--aqua));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.pillar:hover{background:var(--surf2)}
+.pillar:hover::before{transform:scaleX(1)}
+.pnum{font-family:var(--mono);font-size:11px;color:var(--mut2);letter-spacing:.2em}
+.ptitle{font-family:var(--display);font-size:30px;font-weight:500;margin:14px 0 4px;display:flex;align-items:center;gap:10px}
+.ptitle .ar{font-size:18px;color:var(--gold);opacity:0;transform:translateX(-6px);transition:all .25s}
+.pillar:hover .ptitle .ar{opacity:1;transform:none}
+.ptag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--aqua);text-transform:uppercase}
+.pillar p{color:var(--ink2);font-size:14px;margin:16px 0 18px;line-height:1.7}
+.pillar ul{list-style:none}
+.pillar li{font-size:13px;color:var(--mut);padding:8px 0;border-top:1px solid var(--line2);display:flex;gap:10px;align-items:baseline}
+.pillar li::before{content:'→';color:var(--goldd);font-size:11px}
+.formula{margin-top:32px;padding:20px 26px;border:1px solid var(--line);border-radius:14px;background:var(--surf);display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--display);font-size:24px;font-style:italic}
+.formula .fk{color:var(--ink)}.formula .fg{color:var(--aqua)}.formula .fr{color:var(--gold)}
+.formula .tag{margin-left:auto;font-family:var(--mono);font-size:10.5px;font-style:normal;letter-spacing:.1em;color:var(--mut)}
 
-/* PERFORMANCE */
-#study{background:var(--pw);padding:88px 0}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rl);margin-top:48px}
-@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
-.stat{padding:32px 28px;border-right:1px solid var(--rl);border-bottom:1px solid var(--rl)}
-.stat:nth-child(4n){border-right:none}
-.stat-val{font-family:var(--sf);font-size:clamp(32px,4vw,48px);font-weight:700;color:var(--ink);line-height:1;margin-bottom:6px;letter-spacing:-.02em}
-.stat-lbl{font-size:13px;color:var(--wm);margin-bottom:4px}
-.stat-sub{font-family:var(--sm);font-size:10px;color:var(--ds);letter-spacing:.08em}
-.study-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rl);border-top:none;margin-bottom:0}
-@media(max-width:600px){.study-meta{grid-template-columns:1fr}}
-.sm-row{padding:14px 20px;border-right:1px solid var(--rl);display:flex;justify-content:space-between;align-items:center;font-size:13px}
-.sm-row:last-child{border-right:none}
-.sm-k{color:var(--wm)}
-.sm-v{font-family:var(--sm);font-size:11px;color:var(--ink);font-weight:500}
+/* ─────────── AUTOMATION (console) ─────────── */
+#automation{background:linear-gradient(180deg,var(--bg),var(--bg2))}
+.auto-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
+@media(max-width:900px){.auto-grid{grid-template-columns:1fr;gap:34px}}
+.auto-l h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,4.6vw,52px);line-height:1.05;margin:18px 0 16px}
+.auto-l h2 em{font-style:italic;color:var(--gold)}
+.auto-l p{color:var(--ink2);font-size:15.5px;line-height:1.75;margin-bottom:24px;max-width:480px}
+.codeblock{font-family:var(--mono);font-size:12.5px;line-height:1.9;background:#06070a;border:1px solid var(--line2);border-radius:14px;padding:22px 24px;color:var(--ink2);overflow-x:auto}
+.codeblock .cm{color:var(--mut2)}
+.codeblock .kw{color:var(--aqua)}
+.codeblock .go{color:var(--gold)}
+.feat-list{margin-top:26px;display:grid;gap:2px}
+.feat{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line2);align-items:flex-start}
+.feat .fi{font-family:var(--mono);color:var(--gold);font-size:12px;margin-top:2px}
+.feat h4{font-size:14px;font-weight:600;margin-bottom:3px}
+.feat p{font-size:13px;color:var(--mut);max-width:none;margin:0}
+/* console card */
+.console{background:linear-gradient(160deg,var(--surf2),var(--surf));border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
+.con-bar{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line2);background:rgba(0,0,0,.25)}
+.con-bar .dot{width:10px;height:10px;border-radius:50%}
+.con-bar .d1{background:#E0683F}.con-bar .d2{background:var(--gold)}.con-bar .d3{background:var(--aqua)}
+.con-bar .path{font-family:var(--mono);font-size:11px;color:var(--mut);margin-left:8px}
+.con-body{padding:24px}
+.con-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line2);font-family:var(--mono);font-size:12.5px}
+.con-row:last-child{border-bottom:none}
+.con-k{color:var(--mut);letter-spacing:.04em}
+.con-v{color:var(--ink);font-weight:500}
+.con-v.aq{color:var(--aqua)}.con-v.gd{color:var(--gold)}
+.con-cursor{display:inline-block;width:7px;height:13px;background:var(--aqua);margin-left:4px;animation:blink 1.1s steps(1) infinite;vertical-align:middle}
+@keyframes blink{50%{opacity:0}}
+.gh{margin-top:18px;border:1px solid var(--line2);border-radius:14px;padding:18px;background:var(--surf)}
+.gh-top{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.gh-top svg{fill:var(--ink2)}
+.gh p{font-size:12.5px;color:var(--mut);margin:10px 0 14px;line-height:1.6}
+.gh a{font-family:var(--mono);font-size:11.5px;color:var(--aqua);border:1px solid var(--line3);padding:7px 13px;border-radius:100px;display:inline-flex;gap:7px;transition:all .2s}
+.gh a:hover{background:rgba(63,224,197,.08);box-shadow:0 0 20px -8px var(--aqua)}
 
-/* COMMUNITY */
-#community{background:var(--cr);padding:88px 0}
-.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
-@media(max-width:820px){.comm-grid{grid-template-columns:1fr}}
-.comm-ey{font-family:var(--sm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gd);margin-bottom:12px;display:block}
-.comm-h{font-family:var(--sf);font-size:clamp(28px,4vw,46px);font-weight:300;line-height:1.1;margin-bottom:18px}
-.comm-h em{font-style:italic;color:var(--gd)}
-.comm-b{font-size:14.5px;color:var(--wm);line-height:1.75;margin-bottom:32px}
-.comm-feats{display:flex;flex-direction:column;gap:20px}
-.comm-feat{display:flex;gap:18px;align-items:flex-start}
-.cf-no{font-family:var(--sm);font-size:11px;color:var(--gd);min-width:28px;margin-top:2px}
-.comm-feat h4{font-size:14px;font-weight:500;margin-bottom:4px}
-.comm-feat p{font-size:13px;color:var(--wm);line-height:1.6}
-.join-card{background:var(--ink);color:var(--cr);padding:36px 32px}
-.jc-badge{display:inline-block;font-family:var(--sm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gd);border:1px solid rgba(192,138,8,.3);padding:5px 10px;margin-bottom:16px}
-.jc-title{font-family:var(--sf);font-size:26px;color:var(--cr);margin-bottom:10px;font-weight:600}
-.jc-desc{font-size:13.5px;color:rgba(245,241,232,.6);line-height:1.7;margin-bottom:22px}
-.jc-items{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.jc-item{font-size:13px;color:rgba(245,241,232,.7);display:flex;gap:10px}
-.jc-item::before{content:'✓';color:var(--sg);flex-shrink:0}
-.jc-btn{display:inline-block;background:var(--gd);color:var(--ink);font-family:var(--sm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;text-decoration:none;font-weight:500;transition:background .2s}
-.jc-btn:hover{background:var(--gm)}
-.jc-note{font-family:var(--sm);font-size:9px;color:rgba(245,241,232,.3);margin-top:12px;letter-spacing:.08em}
+/* ─────────── CURRICULUM ─────────── */
+#curriculum{background:var(--bg2)}
+.cur-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:760px){.cur-grid{grid-template-columns:1fr}}
+.cur-card{position:relative;background:var(--surf);border:1px solid var(--line2);border-radius:18px;padding:30px 30px 26px;cursor:pointer;overflow:hidden;transition:all .3s cubic-bezier(.2,.7,.2,1)}
+.cur-card::after{content:'';position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(130deg,var(--gold),transparent 40%,transparent 60%,var(--aqua));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
+.cur-card:hover{transform:translateY(-4px);background:var(--surf2)}
+.cur-card:hover::after{opacity:1}
+.cur-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.cur-no{font-family:var(--display);font-size:46px;font-style:italic;color:var(--mut2);line-height:1}
+.cur-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua);border:1px solid var(--line3);border-radius:100px;padding:5px 11px;align-self:center}
+.cur-card h3{font-family:var(--display);font-size:27px;font-weight:500;margin-bottom:8px}
+.cur-card p{font-size:13.5px;color:var(--ink2);line-height:1.65;margin-bottom:18px}
+.cur-foot{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mut);border-top:1px solid var(--line2);padding-top:14px}
+.cur-foot .open{color:var(--gold);display:inline-flex;gap:6px;align-items:center;transition:gap .2s}
+.cur-card:hover .cur-foot .open{gap:11px}
+.cur-note{text-align:center;margin-top:30px;font-family:var(--mono);font-size:11px;color:var(--mut2);letter-spacing:.06em}
 
-/* DISCIPLINE */
-#discipline{background:var(--pa);padding:80px 0}
-.disc-grid{display:grid;grid-template-columns:280px 1fr;gap:48px;margin-top:48px;align-items:start}
-@media(max-width:820px){.disc-grid{grid-template-columns:1fr}}
-.disc-score-wrap{text-align:center}
-.disc-score{font-family:var(--sf);font-size:88px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.02em}
-.disc-score-lbl{font-size:13px;color:var(--wm);margin-bottom:4px}
-.disc-score-sub{font-family:var(--sm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ds)}
-.disc-kpis{display:flex;justify-content:center;gap:24px;margin:20px 0;flex-wrap:wrap}
-.disc-kpi{text-align:center}
-.disc-kpi-val{font-family:var(--sf);font-size:28px;font-weight:700;color:var(--ink)}
-.disc-kpi-lbl{font-family:var(--sm);font-size:9px;color:var(--ds);letter-spacing:.1em;text-transform:uppercase}
-.disc-breakdown{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
-.disc-bar-row{display:flex;align-items:center;gap:12px}
-.disc-bar-lbl{font-size:12.5px;color:var(--wm);min-width:130px}
-.disc-bar-track{flex:1;height:4px;background:var(--rl);border-radius:2px;overflow:hidden}
-.disc-bar-fill{height:100%;background:var(--gd);border-radius:2px;transition:width 1s ease}
-.disc-bar-val{font-family:var(--sm);font-size:10px;color:var(--ink);min-width:32px;text-align:right}
-.disc-alerts{display:flex;flex-direction:column;gap:10px}
-.disc-alert{padding:14px 16px;border-left:3px solid var(--rl);background:var(--pw);font-size:13px}
-.disc-alert.warn{border-color:var(--rs)}
-.disc-alert.info{border-color:var(--ds)}
-.disc-alert.ok{border-color:var(--sg)}
-.disc-alert h5{font-size:12.5px;margin-bottom:3px}
-.disc-alert p{font-size:12px;color:var(--wm);line-height:1.55}
+/* ─────────── COMMUNITY ─────────── */
+#community{background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.comm-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center}
+@media(max-width:900px){.comm-grid{grid-template-columns:1fr;gap:40px}}
+.comm-l h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,4.6vw,54px);line-height:1.04;margin:18px 0 18px}
+.comm-l h2 em{font-style:italic;color:var(--aqua)}
+.comm-l>p{color:var(--ink2);font-size:15.5px;line-height:1.75;max-width:480px;margin-bottom:30px}
+.comm-feats{display:grid;gap:2px}
+.cfeat{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line2);align-items:flex-start}
+.cfeat .n{font-family:var(--mono);font-size:11px;color:var(--gold);margin-top:3px}
+.cfeat h4{font-size:14.5px;font-weight:600;margin-bottom:4px}
+.cfeat p{font-size:13px;color:var(--mut);line-height:1.6}
+.join-card{position:relative;background:linear-gradient(165deg,var(--surf2),var(--surf));border:1px solid var(--line);border-radius:22px;padding:38px 34px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+.join-card::before{content:'';position:absolute;top:-40%;right:-30%;width:300px;height:300px;background:radial-gradient(circle,rgba(63,224,197,.16),transparent 70%);pointer-events:none}
+.jc-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--aqua);border:1px solid var(--line3);border-radius:100px;padding:6px 13px;margin-bottom:20px}
+.jc-badge .pip{width:6px;height:6px;border-radius:50%;background:var(--aqua);animation:pip 2.4s infinite}
+.jc-title{font-family:var(--display);font-size:32px;font-weight:600;margin-bottom:6px}
+.jc-sub{font-size:13.5px;color:var(--ink2);line-height:1.65;margin-bottom:22px}
+.jc-items{display:grid;gap:11px;margin-bottom:26px}
+.jc-item{display:flex;gap:11px;align-items:flex-start;font-size:13px;color:var(--ink2)}
+.jc-item::before{content:'✓';color:var(--aqua);font-weight:700;flex-shrink:0}
+.jc-cta{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;padding:15px;border-radius:100px;background:linear-gradient(180deg,var(--goldl),var(--gold));color:#19140a;font-weight:600;font-size:14.5px;transition:all .28s;border:none;cursor:pointer}
+.jc-cta:hover{box-shadow:0 12px 38px -8px rgba(233,201,122,.7);transform:translateY(-2px)}
+.jc-cta svg{fill:#19140a}
+.jc-note{font-family:var(--mono);font-size:10px;color:var(--mut2);letter-spacing:.06em;margin-top:14px;text-align:center}
 
-/* CURRICULUM */
-#learn{background:var(--pw)}
-.path-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rl);border-left:1px solid var(--rl);margin-top:60px}
-@media(max-width:620px){.path-grid{grid-template-columns:1fr}}
-.path-item{padding:38px 34px;border-right:1px solid var(--rl);border-bottom:1px solid var(--rl);transition:background .2s;cursor:pointer}
-.path-item:hover{background:var(--pa);border-right-color:var(--gd)}
-.path-no{font-family:var(--sf);font-size:68px;font-weight:700;color:var(--rl);line-height:1;margin-bottom:14px;letter-spacing:-.02em}
-.path-title{font-family:var(--sf);font-size:26px;font-weight:600;margin-bottom:9px;letter-spacing:-.01em}
-.path-body{font-size:14.5px;color:var(--wm);margin-bottom:14px;line-height:1.6}
-.path-meta{font-family:var(--sm);font-size:10px;color:var(--ds);letter-spacing:.08em}
+/* ─────────── FOUNDER ─────────── */
+#founder{background:var(--bg)}
+.founder-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center}
+@media(max-width:820px){.founder-wrap{grid-template-columns:1fr;gap:36px}}
+.fphoto{position:relative;aspect-ratio:4/5;border-radius:20px;border:1px solid var(--line);background:
+   radial-gradient(120% 80% at 30% 20%,rgba(233,201,122,.14),transparent 60%),
+   radial-gradient(100% 100% at 80% 90%,rgba(63,224,197,.12),transparent 60%),
+   linear-gradient(160deg,var(--surf2),var(--surf));display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fphoto .mono{font-family:var(--display);font-size:120px;font-style:italic;color:rgba(243,242,236,.08);font-weight:500;letter-spacing:-.03em}
+.fphoto .tag{position:absolute;bottom:18px;left:18px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line2);background:rgba(8,9,13,.6);border-radius:100px;padding:6px 12px}
+.founder-r h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,4.4vw,50px);line-height:1.06;margin:18px 0 18px}
+.founder-r h2 em{font-style:italic;color:var(--gold)}
+.founder-r p{color:var(--ink2);font-size:15.5px;line-height:1.78;margin-bottom:18px;max-width:560px}
+.fquote{font-family:var(--display);font-style:italic;font-size:21px;color:var(--ink);border-left:2px solid var(--gold);padding-left:20px;margin:24px 0;line-height:1.5}
+.fsign{font-family:var(--display);font-style:italic;font-size:26px;color:var(--gold)}
+.fsign small{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase;margin-top:6px}
 
-/* FOOTER CTA */
-.foot-cta{background:var(--ink);color:var(--cr);text-align:center;padding:80px 44px}
-.fc-h{font-family:var(--sf);font-size:clamp(28px,5vw,56px);font-weight:300;line-height:1.1;margin-bottom:32px}
-.fc-h em{font-style:italic;color:var(--gd)}
-.fc-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-.fc-btn{display:inline-block;text-decoration:none;font-family:var(--sm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;transition:all .2s}
-.fc-btn.pri{background:var(--gd);color:var(--ink)}
-.fc-btn.pri:hover{background:var(--gm)}
-.fc-btn.sec{border:1px solid rgba(245,241,232,.2);color:rgba(245,241,232,.7)}
-.fc-btn.sec:hover{border-color:rgba(245,241,232,.5);color:var(--cr)}
+/* ─────────── FINAL CTA ─────────── */
+#final{padding:140px 0;text-align:center;position:relative;overflow:hidden;background:var(--bg2)}
+#final .aurora2{position:absolute;inset:0;background:radial-gradient(50% 60% at 50% 30%,rgba(233,201,122,.1),transparent 70%),radial-gradient(40% 50% at 50% 80%,rgba(63,224,197,.08),transparent 70%);pointer-events:none}
+.final-in{position:relative;z-index:2;max-width:640px;margin:0 auto}
+.final-in h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,6vw,72px);line-height:1.02}
+.final-in h2 em{font-style:italic;color:var(--gold)}
+.final-in p{color:var(--ink2);font-size:16px;margin:22px auto 36px;max-width:480px;line-height:1.7}
 
-/* FOOTER */
-footer{background:var(--ink);border-top:1px solid rgba(245,241,232,.07);padding:24px 44px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:var(--sm);font-size:10px;color:rgba(245,241,232,.3);letter-spacing:.06em}
+/* ─────────── FOOTER ─────────── */
+footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.foot-l{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;color:var(--mut)}
+.foot-links{display:flex;gap:24px;font-family:var(--mono);font-size:11px;color:var(--mut)}
+.foot-links a:hover{color:var(--gold)}
+.disc{max-width:var(--maxw);margin:18px auto 0;padding:0 40px;font-family:var(--mono);font-size:10px;color:var(--mut2);line-height:1.7;letter-spacing:.03em}
 
-/* MODAL */
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px}
+/* ─────────── MODAL ─────────── */
+.modal{display:none;position:fixed;inset:0;background:rgba(4,5,8,.78);backdrop-filter:blur(8px);z-index:500;align-items:center;justify-content:center;padding:20px}
 .modal.active{display:flex}
-.modal-content{background:var(--cr);border:1px solid var(--rl);max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:44px 40px;position:relative;animation:slideUp .3s ease}
-@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:28px;color:var(--ink);cursor:pointer;transition:color .2s}
-.modal-close:hover{color:var(--gd)}
-.modal-content h2{font-family:var(--sf);font-size:2rem;margin-bottom:1rem;color:var(--ink)}
-.modal-content .ptg{display:block;font-family:var(--sm);font-size:10px;letter-spacing:.14em;color:var(--gd);margin-bottom:1.5rem}
-.modal-content p{font-size:15px;color:var(--wm);margin-bottom:1.5rem;line-height:1.7}
-.modal-content h3{font-family:var(--sf);font-size:1.4rem;margin:2rem 0 1rem;color:var(--ink)}
-.modal-content .detail-text{font-size:14px;color:var(--wm);line-height:1.7;margin-bottom:1rem}
+.modal-card{background:var(--surf);border:1px solid var(--line);border-radius:20px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;padding:42px 40px;position:relative;animation:popup .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes popup{from{transform:translateY(24px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.modal-card::-webkit-scrollbar{width:8px}.modal-card::-webkit-scrollbar-thumb{background:var(--surf3);border-radius:8px}
+.modal-x{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);background:var(--surf2);color:var(--ink2);font-size:18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.modal-x:hover{border-color:var(--gold);color:var(--gold)}
+.modal-card h2{font-family:var(--display);font-size:34px;font-weight:500;margin-bottom:6px;color:var(--ink)}
+.modal-card .ptg{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--aqua);margin-bottom:20px}
+.modal-card h3{font-family:var(--display);font-size:22px;font-weight:500;margin:26px 0 12px;color:var(--gold)}
+.modal-card p,.modal-card .detail-text{color:var(--ink2);font-size:14.5px;line-height:1.75;margin-bottom:14px}
+.modal-card .detail-text strong{color:var(--ink)}
+.modal-card ul{list-style:none;margin:14px 0}
+.modal-card li{font-size:13.5px;color:var(--ink2);padding:9px 0;border-top:1px solid var(--line2);display:flex;gap:11px;align-items:baseline}
+.modal-card li::before{content:'→';color:var(--goldd)}
+.chart-box{margin:22px 0;padding:20px;background:#06070a;border:1px solid var(--line2);border-left:2px solid var(--gold);border-radius:12px}
+.chart-box strong{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.lesson{padding:14px 16px;border-left:2px solid var(--line3);margin-bottom:10px;background:var(--surf2);border-radius:0 8px 8px 0}
+.lesson strong{color:var(--ink);font-size:14px}
+.lesson p{font-size:12.5px;color:var(--mut);margin:5px 0 0}
+.lesson .lnum{font-family:var(--mono);font-size:10px;color:var(--aqua);letter-spacing:.1em}
+.modal-foot{margin-top:24px;font-family:var(--mono);font-size:11px;color:var(--mut2);font-style:italic}
 
-/* LESSON ACCORDION */
-.lesson-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:8px}
-.lesson-item{border:1px solid var(--rl);border-radius:2px;overflow:hidden;transition:border-color .2s}
-.lesson-item.open{border-color:var(--gd)}
-.lesson-header{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;background:var(--pw);transition:background .2s;user-select:none}
-.lesson-header:hover{background:var(--pa)}
-.lesson-item.open .lesson-header{background:rgba(192,138,8,.06);border-bottom:1px solid var(--rl)}
-.lesson-num{font-family:var(--sm);font-size:10px;letter-spacing:.14em;color:var(--gd);min-width:28px}
-.lesson-name{font-size:14px;font-weight:500;color:var(--ink);flex:1;line-height:1.4}
-.lesson-dur{font-family:var(--sm);font-size:9px;color:var(--ds);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
-.lesson-chevron{font-size:11px;color:var(--ds);transition:transform .25s;flex-shrink:0}
-.lesson-item.open .lesson-chevron{transform:rotate(180deg);color:var(--gd)}
-.lesson-body{display:none;padding:18px 18px 22px;background:var(--pw)}
-.lesson-item.open .lesson-body{display:block}
-.lesson-hook{font-style:italic;font-size:13.5px;color:var(--ink);border-left:3px solid var(--gd);padding:10px 14px;margin-bottom:14px;background:rgba(192,138,8,.04);line-height:1.6}
-.lesson-section-lbl{font-family:var(--sm);font-size:9px;letter-spacing:.18em;color:var(--gd);text-transform:uppercase;margin:14px 0 6px}
-.lesson-text{font-size:13px;color:var(--wm);line-height:1.75;margin-bottom:8px}
-.lesson-code-block{background:var(--console);border-radius:3px;padding:12px 14px;margin:8px 0 12px;display:flex;flex-direction:column;gap:3px}
-.lesson-code-block code{font-family:var(--sm);font-size:10px;color:var(--cg);line-height:1.6;letter-spacing:.03em}
-.lesson-rules{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
-.lesson-rule{font-size:12.5px;color:var(--i2);display:flex;gap:10px;align-items:baseline;line-height:1.55}
-.lesson-rule::before{content:'→';color:var(--gd);flex-shrink:0;font-size:11px}
-.lesson-recap{background:rgba(60,85,55,.06);border-left:3px solid var(--sg);padding:10px 14px;font-size:12.5px;color:var(--sg);line-height:1.65;margin-top:12px}
-.lesson-recap strong{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--sg);margin-bottom:4px}
+/* toast for cycle pill info */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surf2);border:1px solid var(--line);color:var(--ink2);font-size:13px;padding:14px 20px;border-radius:12px;z-index:600;opacity:0;transition:all .3s;max-width:340px;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.toast b{color:var(--gold)}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="nav">
   <div class="w nav-in">
-    <div class="brand">RLCTA<span>|</span><em>Academy</em></div>
-    <div class="nav-links">
+    <a href="#" class="brand">
+      <svg class="mk" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#E9C97A" stroke-width="1.2"/><circle cx="16" cy="16" r="9" stroke="#3FE0C5" stroke-width="1" stroke-dasharray="3 3"/><circle cx="16" cy="16" r="3" fill="#E9C97A"/></svg>
+      <span>Refined</span>&nbsp;<b>Liquidity</b>
+    </a>
+    <div class="nlinks">
+      <a href="#cycle">The Cycle</a>
       <a href="#methodology">Methodology</a>
-      <a href="#algo">Automation</a>
-      <a href="#signals">Signals</a>
-      <a href="#study">Performance</a>
-      <a href="#learn" class="on">Curriculum</a>
+      <a href="#automation">Automation</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#founder">Founder</a>
     </div>
-    <div class="nav-r">
-      <a href="#">Sign in</a>
-      <a href="https://t.me/+C0YWOPmOFu02YmVk" class="get">Join Academy →</a>
+    <div class="nav-cta">
+      <a href="#community" class="sign">Sign in</a>
+      <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener" class="join">Join the Community →</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-code">
-    <span style="top:12%;left:5%">0x4A1E2F</span>
-    <span style="top:28%;left:18%">11010101</span>
-    <span style="top:55%;left:8%">EQH_SWEEP</span>
-    <span style="top:18%;right:10%">0xFF2E</span>
-    <span style="top:40%;right:5%">CHoCH→BOS</span>
-    <span style="top:65%;right:15%">RR≥1:4.0</span>
-    <span style="top:72%;left:25%">10110010</span>
-    <span style="top:8%;left:42%">0x7D3A</span>
-    <span style="top:82%;right:30%">SWEEP_OK</span>
-    <span style="top:35%;left:60%">CONF=95</span>
-    <span style="top:50%;left:38%">EXEC()</span>
-    <span style="top:88%;left:50%">SESSION:NY</span>
+<header class="hero">
+  <div class="aurora"></div>
+  <div class="grid3d"></div>
+  <div class="scan"></div>
+  <div class="hfloat" aria-hidden="true">
+    <span style="top:14%;left:7%">ACCUMULATION</span>
+    <span style="top:22%;left:80%">0xLIQ·SWEEP</span>
+    <span style="top:34%;left:12%">CHoCH → BOS</span>
+    <span style="top:30%;left:68%">RR ≥ 1:4.0</span>
+    <span style="top:62%;left:9%">MANIPULATION</span>
+    <span style="top:70%;left:78%">EXPANSION</span>
+    <span style="top:78%;left:20%">XAUUSD</span>
+    <span style="top:54%;left:86%">RESET</span>
   </div>
 
-  <div class="hero-inner">
-    <!-- Analog Clocks -->
-    <div class="world-clocks rv" id="clocksWrap">
-      <div class="wclock" id="wc-london">
-        <div class="wc-city"><span class="wc-dot"></span>London</div>
-        <svg class="analog-clock" id="clock-london" viewBox="0 0 64 64">
-          <circle class="clock-face" cx="32" cy="32" r="30"/>
-          <!-- ticks -->
-          <g id="ticks-london"></g>
-          <line class="hand-h" id="hh-london" x1="32" y1="32" x2="32" y2="14"/>
-          <line class="hand-m" id="hm-london" x1="32" y1="32" x2="32" y2="10"/>
-          <line class="hand-s" id="hs-london" x1="32" y1="38" x2="32" y2="8"/>
-          <circle class="clock-center" cx="32" cy="32" r="2.5"/>
-        </svg>
-        <div class="wc-digital" id="dt-london">--:--</div>
-        <div class="wc-status" id="ds-london">GMT+1</div>
-      </div>
-      <div class="wclock" id="wc-newyork">
-        <div class="wc-city"><span class="wc-dot"></span>New York</div>
-        <svg class="analog-clock" id="clock-newyork" viewBox="0 0 64 64">
-          <circle class="clock-face" cx="32" cy="32" r="30"/>
-          <g id="ticks-newyork"></g>
-          <line class="hand-h" id="hh-newyork" x1="32" y1="32" x2="32" y2="14"/>
-          <line class="hand-m" id="hm-newyork" x1="32" y1="32" x2="32" y2="10"/>
-          <line class="hand-s" id="hs-newyork" x1="32" y1="38" x2="32" y2="8"/>
-          <circle class="clock-center" cx="32" cy="32" r="2.5"/>
-        </svg>
-        <div class="wc-digital" id="dt-newyork">--:--</div>
-        <div class="wc-status" id="ds-newyork">GMT-4</div>
-      </div>
-      <div class="wclock" id="wc-gmt">
-        <div class="wc-city"><span class="wc-dot"></span>GMT</div>
-        <svg class="analog-clock" id="clock-gmt" viewBox="0 0 64 64">
-          <circle class="clock-face" cx="32" cy="32" r="30"/>
-          <g id="ticks-gmt"></g>
-          <line class="hand-h" id="hh-gmt" x1="32" y1="32" x2="32" y2="14"/>
-          <line class="hand-m" id="hm-gmt" x1="32" y1="32" x2="32" y2="10"/>
-          <line class="hand-s" id="hs-gmt" x1="32" y1="38" x2="32" y2="8"/>
-          <circle class="clock-center" cx="32" cy="32" r="2.5"/>
-        </svg>
-        <div class="wc-digital" id="dt-gmt">--:--</div>
-        <div class="wc-status" id="ds-gmt">Universal Time</div>
-      </div>
-      <div class="wclock" id="wc-killzone">
-        <div class="wc-city"><span class="wc-dot"></span>Killzone</div>
-        <svg class="analog-clock" id="clock-kz" viewBox="0 0 64 64">
-          <circle class="clock-face" cx="32" cy="32" r="30"/>
-          <g id="ticks-kz"></g>
-          <line class="hand-h" id="hh-kz" x1="32" y1="32" x2="32" y2="14"/>
-          <line class="hand-m" id="hm-kz" x1="32" y1="32" x2="32" y2="10"/>
-          <line class="hand-s" id="hs-kz" x1="32" y1="38" x2="32" y2="8"/>
-          <circle class="clock-center" cx="32" cy="32" r="2.5"/>
-        </svg>
-        <div class="wc-digital" id="dt-kz">12:00–15:00</div>
-        <div class="wc-status" id="ds-kz">NY overlap</div>
-      </div>
-    </div>
-
-    <h1 class="rv" style="transition-delay:120ms">
-      <span class="hl1">REFINED</span>
-      <span class="hl2">Liquidity <b>Cycle</b></span>
+  <div class="hero-in">
+    <div class="hbadge rv"><span class="pip"></span> The Liquidity Cycle Methodology</div>
+    <h1 class="htitle">
+      <span class="l1 rv">REFINED</span>
+      <span class="l2 rv" style="transition-delay:.08s">Liquidity</span>
     </h1>
-    <div class="hero-rule rv" style="transition-delay:220ms"></div>
-    <p class="sub rv" style="transition-delay:300ms">
-      Master institutional XAUUSD trading — and the algorithm that trades it automatically.
-      <strong>Education. Psychology. Automation.</strong>
+    <p class="hsub rv" style="transition-delay:.16s">
+      Master how institutions move <span class="gold">gold</span> — the accumulation, the sweep, the expansion — and the <b>algorithm that trades the cycle for you.</b> Education. Psychology. Automation.
     </p>
-
-    <div class="hero-pills rv" style="transition-delay:360ms">
-      <div class="pill">Institutional Methodology</div>
-      <div class="pill">Liquidity Cycle Algorithm</div>
-      <div class="pill">Live Trading System</div>
-      <div class="pill">Trading Psychology</div>
+    <div class="hcta rv" style="transition-delay:.24s">
+      <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener" class="btn btn-p">Join the Community <span class="ar">→</span></a>
+      <a href="#cycle" class="btn btn-g">See the Cycle <span class="ar">→</span></a>
     </div>
+    <div class="hmeta rv" style="transition-delay:.32s">
+      <span>Built on <b>ICT / SMC</b></span>
+      <span>Specialised in <b>XAUUSD · Gold</b></span>
+      <span>Powered by <b>MMM EA</b></span>
+    </div>
+  </div>
+  <div class="hscroll"><span>Scroll</span><i></i></div>
+</header>
 
-    <div class="ctas rv" style="transition-delay:420ms">
-      <a href="#learn" class="cta pri">Start Learning →</a>
-      <span class="cta-div">·</span>
-      <a href="#algo" class="cta sec">Explore the System →</a>
+<!-- CYCLE ENGINE (signature) -->
+<section id="cycle">
+  <div class="w">
+    <div class="cycle-wrap">
+      <div class="stage" id="stage">
+        <canvas id="matrix"></canvas>
+        <svg class="ring-svg" id="ringSvg" viewBox="0 0 440 440" aria-label="The Liquidity Cycle">
+          <defs>
+            <radialGradient id="coreGrad" cx="40%" cy="35%"><stop offset="0%" stop-color="#2c2616"/><stop offset="75%" stop-color="#0b0d13"/></radialGradient>
+            <linearGradient id="progGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#E9C97A"/><stop offset="100%" stop-color="#3FE0C5"/></linearGradient>
+          </defs>
+          <!-- track ring -->
+          <circle class="ctrack" cx="220" cy="220" r="150"/>
+          <circle class="cprogress" id="cProgress" cx="220" cy="220" r="150" transform="rotate(-90 220 220)"/>
+          <!-- flowing comet pulse -->
+          <circle class="cflow" id="cFlow" cx="220" cy="220" r="150" transform="rotate(-90 220 220)"/>
+          <!-- inner dashed ring -->
+          <circle cx="220" cy="220" r="92" fill="none" stroke="rgba(63,224,197,.14)" stroke-dasharray="4 6"/>
+          <!-- core -->
+          <circle class="ccore-bg" cx="220" cy="220" r="58"/>
+          <text class="ccore-num" id="coreNum" x="220" y="214">01</text>
+          <text class="ccore-lbl" x="220" y="242">XAUUSD · GOLD</text>
+          <!-- nodes injected by JS -->
+          <g id="cNodes"></g>
+        </svg>
+        <div class="hint"><i></i> Tap a phase to explore</div>
+      </div>
+      <div class="cyc-info">
+        <div class="ey rv">The Signature · One Repeating Pattern</div>
+        <div class="cyc-step rv" id="cStep" style="margin-top:18px">Phase 01 / 05</div>
+        <h3 class="rv" id="cTitle">Accumulation</h3>
+        <div class="ph-sub rv" id="cSub">Smart money builds a position quietly</div>
+        <p class="rv" id="cBody">Price coils in a tight range. Volume builds while retail traders lose interest. This is where institutions load orders — patiently, without moving price. Every clean setup begins here.</p>
+        <div class="cyc-nav rv" id="cNav"></div>
+        <div class="cyc-meta rv">
+          <div><b>5</b>phases per cycle</div>
+          <div><b>1:4+</b>minimum reward</div>
+          <div><b>3</b>sessions tracked</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- METHODOLOGY — FLIP CARDS -->
+<!-- METHODOLOGY -->
 <section id="methodology">
-  <div class="w bp rv"><div class="lbl">The Methodology · Three Pillars</div></div>
-  <div class="w rv" style="transition-delay:100ms">
-    <div class="pillar-grid">
-
-      <!-- I Structure -->
-      <div class="pillar-flip" onclick="this.classList.toggle('flipped')" title="Click to flip">
-        <div class="pillar-inner">
-          <div class="pillar-front">
-            <div class="pil-num">I</div>
-            <div class="pil-title">Structure</div>
-            <p class="pil-tag">Read the Market's Blueprint</p>
-            <p class="pil-body">Identify Higher Highs / Higher Lows for bullish and Lower Highs / Lower Lows for bearish. Structure tells you where price wants to go.</p>
-            <ul class="pil-list">
-              <li>Break of Structure (BOS)</li>
-              <li>Change of Character (CHoCH)</li>
-              <li>Order Blocks &amp; Fair Value Gaps</li>
-            </ul>
-            <div class="pil-hint">Tap to reveal EA logic →</div>
-          </div>
-          <div class="pillar-back">
-            <div class="pb-label">EA · Pillar I</div>
-            <div class="pb-title">Structure = Bias</div>
-            <div class="pb-ea">IF (Structure == HH/HL)  →  BIAS = BULLISH
-IF (Structure == LH/LL)  →  BIAS = BEARISH
-CHoCH  →  BOS  →  EXECUTE_SIGNAL()</div>
-            <p class="pb-insight">The EA reads H1 structure first on every bar. No trade is considered until bias is confirmed. CHoCH is the warning; BOS is the trigger. Without structure alignment, the signal never fires.</p>
-            <a class="pb-cta" href="#learn" onclick="event.stopPropagation()">Go to Module 01 →</a>
-            <div class="pb-hint">← Tap to flip back</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- II Liquidity -->
-      <div class="pillar-flip" onclick="this.classList.toggle('flipped')" title="Click to flip">
-        <div class="pillar-inner">
-          <div class="pillar-front">
-            <div class="pil-num">II</div>
-            <div class="pil-title">Liquidity</div>
-            <p class="pil-tag">Follow the Smart Money</p>
-            <p class="pil-body">Banks need liquidity to fill orders. They engineer moves to sweep stop losses before the real move. Spot the trap before you become it.</p>
-            <ul class="pil-list">
-              <li>Equal Highs / Lows = Targets</li>
-              <li>Stop Hunt Mechanics</li>
-              <li>Liquidity Sweep → Reversal</li>
-            </ul>
-            <div class="pil-hint">Tap to reveal EA logic →</div>
-          </div>
-          <div class="pillar-back">
-            <div class="pb-label">EA · Pillar II</div>
-            <div class="pb-title">Sweep = Confidence</div>
-            <div class="pb-ea">EQH_DETECTED  →  await sweep
-IF (EQH_SWEEP confirmed)
-    CONFIDENCE++
-STOP_HUNT pattern  →  flag entry</div>
-            <p class="pb-insight">Every EA signal requires a confirmed EQH or EQL sweep. The sweep candle must close back inside the range — the wick is the hunt. This single filter eliminates the majority of false signals.</p>
-            <a class="pb-cta" href="#learn" onclick="event.stopPropagation()">Go to Module 02 →</a>
-            <div class="pb-hint">← Tap to flip back</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- III Timing -->
-      <div class="pillar-flip" onclick="this.classList.toggle('flipped')" title="Click to flip">
-        <div class="pillar-inner">
-          <div class="pillar-front">
-            <div class="pil-num">III</div>
-            <div class="pil-title">Timing</div>
-            <p class="pil-tag">Strike at the Right Moment</p>
-            <p class="pil-body">The best setups happen during London and NY sessions. Session timing separates professional discretion from gambling.</p>
-            <ul class="pil-list">
-              <li>London Open: 07:00 GMT</li>
-              <li>New York Open: 12:00 GMT</li>
-              <li>Killzone Overlap: 12:00–15:00</li>
-            </ul>
-            <div class="pil-hint">Tap to reveal EA logic →</div>
-          </div>
-          <div class="pillar-back">
-            <div class="pb-label">EA · Pillar III</div>
-            <div class="pb-title">Session = Filter</div>
-            <div class="pb-ea">SESSION_FILTER = London + NY_KZ
-IF current_time NOT IN filter:
-    SKIP_SIGNAL()  // always
-KILLZONE = 12:00–15:00 GMT</div>
-            <p class="pb-insight">The EA hard-blocks all signals outside London open and the NY killzone. 28% of retail entries fire off-session and lose twice as often. The session filter alone accounts for a significant portion of the EA's edge.</p>
-            <a class="pb-cta" href="#learn" onclick="event.stopPropagation()">Go to Module 03 →</a>
-            <div class="pb-hint">← Tap to flip back</div>
-          </div>
-        </div>
-      </div>
-
+  <div class="w">
+    <div class="shead rv">
+      <div class="ey">The Methodology · Three Pillars</div>
+      <h2>Three forces decide every trade.<br>We teach all <em>three.</em></h2>
+      <p class="intro">Structure tells you direction. Liquidity tells you where price is really headed. Timing tells you when to strike. Tap any pillar to go deeper.</p>
     </div>
-  </div>
-  <div class="w rv" style="transition-delay:200ms">
-    <div class="meth-eq">
-      <span>Structure</span><em>+</em><span>Liquidity</span><em>+</em><span>Timing</span><em>=</em>
-      <small>Profitable Trading</small>
-      <span style="font-size:.75em;color:var(--ds);margin-left:8px">The RLCTA methodology · XAUUSD</span>
+    <div class="pillars rv">
+      <div class="pillar" onclick="openPillar('structure')">
+        <div class="pnum">PILLAR I</div>
+        <div class="ptitle">Structure <span class="ar">→</span></div>
+        <div class="ptag">Read the blueprint</div>
+        <p>Higher highs and higher lows for bullish, the inverse for bearish. Structure is the market showing its hand before it moves.</p>
+        <ul><li>Break of Structure (BOS)</li><li>Change of Character (CHoCH)</li><li>Order Blocks &amp; Fair Value Gaps</li></ul>
+      </div>
+      <div class="pillar" onclick="openPillar('liquidity')">
+        <div class="pnum">PILLAR II</div>
+        <div class="ptitle">Liquidity <span class="ar">→</span></div>
+        <div class="ptag">Follow the smart money</div>
+        <p>Banks need liquidity to fill size. They sweep stops to get it — then reverse. Learn to spot the trap before you become it.</p>
+        <ul><li>Equal highs / lows as targets</li><li>Stop-hunt mechanics</li><li>Sweep → reversal entries</li></ul>
+      </div>
+      <div class="pillar" onclick="openPillar('timing')">
+        <div class="pnum">PILLAR III</div>
+        <div class="ptitle">Timing <span class="ar">→</span></div>
+        <div class="ptag">Strike in the killzone</div>
+        <p>The best moves happen when London and New York are live. Session timing is what separates discipline from gambling.</p>
+        <ul><li>London open · 07:00 GMT</li><li>New York open · 12:00 GMT</li><li>Killzone overlap · 12:00–15:00</li></ul>
+      </div>
+    </div>
+    <div class="formula rv">
+      <span class="fk">Structure</span> + <span class="fg">Liquidity</span> + <span class="fr">Timing</span> = <span style="color:var(--gold)">the Cycle</span>
+      <span class="tag">Refined Liquidity · XAUUSD</span>
     </div>
   </div>
 </section>
 
-<!-- ALGO -->
-<section id="algo">
-  <div class="w bp rv"><div class="lbl">The System · Automated Execution</div></div>
-  <div class="w rv" style="transition-delay:80ms">
-    <div class="algo-grid">
-      <div>
-        <div class="algo-lbl">RLCTA Algorithm</div>
-        <h2 class="algo-h">The methodology,&nbsp; <em>automated.</em></h2>
-        <p class="algo-body">All three pillars — structure, liquidity, timing — encoded into an MQL5 expert advisor running live on MT5. Fully backtested. Open source.</p>
-        <div class="code-block">
-          <div class="cm">// Core logic sequence</div>
-          IF (Structure == HH/HL) → BIAS = BULLISH<br>
-          IF (EQH_SWEEP detected) → CONFIDENCE++<br>
-          IF (London OR Killzone) → EXECUTE_SIGNAL()<br>
-          <br>RISK = 1.0% | RR_MINIMUM = 1:4<br>
-          RETURN → NEXT_SESSION ✓
+<!-- AUTOMATION -->
+<section id="automation">
+  <div class="w">
+    <div class="auto-grid">
+      <div class="auto-l">
+        <div class="ey rv">The Tool · MMM EA</div>
+        <h2 class="rv">The methodology,<br><em>automated.</em></h2>
+        <p class="rv">Every rule we teach — structure, the liquidity sweep, the killzone — is encoded into an MQL5 expert advisor running live on MetaTrader 5. It waits for the cycle, manages risk, and never trades on emotion. The code is open for members to study.</p>
+        <div class="codeblock rv">
+          <span class="cm">// the cycle, in logic</span><br>
+          <span class="kw">IF</span> structure == HH/HL  →  bias = <span class="go">BULLISH</span><br>
+          <span class="kw">IF</span> liquidity_sweep + CHoCH  →  confirmation++<br>
+          <span class="kw">IF</span> session == London | NY  →  <span class="go">EXECUTE()</span><br>
+          risk = 0.5%   ·   min_RR = <span class="go">1:4</span><br>
+          <span class="cm">→ else: wait for next cycle ✓</span>
         </div>
-        <div class="algo-lbl" style="margin-top:0">MT5 · MMM_Refined_Liquidity_Cycle_EA.ex5</div>
-        <div class="ea-specs">
-          <div class="ea-spec"><div class="ea-spec-k">Status</div><div class="ea-spec-v">BACKTESTING</div></div>
-          <div class="ea-spec"><div class="ea-spec-k">Symbol</div><div class="ea-spec-v">XAUUSD</div></div>
-          <div class="ea-spec"><div class="ea-spec-k">Timeframe</div><div class="ea-spec-v">M5 · M15</div></div>
-          <div class="ea-spec"><div class="ea-spec-k">Risk / Trade</div><div class="ea-spec-v">1.0%</div></div>
-          <div class="ea-spec"><div class="ea-spec-k">Spread Limit</div><div class="ea-spec-v">25 pts</div></div>
-          <div class="ea-spec"><div class="ea-spec-k">Session Filter</div><div class="ea-spec-v">London + NY killzone</div></div>
+        <div class="feat-list rv">
+          <div class="feat"><span class="fi">01</span><div><h4>Risk guard, always on</h4><p>Hard daily-loss cap and per-trade risk ceiling. The account survives the bad days.</p></div></div>
+          <div class="feat"><span class="fi">02</span><div><h4>Session-filtered</h4><p>Only hunts during the windows that actually pay. Sits out the noise.</p></div></div>
+          <div class="feat"><span class="fi">03</span><div><h4>Gold specialist</h4><p>Tuned specifically for XAUUSD — with GBPJPY joining the system in the next six weeks.</p></div></div>
         </div>
       </div>
       <div>
-        <div class="repo-card">
-          <div class="repo-icon">📁</div>
-          <div class="repo-title">arshblack / Gold-GU-AJ-Research</div>
-          <p class="repo-desc">MQL5 expert advisor built on the Gold Smart Money method. Structure-aware, liquidity-hunting, session-timed. Python analysis tools included.</p>
-          <div class="repo-meta"><span>MQL5 · Python</span><span>★ 14</span><span>⑂ 5</span><span>Updated 2d ago</span></div>
-          <div class="repo-actions">
-            <a href="https://github.com/arshblack/Gold-GU-AJ-Research-model" class="repo-btn">View Repository →</a>
-            <a href="https://github.com/arshblack/Gold-GU-AJ-Research-model" class="repo-btn">Star</a>
+        <div class="console rv">
+          <div class="con-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="path">MT5 · MMM_Liquidity_EA.ex5</span></div>
+          <div class="con-body">
+            <div class="con-row"><span class="con-k">ENGINE</span><span class="con-v aq">LIVE · WATCHING<span class="con-cursor"></span></span></div>
+            <div class="con-row"><span class="con-k">METHOD</span><span class="con-v">ICT / SMC liquidity cycle</span></div>
+            <div class="con-row"><span class="con-k">SYMBOL</span><span class="con-v">XAUUSD · Gold spot</span></div>
+            <div class="con-row"><span class="con-k">RISK / TRADE</span><span class="con-v gd">0.5%</span></div>
+            <div class="con-row"><span class="con-k">MIN REWARD</span><span class="con-v gd">1 : 4</span></div>
+            <div class="con-row"><span class="con-k">SESSION FILTER</span><span class="con-v">London + NY killzone</span></div>
+            <div class="con-row"><span class="con-k">NEXT PAIR</span><span class="con-v aq">GBPJPY · ~6 weeks</span></div>
+            <div class="con-row"><span class="con-k">STATE</span><span class="con-v aq">Awaiting clean sweep</span></div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SIGNALS -->
-<section id="signals">
-  <div class="w bp rv"><div class="lbl">Test Signal Feed · RLCTA Engine Live beta</div></div>
-  <div class="w rv" style="transition-delay:80ms">
-    <div class="sig-grid">
-      <div class="sig-feed">
-        <div class="sig-item active">
-          <div class="sig-meta">2026-06-02 08:47 GMT</div>
-          <div class="sig-dir buy">XAUUSD BUY</div>
-          <div class="sig-price">2 965.50</div>
-          <div class="sig-row">
-            <div class="sig-kv">SL <span>2 958.00</span></div>
-            <div class="sig-kv">TP1 <span>2 978.00</span></div>
-            <div class="sig-kv">TP2 <span>2 988.00</span></div>
-            <div class="sig-kv">RR <span>1:2.8</span></div>
+        <div class="gh rv">
+          <div class="gh-top">
+            <svg width="18" height="18" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            arshblack / Gold-GU-AJ-Research-model
           </div>
-          <div class="sig-result live">In progress — 14 pips floating</div>
+          <p>MQL5 expert advisor built on the Liquidity Cycle method. Structure-aware, liquidity-hunting, session-timed — with Python analysis tools included.</p>
+          <a href="https://github.com/arshblack/Gold-GU-AJ-Research-model" target="_blank" rel="noopener">View repository →</a>
         </div>
-        <div class="sig-item">
-          <div class="sig-meta">2026-06-01 14:23 GMT</div>
-          <div class="sig-dir sell">XAUUSD SELL</div>
-          <div class="sig-price">2 978.30</div>
-          <div class="sig-row">
-            <div class="sig-kv">SL <span>2 985.00</span></div>
-            <div class="sig-kv">TP <span>2 958.00</span></div>
-            <div class="sig-kv">RR <span>1:3.0</span></div>
-          </div>
-          <div class="sig-result win">Closed +41.2 pips ✓</div>
-        </div>
-        <div class="sig-item">
-          <div class="sig-meta">2026-06-01 07:11 GMT</div>
-          <div class="sig-dir buy">XAUUSD BUY</div>
-          <div class="sig-price">2 951.20</div>
-          <div class="sig-row">
-            <div class="sig-kv">SL <span>2 944.00</span></div>
-            <div class="sig-kv">TP <span>2 970.00</span></div>
-            <div class="sig-kv">RR <span>1:2.3</span></div>
-          </div>
-          <div class="sig-result win">Closed +18.8 pips ✓</div>
-        </div>
-        <div class="sig-item">
-          <div class="sig-meta">2026-05-31 13:55 GMT</div>
-          <div class="sig-dir sell">XAUUSD SELL</div>
-          <div class="sig-price">2 990.40</div>
-          <div class="sig-row">
-            <div class="sig-kv">SL <span>2 997.00</span></div>
-            <div class="sig-kv">TP <span>2 968.00</span></div>
-            <div class="sig-kv">RR <span>1:2.6</span></div>
-          </div>
-          <div class="sig-result win">Closed +28.4 pips ✓</div>
-        </div>
-      </div>
-      <div>
-        <div class="eq-wrap">
-          <div class="eq-lbl">Equity Curve · Backtest 2024–2025</div>
-          <svg class="eq-chart" viewBox="0 0 400 120">
-            <defs><linearGradient id="eqg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3C5537" stop-opacity=".3"/><stop offset="100%" stop-color="#3C5537" stop-opacity="0"/></linearGradient></defs>
-            <polyline fill="url(#eqg)" stroke="none" points="0,100 30,95 60,88 80,92 110,80 140,72 160,78 190,60 220,52 250,58 270,44 300,30 330,22 360,14 400,8 400,120 0,120"/>
-            <polyline fill="none" stroke="#3C5537" stroke-width="2" points="0,100 30,95 60,88 80,92 110,80 140,72 160,78 190,60 220,52 250,58 270,44 300,30 330,22 360,14 400,8"/>
-            <text x="390" y="12" text-anchor="end" font-family="IBM Plex Mono" font-size="10" fill="#3C5537">+218.4%</text>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERFORMANCE -->
-<section id="study">
-  <div class="w bp rv"><div class="lbl">Performance Study · XAUUSD Live Results</div></div>
-  <div class="w rv" style="transition-delay:80ms">
-    <div class="stats-grid">
-      <div class="stat"><div class="stat-val">61.4%</div><div class="stat-lbl">Win Rate</div><div class="stat-sub">847 trades · M5 + M15</div></div>
-      <div class="stat"><div class="stat-val">1:2.3</div><div class="stat-lbl">Avg Risk / Reward</div><div class="stat-sub">Minimum 1:2 per setup</div></div>
-      <div class="stat"><div class="stat-val">12.4%</div><div class="stat-lbl">Max Drawdown</div><div class="stat-sub">London + NY filter active</div></div>
-      <div class="stat"><div class="stat-val">2.18</div><div class="stat-lbl">Profit Factor</div><div class="stat-sub">Gross profit / gross loss</div></div>
-    </div>
-    <div class="study-meta">
-      <div class="sm-row"><span class="sm-k">Period</span><span class="sm-v">Jan 2024 – Dec 2025</span></div>
-      <div class="sm-row"><span class="sm-k">Symbol</span><span class="sm-v">XAUUSD (Gold spot)</span></div>
-      <div class="sm-row" style="border-right:none"><span class="sm-k">EA Version</span><span class="sm-v">MMM Refined Liquidity Cycle v3.1</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- COMMUNITY -->
-<section id="community">
-  <div class="w bp rv"><div class="lbl">Community · Learning · Live Access</div></div>
-  <div class="w rv" style="transition-delay:80ms">
-    <div class="comm-grid">
-      <div>
-        <span class="comm-ey">Academy Community</span>
-        <h2 class="comm-h">Connect with traders.<br>Learn in <em>community.</em></h2>
-        <p class="comm-b">Join traders learning the Refined Liquidity Cycle methodology. Get live trading signals, access the system source code, receive weekly coaching, and build discipline alongside a community of serious traders.</p>
-        <div class="comm-feats">
-          <div class="comm-feat"><span class="cf-no">01</span><div><h4>Live trading signals</h4><p>Real-time signals from the Liquidity Cycle algorithm on XAUUSD — entry, stop loss, take profit, and outcome.</p></div></div>
-          <div class="comm-feat"><span class="cf-no">02</span><div><h4>Open source system</h4><p>Full MQL5 EA code, Python analysis scripts, and backtesting validation tools on GitHub.</p></div></div>
-          <div class="comm-feat"><span class="cf-no">03</span><div><h4>Academy resources</h4><p>Educational content, course materials, video lessons, and study guides for mastering the three pillars.</p></div></div>
-          <div class="comm-feat"><span class="cf-no">04</span><div><h4>Psychology &amp; journaling</h4><p>Trading psychology guidance, community journaling, and accountability check-ins.</p></div></div>
-        </div>
-      </div>
-      <div class="join-card">
-        <div class="jc-badge">Open Now · Join Free</div>
-        <div class="jc-title">RLCTA Community</div>
-        <p class="jc-desc">Access the Refined Liquidity Cycle community. Get live signals, learn the methodology, and connect with traders committed to mastering institutional XAUUSD trading.</p>
-        <div class="jc-items">
-          <div class="jc-item">Live Liquidity Cycle signals on XAUUSD</div>
-          <div class="jc-item">Full EA source code and Python tools on GitHub</div>
-          <div class="jc-item">Academy courses and educational resources</div>
-          <div class="jc-item">Trading psychology coaching and community</div>
-          <div class="jc-item">Weekly analysis and market breakdowns</div>
-        </div>
-        <a href="https://t.me/+C0YWOPmOFu02YmVk" class="jc-btn">Join the Community →</a>
-        <div class="jc-note">Free during beta · Limited spots · Telegram required</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DISCIPLINE -->
-<section id="discipline">
-  <div class="w bp rv"><div class="lbl">Trade Assessment · Logged-in</div></div>
-  <div class="w rv" style="transition-delay:80ms">
-    <div class="disc-grid">
-      <div class="disc-score-wrap">
-        <div class="disc-score">72</div>
-        <div class="disc-score-lbl">Discipline Score · last 40 trades</div>
-        <div class="disc-score-sub" style="margin-bottom:12px">Solid foundation. Your edge is real — your impulse control is what's leaking it.</div>
-        <div class="disc-kpis">
-          <div class="disc-kpi"><div class="disc-kpi-val">9</div><div class="disc-kpi-lbl">Plan days</div></div>
-          <div class="disc-kpi"><div class="disc-kpi-val">3</div><div class="disc-kpi-lbl">Tilt breaks</div></div>
-          <div class="disc-kpi"><div class="disc-kpi-val">61%</div><div class="disc-kpi-lbl">Win rate</div></div>
-        </div>
-        <div style="font-family:var(--sm);font-size:10px;color:var(--ds);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Behavioural breakdown · last 40 trades</div>
-        <div class="disc-breakdown">
-          <div class="disc-bar-row"><div class="disc-bar-lbl">Risk consistency</div><div class="disc-bar-track"><div class="disc-bar-fill" style="width:88%"></div></div><div class="disc-bar-val">88%</div></div>
-          <div class="disc-bar-row"><div class="disc-bar-lbl">Plan adherence</div><div class="disc-bar-track"><div class="disc-bar-fill" style="width:74%"></div></div><div class="disc-bar-val">74%</div></div>
-          <div class="disc-bar-row"><div class="disc-bar-lbl">Session timing</div><div class="disc-bar-track"><div class="disc-bar-fill" style="width:69%"></div></div><div class="disc-bar-val">69%</div></div>
-          <div class="disc-bar-row"><div class="disc-bar-lbl">Emotional control</div><div class="disc-bar-track"><div class="disc-bar-fill" style="width:41%;background:var(--rs)"></div></div><div class="disc-bar-val">41%</div></div>
-        </div>
-      </div>
-      <div class="disc-alerts">
-        <div class="disc-alert warn"><h5>⚠ Revenge trading detected</h5><p>3 of your last 5 losers were re-entries within 4 minutes of a stop-out.</p></div>
-        <div class="disc-alert info"><h5>🌙 Off-session entries</h5><p>28% of trades fired outside London/NY killzones — they lose twice as often.</p></div>
-        <div class="disc-alert ok"><h5>✓ Position sizing is clean</h5><p>You rarely break your 1% rule. That consistency is protecting your account.</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CURRICULUM -->
-<section id="learn" style="background:var(--pw)">
-  <div class="w bp rv"><div class="lbl">Complete Curriculum · Master the System</div></div>
-  <div class="w rv">
-    <div class="path-grid">
-      <div class="path-item" onclick="openCourseModal('structure')"><div class="path-no">01</div><div class="path-title">Read Structure</div><p class="path-body">BOS, CHoCH and order blocks until identifying them is automatic and instant.</p><span class="path-meta">◷ 6 lessons · Foundation</span></div>
-      <div class="path-item" onclick="openCourseModal('liquidity')"><div class="path-no">02</div><div class="path-title">Hunt Liquidity</div><p class="path-body">Spot the sweep before the move. Stop being the stop-loss that funds the next candle.</p><span class="path-meta">◷ 5 lessons · Intermediate</span></div>
-      <div class="path-item" onclick="openCourseModal('timing')"><div class="path-no">03</div><div class="path-title">Time the Killzone</div><p class="path-body">Trade the sessions that pay and sit on your hands through the noise in between.</p><span class="path-meta">◷ 4 lessons · Intermediate</span></div>
-      <div class="path-item" onclick="openCourseModal('psychology')"><div class="path-no">04</div><div class="path-title">Master the Mind</div><p class="path-body">Build the rules and self-reviews that make your edge survive you on a bad day.</p><span class="path-meta">◷ 7 lessons · Ongoing</span></div>
+<section id="curriculum">
+  <div class="w">
+    <div class="shead rv">
+      <div class="ey">Complete Curriculum · Master the System</div>
+      <h2>From confused to <em>composed.</em></h2>
+      <p class="intro">Four structured tracks take you from reading a candle to running the full method with discipline. Tap any track to see every lesson inside.</p>
+    </div>
+    <div class="cur-grid rv">
+      <div class="cur-card" onclick="openCourse('structure')">
+        <div class="cur-top"><span class="cur-no">01</span><span class="cur-tag">Foundation</span></div>
+        <h3>Read Structure</h3>
+        <p>BOS, CHoCH, order blocks and fair value gaps — until naming them is instant and automatic.</p>
+        <div class="cur-foot"><span>6 lessons · ~5 hrs</span><span class="open">Open track →</span></div>
+      </div>
+      <div class="cur-card" onclick="openCourse('liquidity')">
+        <div class="cur-top"><span class="cur-no">02</span><span class="cur-tag">Intermediate</span></div>
+        <h3>Hunt Liquidity</h3>
+        <p>Spot the sweep before the move. Stop being the stop-loss that funds the next candle.</p>
+        <div class="cur-foot"><span>5 lessons · ~6 hrs</span><span class="open">Open track →</span></div>
+      </div>
+      <div class="cur-card" onclick="openCourse('timing')">
+        <div class="cur-top"><span class="cur-no">03</span><span class="cur-tag">Intermediate</span></div>
+        <h3>Time the Killzone</h3>
+        <p>Trade the sessions that pay. Sit on your hands through the noise in between.</p>
+        <div class="cur-foot"><span>4 lessons · ~3 hrs</span><span class="open">Open track →</span></div>
+      </div>
+      <div class="cur-card" onclick="openCourse('psychology')">
+        <div class="cur-top"><span class="cur-no">04</span><span class="cur-tag">Ongoing</span></div>
+        <h3>Master the Mind</h3>
+        <p>Risk rules, journaling and the self-reviews that make your edge survive a bad day.</p>
+        <div class="cur-foot"><span>7 lessons · ongoing</span><span class="open">Open track →</span></div>
+      </div>
+    </div>
+    <div class="cur-note">New lessons added every month · Free foundation tier for community members</div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="w">
+    <div class="comm-grid">
+      <div class="comm-l">
+        <div class="ey rv">Community · Learning · Live Access</div>
+        <h2 class="rv">Learn the cycle.<br>Trade it in <em>company.</em></h2>
+        <p class="rv">Join traders learning the Refined Liquidity method together. Daily teaching breakdowns, the methodology in plain language, the open system to study, and the accountability that actually changes how you trade.</p>
+        <div class="comm-feats rv">
+          <div class="cfeat"><span class="n">01</span><div><h4>Daily teaching</h4><p>Plain-language breakdowns of structure, liquidity and timing — one concept at a time.</p></div></div>
+          <div class="cfeat"><span class="n">02</span><div><h4>Open system</h4><p>Study the MQL5 EA and Python tools. Learn exactly how the cycle is coded.</p></div></div>
+          <div class="cfeat"><span class="n">03</span><div><h4>Psychology &amp; journaling</h4><p>Discipline check-ins and review habits. The mind must match the method.</p></div></div>
+          <div class="cfeat"><span class="n">04</span><div><h4>Built for two homes</h4><p>A community rooted between Southern Africa and Europe — your timezone, your context.</p></div></div>
+        </div>
+      </div>
+      <div class="join-card rv">
+        <div class="jc-badge"><span class="pip"></span> The Matrix · Open free during beta</div>
+        <div class="jc-title">Enter the Matrix</div>
+        <p class="jc-sub">Step inside the community on Telegram — daily gold breakdowns, the Liquidity Cycle method, and the traders learning it with you.</p>
+        <div class="jc-items">
+          <div class="jc-item">Daily Liquidity Cycle teaching on XAUUSD</div>
+          <div class="jc-item">Open EA source &amp; Python tools to study</div>
+          <div class="jc-item">Structured academy curriculum</div>
+          <div class="jc-item">Trading psychology &amp; journaling habits</div>
+          <div class="jc-item">First look when GBPJPY joins the system</div>
+        </div>
+        <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener" class="jc-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+          Enter the Matrix →
+        </a>
+        <p class="jc-note">Free during beta · Telegram required · Education, not financial advice</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER CTA -->
-<div class="foot-cta">
-  <h2 class="fc-h">Trade. Study. <em>Automate.</em></h2>
-  <div class="fc-btns">
-    <a href="https://t.me/+C0YWOPmOFu02YmVk" class="fc-btn pri">Join free during beta →</a>
-    <a href="#algo" class="fc-btn sec">View the GitHub repo →</a>
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="w">
+    <div class="founder-wrap">
+      <div class="fphoto rv">
+        <span class="mono">AP</span>
+        <span class="tag">Arshly Phiri · Warsaw</span>
+      </div>
+      <div class="founder-r">
+        <div class="ey rv">The Founder</div>
+        <h2 class="rv">From the charts to the <em>code.</em></h2>
+        <p class="rv">I'm Arshly Phiri — a gold trader and engineer building between Zimbabwe and Poland. I spent years learning how institutions actually move price, then did the obvious thing: I encoded the method into an algorithm so the logic never bends under emotion.</p>
+        <p class="rv">Refined Liquidity is where I teach that method in the open — the structure, the liquidity, the timing — and let the system prove it. No promises of riches. Just the cycle, explained clearly, by someone who came from where you're coming from.</p>
+        <div class="fquote rv">"Most traders chase the move. I teach you to wait for the cycle — and let the cycle pay you."</div>
+        <div class="fsign rv">Arshly Phiri<small>Founder · Refined Liquidity</small></div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
+<!-- FINAL CTA -->
+<section id="final">
+  <div class="aurora2"></div>
+  <div class="final-in rv">
+    <h2>Trade the <em>cycle,</em><br>not the noise.</h2>
+    <p>Step into the community, learn the method free during beta, and watch the system work on gold — before everyone else catches on.</p>
+    <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener" class="btn btn-p" style="font-size:15px;padding:16px 30px">Enter the Matrix <span class="ar">→</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <span>RLCTA · Refined Liquidity Cycle Trading Academy · Education + Automation © 2026 · @arshly105</span>
-  <span>Education platform. Not financial advice. Trading XAUUSD carries significant risk of capital loss.</span>
+  <div class="w foot-in">
+    <div class="foot-l">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#E9C97A" stroke-width="1.2"/><circle cx="16" cy="16" r="3" fill="#E9C97A"/></svg>
+      Refined Liquidity · Arshly Phiri · Education + Automation
+    </div>
+    <div class="foot-links">
+      <a href="#cycle">Cycle</a><a href="#curriculum">Curriculum</a>
+      <a href="https://github.com/arshblack/Gold-GU-AJ-Research-model" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+  <p class="disc">Refined Liquidity is an educational platform. Nothing here is financial advice, a signal service, or a guarantee of profit. Trading XAUUSD and leveraged FX carries significant risk of capital loss. Past or simulated performance does not indicate future results. © 2026 Refined Liquidity.</p>
 </footer>
 
-<!-- COURSE MODAL -->
-<div class="modal" id="courseModal">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeCourseModal()">×</button>
-    <div id="courseContent"></div>
-  </div>
-</div>
+<!-- MODALS -->
+<div class="modal" id="pillarModal"><div class="modal-card"><button class="modal-x" onclick="closeM('pillarModal')">×</button><div id="pillarBody"></div></div></div>
+<div class="modal" id="courseModal"><div class="modal-card"><button class="modal-x" onclick="closeM('courseModal')">×</button><div id="courseBody"></div></div></div>
+<div class="toast" id="toast"></div>
 
 <script>
-// ── Scroll reveal ──────────────────────────────────────────────────────────
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
-},{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+/* reveal on scroll */
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-// ── Analog clocks ──────────────────────────────────────────────────────────
-function buildTicks(groupId){
-  const g = document.getElementById(groupId);
-  if(!g) return;
-  for(let i=0;i<60;i++){
-    const major = i%5===0;
-    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
-    const angle = i*6 * Math.PI/180;
-    const r1 = major ? 25 : 27;
-    const r2 = 29;
-    line.setAttribute('x1', 32 + r1*Math.sin(angle));
-    line.setAttribute('y1', 32 - r1*Math.cos(angle));
-    line.setAttribute('x2', 32 + r2*Math.sin(angle));
-    line.setAttribute('y2', 32 - r2*Math.cos(angle));
-    line.setAttribute('class', major ? 'tick-major' : 'tick');
-    g.appendChild(line);
+/* nav bg on scroll */
+addEventListener('scroll',()=>{document.getElementById('nav').style.background=scrollY>40?'rgba(8,9,13,.85)':'rgba(8,9,13,.6)'});
+
+/* ---------- CYCLE ENGINE ---------- */
+const phases=[
+ {t:'Accumulation', s:'Smart money builds a position quietly', b:'Price coils in a tight range. Volume builds while retail traders lose interest. This is where institutions load orders — patiently, without moving price. Every clean setup begins here.'},
+ {t:'Manipulation', s:'The stop-hunt that fuels the move', b:'Price spikes through an obvious level — equal highs or lows — triggering retail stops and tempting breakout traders. This is the liquidity grab. It looks like the move; it is the trap that funds the real one.'},
+ {t:'Confirmation', s:'The market shows its hand', b:'After the sweep, price rejects and shifts character — a CHoCH then a Break of Structure. This is the cycle confirming direction. The EA waits for exactly this sequence before it will execute.'},
+ {t:'Expansion', s:'The real move, where you get paid', b:'With liquidity taken and structure confirmed, price expands in the true direction toward the next pool. This is the leg that carries 1:4 and beyond — the only part most traders ever see, and the part they enter too late.'},
+ {t:'Reset', s:'The cycle closes and reloads', b:'Momentum fades into a new range. Risk comes off, the books rebalance, and a fresh accumulation quietly begins. Discipline here — knowing the cycle is over — is what protects the gains from the last one.'}
+];
+const ringNodes=document.getElementById('cNodes');
+const CX=220,CY=220,RAD=150;
+const C=2*Math.PI*RAD;
+phases.forEach((p,i)=>{
+  const ang=(-90+i*(360/phases.length))*Math.PI/180;
+  const x=CX+RAD*Math.cos(ang), y=CY+RAD*Math.sin(ang);
+  // label position pushed outward
+  const lx=CX+(RAD+30)*Math.cos(ang), ly=CY+(RAD+30)*Math.sin(ang)+3;
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','cnode'+(i%2?' aq':'')+(i===0?' on':''));
+  g.dataset.idx=i;
+  g.innerHTML=`
+    <circle class="glow" cx="${x}" cy="${y}" r="20"/>
+    <circle class="ringo" cx="${x}" cy="${y}" r="14"/>
+    <circle class="dot" cx="${x}" cy="${y}" r="9"/>
+    <text class="cnum" x="${x}" y="${y+3}">${String(i+1).padStart(2,'0')}</text>
+    <text class="ctext" x="${lx}" y="${ly}">${p.t}</text>
+    <circle class="hit" cx="${x}" cy="${y}" r="26"/>`;
+  g.addEventListener('click',()=>{userTouch();setPhase(i)});
+  g.addEventListener('mouseenter',()=>{pauseAuto()});
+  g.addEventListener('mouseleave',()=>{resumeAuto()});
+  ringNodes.appendChild(g);
+});
+const cProgress=document.getElementById('cProgress');
+const cFlow=document.getElementById('cFlow');
+cProgress.style.strokeDasharray=C; cProgress.style.strokeDashoffset=C;
+// comet: short visible arc traveling around
+cFlow.style.strokeDasharray=`${C*0.12} ${C*0.88}`;
+let flowOff=0;
+function animateFlow(){flowOff-=1.1;cFlow.style.strokeDashoffset=flowOff;requestAnimationFrame(animateFlow)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches) animateFlow();
+
+const cNav=document.getElementById('cNav');
+phases.forEach((p,i)=>{
+  const c=document.createElement('div');c.className='cyc-chip'+(i===0?' on':'');c.textContent=p.t;
+  c.onclick=()=>{userTouch();setPhase(i)};cNav.appendChild(c);
+});
+let curPhase=0;
+function setPhase(i){
+  curPhase=i;const p=phases[i];
+  document.getElementById('cStep').textContent='Phase '+String(i+1).padStart(2,'0')+' / 05';
+  document.getElementById('cTitle').textContent=p.t;
+  document.getElementById('cSub').textContent=p.s;
+  document.getElementById('cBody').textContent=p.b;
+  document.getElementById('coreNum').textContent=String(i+1).padStart(2,'0');
+  document.querySelectorAll('.cyc-chip').forEach((c,j)=>c.classList.toggle('on',j===i));
+  document.querySelectorAll('.cnode').forEach((n,j)=>n.classList.toggle('on',j===i));
+  // progress arc to this phase
+  const frac=i/(phases.length-1||1);
+  cProgress.style.strokeDashoffset=C*(1-(i+1)/phases.length);
+}
+/* auto-advance with clear highlight (not a spin) */
+let autoT=null,paused=false;
+function startAuto(){autoT=setInterval(()=>{if(!paused){setPhase((curPhase+1)%phases.length)}},4200)}
+function pauseAuto(){paused=true}
+function resumeAuto(){paused=false}
+function userTouch(){paused=true;clearTimeout(window._rt);window._rt=setTimeout(()=>paused=false,9000)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches) startAuto();
+
+/* ---------- MATRIX RAIN (subtle, on-brand) ---------- */
+(function(){
+  const cv=document.getElementById('matrix');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const glyphs='01ABCDEF↑↓◇△▽LIQXAU<>/{}'.split('');
+  let cols,drops,fs=14;
+  function size(){const r=cv.getBoundingClientRect();cv.width=r.width;cv.height=r.height;cols=Math.floor(cv.width/fs);drops=Array(cols).fill(0).map(()=>Math.random()*cv.height/fs)}
+  size();addEventListener('resize',size);
+  function draw(){
+    ctx.fillStyle='rgba(8,9,13,.12)';ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.font=fs+'px monospace';
+    for(let i=0;i<cols;i++){
+      const ch=glyphs[Math.floor(Math.random()*glyphs.length)];
+      const x=i*fs,y=drops[i]*fs;
+      ctx.fillStyle = Math.random()>.5 ? 'rgba(233,201,122,.45)' : 'rgba(63,224,197,.40)';
+      if(Math.random()>.985)ctx.fillStyle='rgba(243,242,236,.7)';
+      ctx.fillText(ch,x,y);
+      if(y>cv.height&&Math.random()>.975)drops[i]=0;
+      drops[i]+=0.5;
+    }
   }
-}
-['london','newyork','gmt','kz'].forEach(id=>buildTicks('ticks-'+id));
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(draw,70)}
+})();
 
-function rotateHand(id, deg){
-  const el = document.getElementById(id);
-  if(el) el.style.transform = `rotate(${deg}deg)`;
-}
+/* ---------- MODALS ---------- */
+function openM(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden'}
+function closeM(id){document.getElementById(id).classList.remove('active');document.body.style.overflow=''}
+[ 'pillarModal','courseModal'].forEach(id=>{document.getElementById(id).addEventListener('click',e=>{if(e.target.id===id)closeM(id)})});
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeM('pillarModal');closeM('courseModal')}});
 
-function pad(n){return String(n).padStart(2,'0')}
+function openPillar(k){document.getElementById('pillarBody').innerHTML=pillarData[k];openM('pillarModal')}
+function openCourse(k){document.getElementById('courseBody').innerHTML=courseData[k];openM('courseModal')}
 
-function isKillzone(h, m){
-  const mins = h*60+m;
-  return mins >= 720 && mins < 900; // 12:00–15:00 GMT
-}
-function isLondon(h, m){
-  const mins = h*60+m;
-  return mins >= 420 && mins < 720; // 07:00–12:00 GMT
-}
-
-function updateClocks(){
-  const now = new Date();
-  const gmtH = now.getUTCHours();
-  const gmtM = now.getUTCMinutes();
-  const gmtS = now.getUTCSeconds();
-
-  // offsets (approximate — adjust for DST if needed)
-  const londonOff = 1;  // BST
-  const nyOff     = -4; // EDT
-
-  function toLocal(offset){
-    let h=(gmtH+offset+24)%24, m=gmtM, s=gmtS;
-    return {h,m,s};
-  }
-
-  const ld = toLocal(londonOff);
-  const ny = toLocal(nyOff);
-  const gmt= {h:gmtH,m:gmtM,s:gmtS};
-
-  function setHands(prefix, t){
-    const hDeg = (t.h%12)*30 + t.m*0.5;
-    const mDeg = t.m*6 + t.s*0.1;
-    const sDeg = t.s*6;
-    rotateHand('hh-'+prefix, hDeg);
-    rotateHand('hm-'+prefix, mDeg);
-    rotateHand('hs-'+prefix, sDeg);
-  }
-  setHands('london', ld);
-  setHands('newyork', ny);
-  setHands('gmt', gmt);
-  setHands('kz', gmt); // killzone clock shows GMT
-
-  document.getElementById('dt-london').textContent = pad(ld.h)+':'+pad(ld.m);
-  document.getElementById('dt-newyork').textContent = pad(ny.h)+':'+pad(ny.m);
-  document.getElementById('dt-gmt').textContent = pad(gmt.h)+':'+pad(gmt.m);
-
-  // Killzone status
-  const kzEl = document.getElementById('ds-kz');
-  const dtKz = document.getElementById('dt-kz');
-  const wckz = document.getElementById('wc-killzone');
-  if(isKillzone(gmtH, gmtM)){
-    kzEl.textContent = 'ACTIVE NOW';
-    dtKz.textContent = '🟢 LIVE';
-    wckz.classList.add('active');
-    setHands('kz', gmt);
-  } else {
-    const minsTo = ((12*60) - (gmtH*60+gmtM) + 1440) % 1440;
-    kzEl.textContent = minsTo < 60 ? `in ${minsTo}m` : '12:00–15:00 GMT';
-    dtKz.textContent = '12:00–15:00';
-    wckz.classList.remove('active');
-  }
-
-  // London active
-  const wcld = document.getElementById('wc-london');
-  if(isLondon(gmtH, gmtM)) wcld.classList.add('active');
-  else wcld.classList.remove('active');
-
-  // NY active (12:00–21:00 GMT)
-  const wcny = document.getElementById('wc-newyork');
-  const nyMins = gmtH*60+gmtM;
-  if(nyMins>=720 && nyMins<1260) wcny.classList.add('active');
-  else wcny.classList.remove('active');
-}
-updateClocks();
-setInterval(updateClocks, 1000);
-
-// ── Lesson accordion ──────────────────────────────────────────────────────
-function toggleLesson(header){
-  const item = header.parentElement;
-  const wasOpen = item.classList.contains('open');
-  item.parentElement.querySelectorAll('.lesson-item.open').forEach(el=>el.classList.remove('open'));
-  if(!wasOpen) item.classList.add('open');
-}
-
-// ── Lesson HTML builder ──────────────────────────────────────────────────
-function lessonHTML(num,title,dur,hook,concept,eaLines,example,rules,recap){
-  const ea = eaLines.map(l=>`<code>${l}</code>`).join('');
-  const rulesList = rules.map(r=>`<div class="lesson-rule">${r}</div>`).join('');
-  return `<div class="lesson-item">
-    <div class="lesson-header" onclick="toggleLesson(this)">
-      <span class="lesson-num">${num}</span>
-      <span class="lesson-name">${title}</span>
-      <span class="lesson-dur">${dur}</span>
-      <span class="lesson-chevron">▼</span>
-    </div>
-    <div class="lesson-body">
-      <div class="lesson-hook">${hook}</div>
-      <div class="lesson-section-lbl">Concept</div>
-      <p class="lesson-text">${concept}</p>
-      <div class="lesson-section-lbl">EA Connection</div>
-      <div class="lesson-code-block">${ea}</div>
-      <div class="lesson-section-lbl">XAUUSD Example</div>
-      <p class="lesson-text">${example}</p>
-      <div class="lesson-section-lbl">Key Rules</div>
-      <div class="lesson-rules">${rulesList}</div>
-      <div class="lesson-recap"><strong>◎ Recap / Practice</strong>${recap}</div>
-    </div>
-  </div>`;
-}
-
-// ── Course modal content ──────────────────────────────────────────────────
-const courseDetails = {
-  structure: `<h2>Read Structure</h2>
-    <p class="detail-text">Master the market's language before placing a single trade. BOS, CHoCH, Order Blocks, and FVGs are how the EA reads the chart — and how you will too.</p>
-    <code class="ptg">IF (Structure == HH/HL) → BIAS = BULLISH</code>
-    <div class="lesson-list">
-      ${['1.1|What is Market Structure?|~20 min|"The market doesn\'t move randomly. It moves in patterns. Your job is to read them before everyone else."|Market structure is the sequence of swing highs and swing lows. In a bullish trend you see Higher Highs (HH) and Higher Lows (HL). In a bearish trend you see Lower Highs (LH) and Lower Lows (LL). The EA\'s very first logic check reads structure before it considers any trade.|IF (Structure == HH/HL)  →  BIAS = BULLISH@@IF (Structure == LH/LL)  →  BIAS = BEARISH|On XAUUSD M15 — swings 2 964→2 971→2 967→2 978: HH (2 978>2 971) and HL (2 967>2 964). EA flags BULLISH BIAS and scans for a liquidity sweep entry long.|Only trade in the direction of structure.|Higher-timeframe H1 structure overrides M5/M15.|Mark swing highs and lows before anything else.|Sideways structure = no trade until it resolves.|Find the last three swings on live XAUUSD M15. Label them HH/HL or LH/LL. That is your bias right now.',
-        '1.2|Break of Structure (BOS)|~20 min|"A BOS isn\'t just a candle close — it\'s the market announcing a phase change."|A BOS happens when price closes beyond a previous key swing point. Bullish BOS = close above the last HH. Bearish BOS = close below the last LL. The EA uses BOS to confirm momentum and set direction.|// BOS detected@@MOMENTUM_CONFIRMED = TRUE@@MARK_BOS_LEVEL = current_swing_high|XAUUSD in downtrend (LH/LL). Price sweeps a recent low, then closes above the last LH at 2 962. BOS confirmed. Bias shifts bullish. EA begins scanning for sweep-and-entry setup long.|BOS requires a candle CLOSE beyond the level — wicks don\'t count.|Always mark the BOS level — price often re-tests it as an entry zone.|BOS with HTF structure = high-probability signal.|BOS against HTF structure = extra caution or skip.|Look at your last five trades. Did you enter after confirmed BOS or before? How did those two groups perform?',
-        '1.3|Change of Character (CHoCH)|~25 min|"CHoCH is the market whispering before it shouts. The profitable traders hear the whisper."|CHoCH is the first warning a trend may be ending — before a full BOS. In a downtrend CHoCH = first Higher Low formed (fails to make new LL). CHoCH alone is not an entry. CHoCH → BOS = reversal confirmed. This exact sequence is what the EA waits for.|// EA signal feed@@CHoCH  →  BOS  →  EXECUTE_SIGNAL()|Gold downtrend. Price sweeps low at 2 944 (liquidity grab), fails to make new LL, forms HL at 2 948 (CHoCH). BOS fires above last LH at 2 958. EA logs CHoCH→BOS and fires long. Stop below 2 944.|CHoCH is a warning, not an entry — wait for BOS.|The sweep before CHoCH is the liquidity grab. Mark it.|CHoCH + BOS on M15 with H1 structure = highest probability.|CHoCH without a preceding sweep = weaker signal.|Find one CHoCH→BOS on a recent XAUUSD chart. Mark the sweep, CHoCH candle, and BOS candle.',
-        '1.4|Order Blocks|~25 min|"Banks don\'t forget where they entered. They come back. And that\'s your entry."|An OB is the last candle in the opposite direction before a strong impulsive move. Bullish OB = last bearish candle before a strong bullish impulse. Banks fill their orders in these zones and return to them. When price retraces into an OB after CHoCH/BOS, that is the EA\'s precision entry zone.|// Entry zone@@ENTRY_ZONE = last_bearish_candle_before_impulse@@SL = below_OB_low|XAUUSD rallies from 2 950 to 2 975. Last red candle before the rally: high 2 953, low 2 950. That 2 950–2 953 zone = bullish OB. If price retraces there after BOS, EA marks it as entry zone. Stop below 2 950.|OBs valid only when preceding an impulsive CHoCH/BOS move.|Mark the OB using the high and low of that single candle.|Only use OBs aligned with current bias direction.|OBs weaken if price trades through them more than once.|Find the last bullish impulse on XAUUSD M15. Identify the final red candle before it. That is your OB.',
-        '1.5|Fair Value Gaps (FVG)|~20 min|"The market hates imbalance. When price moves too fast, it leaves a gap — and it always comes back."|FVG = three-candle pattern where price moved so fast that orders didn\'t fill in the gap (between candle 1 high and candle 3 low for bullish). Market returns to fill it. The EA uses FVG overlap with OBs as the highest-precision entry zone.|// OB + FVG confluence@@IF (OB_zone overlaps FVG)  →  CONF_SCORE += 2@@ENTRY = midpoint_of_overlap|London open: Gold moves 2 960→2 974 in three candles. Candle 1 closes 2 962, candle 3 opens 2 966. FVG = 2 962–2 966. OB at 2 961–2 963. Overlap 2 962–2 963 = maximum confluence entry.|FVGs best on M5 and M15 timeframes.|Always combine FVG with OB — FVG alone is insufficient.|FVG + OB overlap carries the highest EA confidence score.|FVG filled without rejection = no longer valid.|Find the most recent three-candle impulse on XAUUSD M5. Mark the gap between candle 1 high and candle 3 low.',
-        '1.6|The Structure Checklist|~30 min|"The EA doesn\'t guess. It runs a checklist. Now you do too."|Every EA trade follows a strict sequence. When you can run this manually on a live chart in under two minutes, you truly understand the strategy and can verify every EA signal.|STEP 1: Check H1 structure  →  BULLISH or BEARISH@@STEP 2: Look for CHoCH on M15@@STEP 3: Confirm BOS@@STEP 4: Mark OB from the BOS impulse@@STEP 5: Check for FVG within the OB@@STEP 6: Is London or NY Killzone active?@@STEP 7: Enter OB/FVG | SL below OB | TP = next liquidity|H1 bullish. M15 CHoCH after sweep of 2 944. BOS above 2 958. OB: 2 951–2 954. FVG: 2 952–2 953. Time: 13:15 GMT (killzone live). Entry: 2 952.50 | SL: 2 949.50 | TP: 2 969.00 | RR: 1:5.5.|Every step must be satisfied. Skip one = skip the trade.|Two minutes to run the checklist = you are ready for live markets.|Use this checklist to audit every EA signal.|Print it. Put it next to your screen. Use it every session.|Open a chart right now and run all seven steps. Does a valid setup exist?'
-      ].map(d=>{const p=d.split('|');return lessonHTML(p[0],p[1],p[2],p[3],p[4],p[5].split('@@'),p[6],p[7].split('.').filter(r=>r.trim().length>4).map(r=>r.trim()),p[8])}).join('')}
-    </div>
-    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Estimated completion: 4–6 hours</p>`,
-
-  liquidity: `<h2>Hunt Liquidity</h2>
-    <p class="detail-text">You think you are being stopped out by bad luck. You are not. You are funding institutional entries. This module teaches you to trade the reversal instead.</p>
-    <code class="ptg">IF (EQH_SWEEP detected) → CONFIDENCE++</code>
-    <div class="lesson-list">
-      ${[
-        '2.1|What is Liquidity?|~20 min|"You think you\'re being stopped out. You\'re actually funding the next big move."|Banks need massive volume to fill their orders. Retail stop-loss orders just beyond obvious levels are that liquidity. Banks engineer price moves to trigger those stops, collect the liquidity, and reverse. On XAUUSD this happens multiple times per week — often at London open and the NY killzone.|// EA scans for clustered retail stop zones@@LIQUIDITY_ZONE = EQH or EQL within session range|Asian session: Gold ranges 2 960–2 968. Retail longs place stops at 2 959. London open dips to 2 958.50, triggers all stops, immediately reverses to 2 978. The bank used your stop as their buy order. EA detects this as EQL sweep and increases signal confidence.|Stop losses beyond obvious levels = liquidity pools.|The more obvious a level, the more likely it gets swept.|Place YOUR stop beyond the expected sweep wick, not at the obvious level.|After the sweep, the real move begins — that is when the EA trades.|Look at the last three times your stop was hit on XAUUSD. Was it swept and reversed?',
-        '2.2|Equal Highs and Equal Lows|~25 min|"Two highs at the same level is not resistance. It is a target."|EQH = two or more swing highs at approximately the same price. Retail traders see EQH as resistance and place stops above it. Banks see EQH as a liquidity pool and plan a sweep above it before reversing down. The EA specifically scans for EQH/EQL within the active session range. When a sweep is detected, CONFIDENCE++.|EQH_DETECTED = (swing_high_1 ~= swing_high_2) // within 5pts@@IF (price > EQH + spread) AND (close < EQH)@@    EQH_SWEEP = TRUE  →  CONFIDENCE++|XAUUSD makes highs at 2 975.20 and 2 975.40. EA marks as EQH. Stops cluster above 2 975.50. Price spikes to 2 976.10 during London, closes back below 2 975.50. EQH_SWEEP = TRUE. EA now looks for bearish structure confirmation.|EQH within 5 pips of each other qualifies on XAUUSD M15.|The sweep candle closes back inside the range — the wick is the hunt.|Wait for CHoCH confirmation after the sweep before entering.|EQH above bullish OB = sell the sweep. EQL below bearish OB = buy the sweep.|Mark every EQH and EQL on today\'s XAUUSD M15 chart.',
-        '2.3|The Sweep and Reversal Pattern|~30 min|"Accumulation. Sweep. Rejection. Expansion. This is the institutional playbook. Now it\'s yours."|Four-phase pattern that repeats on XAUUSD weekly. Phase 1 Accumulation: Asian session quiet ranging, banks build positions. Phase 2 Sweep: London open spikes beyond EQH/EQL. Phase 3 Rejection: price reverses within 1–3 candles. Phase 4 Expansion: real move begins, often 40–80 pips.|PHASE_1: Asian range  →  mark EQH/EQL@@PHASE_2: EQH_SWEEP or EQL_SWEEP@@PHASE_3: CHoCH printed  →  bias reversal@@PHASE_4: BOS confirmed + session active  →  EXECUTE()|Asian: Gold 2 955–2 963. EQH at 2 963. London open spikes to 2 964.80, closes back at 2 962. CHoCH forms. BOS below 2 955. NY killzone: expansion to 2 942. Full pattern: 22 points, RR 1:3.1.|Bigger Asian range = more significant sweep and expansion.|Sweeps during London open often set up NY killzone trades.|A sweep with no follow-through rejection is weak — wait for candle close.|Never trade into a sweep — trade the reversal after the rejection.|Go back five trading days on XAUUSD M15. Find the Asian range each day.',
-        '2.4|Stop Hunt Mechanics|~20 min|"Why does price always hit your stop before going your way? Because your stop IS the destination."|Banks monitor clusters of retail stop orders and execute a rapid spike to trigger them — using the resulting volume as their entry fill — then immediately reverse. The signature is a long wick that penetrates a key level and closes firmly back inside the range.|// Stop hunt candle@@IF (candle.wick_beyond_EQH > 0) AND (candle.close < EQH)@@    STOP_HUNT_DETECTED = TRUE|XAUUSD M5: candle opens at 2 968, spikes to 2 971.40 (above EQH 2 971.00), closes at 2 969.20 — back below EQH. That wick = the stop hunt. EA flags STOP_HUNT_DETECTED. Next candle opens bearish, CHoCH confirms, sell signal prepared.|Stop hunt wick must penetrate EQH/EQL by at least 2–5 pips on XAUUSD.|Candle must CLOSE back inside the range for the pattern to be valid.|Volume spike on the hunt candle is further confirmation.|Set your stop beyond the hunt wick, not at the EQH level.|Find the last three times you were stopped out on XAUUSD. Look at the candle that hit your stop.',
-        '2.5|Liquidity Sweep Entry Strategy|~35 min|"Sweep confirmed. Rejection printing. Session active. This is the trade."|The complete entry methodology the EA follows: EQH/EQL identified → sweep confirmed → rejection candle closes inside → CHoCH → BOS → retracement to OB/FVG → session filter active → execute with 1% risk. Entry precision: tight stop = better RR. EA consistently achieves 1:4+ by entering only at OB/FVG confluence after the full sequence.|EQH_SWEEP = TRUE@@CHoCH_CONFIRMED = TRUE@@BOS_CONFIRMED = TRUE@@SESSION = LONDON or KILLZONE@@ENTRY = OB_zone | SL = beyond_sweep_wick | RR_MIN = 1:4@@EXECUTE_SIGNAL()|EQH sweep at 2 971 during London. Rejection closes at 2 969. CHoCH on M15. BOS below 2 960. OB at 2 963–2 965. Price retraces to 2 963.50 at 13:05 GMT. Entry: 2 963.50 | SL: 2 972.00 | TP: 2 939.00. RR: 1:2.9. EA executed with CONF=95.|All six steps must be met. One missing = no trade.|Stop goes beyond the sweep wick, not at the EQH level.|Target the next EQL or structural low.|If OB and FVG overlap, enter at the midpoint.|Using today\'s XAUUSD chart, attempt to identify one complete sweep entry setup.'
-      ].map(d=>{const p=d.split('|');return lessonHTML(p[0],p[1],p[2],p[3],p[4],p[5].split('@@'),p[6],p[7].split('.').filter(r=>r.trim().length>4).map(r=>r.trim()),p[8])}).join('')}
-    </div>
-    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Estimated completion: 5–7 hours</p>`,
-
-  timing: `<h2>Time the Killzone</h2>
-    <p class="detail-text">The best setup executed at the wrong time is a losing trade. The EA never fires outside its session windows. Neither should you.</p>
-    <code class="ptg">IF (London OR Killzone) → EXECUTE_SIGNAL()</code>
-    <div class="lesson-list">
-      ${[
-        '3.1|The Three Forex Sessions|~20 min|"28% of your off-session entries lose twice as often. That number is on your own discipline dashboard."|Global gold market operates in three sessions. Asian (00:00–08:00 GMT): low volume, quiet ranging, liquidity pools build. London (07:00–17:00 GMT): European institutional money enters, strong directional moves begin. NY (12:00–21:00 GMT): US institutional money enters, maximum volume, largest moves. The EA filters all signals to London open and the NY killzone.|SESSION_FILTER = [\'London_Open\', \'NY_Killzone\']@@IF current_time NOT IN SESSION_FILTER:@@    SKIP_SIGNAL()  // always|Same EQH sweep at 03:00 GMT (Asian) and at 13:30 GMT (NY killzone). EA ignores 03:00, executes 13:30. The 13:30 trade delivers +41 pips. The 03:00 setup drifts sideways for four hours — poor RR, wasted time.|Asian session = study and mark levels, not execute.|London session = watch for sweeps of Asian highs/lows.|NY killzone (12:00–15:00 GMT) = highest probability execution window.|After 15:00 GMT, step back. The professional session is over.|Review your last ten trades. Note the GMT time of each entry.',
-        '3.2|The London Session (07:00–12:00 GMT)|~25 min|"London doesn\'t just open the market. It sets the trap for New York."|When London opens at 07:00 GMT, institutional orders flood in. Price typically runs the Asian session\'s high or low first — the sweep. London sweep of Asian highs = bearish momentum for NY. London sweep of Asian lows = bullish momentum for NY. The EA uses London signals when the sweep-and-rejection pattern forms 07:00–09:00 GMT.|LONDON_WINDOW = 07:00 to 12:00 GMT@@IF EQH_SWEEP during London  AND  bearish_structure@@    SIGNAL_DIRECTION = SHORT@@    AWAIT_OB_RETRACEMENT()|Asian range 2 955–2 963. London opens, spikes to 2 964.80 (EQH sweep). Rejection at 07:05. CHoCH at 07:15. OB at 2 960–2 962. Price retraces to OB at 08:30. EA fires short. Target: 2 942. Hits at 13:45 GMT. +22 points, RR 1:3.1.|Best London entries occur 07:00–09:00 GMT — first two hours.|London sweep of Asian high = look for short. London sweep of Asian low = look for long.|Avoid trading 11:00–12:00 GMT — the dead zone before NY.|Always check daily chart bias before taking any London signal.|For the next five London sessions, do not trade — only observe.',
-        '3.3|The NY Session and Killzone (12:00–15:00 GMT)|~25 min|"Twelve to fifteen GMT. Three hours. This is where the EA makes its money. This is where you make yours."|The NY killzone (12:00–15:00 GMT) is the overlap between London and NY sessions. Both European and American institutional players are active simultaneously. Volume is at its daily maximum. This is when the largest intraday moves on XAUUSD occur. The EA\'s 1:4 minimum RR is consistently achievable here.|NY_KILLZONE = 12:00 to 15:00 GMT@@IF current_time IN NY_KILLZONE@@    AND all_structure_checks_pass@@    EXECUTE_SIGNAL()@@    RISK = 1.0%  |  RR_MINIMUM = 1:4|London swept EQH at 2 971 at 08:00 GMT. Price retraces to OB 2 963–2 965 by 12:20 GMT. EA fires short at 12:21 GMT. Stop: 2 972.00. Target: 2 939.00. By 14:10 GMT target hit. +24 points, RR 1:2.9.|Killzone is 12:00–15:00 GMT. After 15:00, step away.|No valid setup by 14:30 GMT = close the platform, do not force it.|NY killzone signals aligned with London\'s directional sweep carry highest conviction.|Minimum 1:4 RR required — if the target distance doesn\'t deliver it, skip.|Trade the NY killzone exclusively for one week. Track your results.',
-        '3.4|Session Bias and Alignment Strategy|~25 min|"Each session sets up the next. Read the sequence and you read the day before it starts."|The three sessions are a chain. Asian creates the range and builds liquidity. London sweeps one side, establishing directional bias. NY killzone delivers the expansion of that bias. Layer with daily OB and weekly structure for four-level confluence: weekly, daily, session, and trigger-level (M5/M15).|// Session bias chain@@DAILY_BIAS     = HTF structure direction@@LONDON_BIAS    = direction of London sweep@@KILLZONE_ENTRY = OB/FVG retracement during 12:00–15:00@@ALL ALIGNED    = maximum conviction signal|Weekly structure bearish. Daily OB 2 968–2 972. Asian high swept by London at 2 970 (inside daily OB). Bearish CHoCH→BOS on M15. Killzone retracement to OB at 2 965. EA fires short. Four-level alignment. RR 1:5.5. CONF=98.|Four-level alignment is rare — be patient and wait for it.|If daily bias opposes session bias, reduce size or skip entirely.|Mark the daily OB every morning before London session opens.|Never fight weekly structure — it is the most powerful of the four levels.|Before each trading day write: (1) weekly structure direction, (2) daily OB zone, (3) Asian high/low.'
-      ].map(d=>{const p=d.split('|');return lessonHTML(p[0],p[1],p[2],p[3],p[4],p[5].split('@@'),p[6],p[7].split('.').filter(r=>r.trim().length>4).map(r=>r.trim()),p[8])}).join('')}
-    </div>
-    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Estimated completion: 3–4 hours</p>`,
-
-  psychology: `<h2>Master the Mind</h2>
-    <p class="detail-text">The strategy is proven. The edge is real. And yet most traders still lose — not because of the method, but because of themselves. Your discipline score shows exactly where psychology is costing you money.</p>
-    <code class="ptg">RISK=1.0% | NO_REVENGE | SESSION_ONLY | RULES_FIRST</code>
-    <div class="lesson-list">
-      ${[
-        '4.1|The Psychology of Profitable Trading|~20 min|"You are not a trader. You are a system operator. The moment you understand that difference, everything changes."|Most traders fail not because of a bad strategy, but because they cannot execute a good one consistently. System 1 (fast, emotional, instinctive) fires during fear and greed. System 2 (slow, rational, rule-based) is what you need in a trade. Markets are designed to activate System 1. Your job is to build structures — rules, checklists, and the EA itself — that keep you in System 2.|// The EA has no emotions. It follows its rules every time.@@// Your job is to be the EA — not to override it.@@EXECUTE_IF_RULES_MET()  // not if it feels right|EA fires sell at 13:15 GMT. Trade goes 8 pips profit, retraces to entry. System 1: "Close it." System 2: "The setup is valid, the stop is correctly placed, hold." System 2 traders capture +41 pips that print an hour later.|You are a system operator, not a prediction machine.|Feelings about a trade are data about your psychology, not the market.|Build rituals (pre-session routine, checklist, journal) to activate System 2.|The EA is your benchmark — study it, copy it, let it teach you discipline.|Write down the last three times you deviated from your plan.',
-        '4.2|Fear, Greed, and FOMO|~25 min|"Fear closes winners early. Greed holds losers too long. FOMO takes setups that were never there."|Fear makes you close profitable trades before target. Greed makes you hold losing trades past your stop. FOMO makes you enter setups outside your checklist. Your discipline dashboard shows: emotional control 41%, three revenge trades in last five losers, 28% of entries off-session. Each metric maps directly to fear, greed, and FOMO.|// EA never closes early. TP is set. It either hits or it doesn\'t.@@// EA never moves SL. Risk is defined before entry.@@// EA never trades outside its session filter. Ever.|Valid sell at 2 965, SL 2 972, TP 2 939. Price drops to 2 948 (+17 pips) then pulls back to 2 957. Fear: close for +8 pips. Price resumes down and hits 2 939 an hour later (+26 pips). Fear cost you 18 pips. Multiply over 40 trades per month.|Set SL and TP before entry. Do not adjust them during the trade.|After entry, close the chart for 30 minutes. Remove the visual stimulus.|If you feel the urge to close early, write in your journal first — then decide.|FOMO check: is this setup on the checklist? If not, the answer is no.|For your next ten trades, place SL and TP then close the chart.',
-        '4.3|Your Trading Rules and Checklist|~25 min|"Unwritten rules don\'t exist. If it isn\'t on paper, you won\'t follow it under pressure."|Written trading rules are the backbone of consistent execution. When the market is volatile and emotions elevated, a written rule is the only thing that overrides instinct. Rules must be specific, binary, and pre-committed. "Trade with the trend" is not a rule. "Only enter after CHoCH→BOS is confirmed on M15 with H1 bullish structure" is a rule.|RULE_1: No trade without structure confirmation@@RULE_2: No trade without confirmed EQH/EQL sweep@@RULE_3: No trade outside London or NY killzone@@RULE_4: Max risk 1% per trade@@RULE_5: No re-entry within 4 candles of a stop-out|Your most expensive habit: re-entering within 4 minutes of a stop-out. Dashboard confirms 3 of your last 5 losers were exactly this. Rule 5 exists solely to address it. Write it. Stick it next to your screen.|Write your five non-negotiable rules. Laminate them. Put them where you trade.|Review your rules before every session — not after.|After each trade tick the checklist: did every step apply?|Add a rule every time you identify a repeated mistake.|Write your five non-negotiable trading rules right now — specific and binary.',
-        '4.4|Position Sizing and Risk Management|~30 min|"The EA risks 1% per trade. That single rule is why it survived 12.4% drawdown and came back to +218%."|Risk management is the foundation of compounding. EA uses 1.0% risk per trade with minimum RR 1:4. At 61.4% win rate this produces profit factor 2.18 across 847 trades. At 50% win rate you are highly profitable. At 61%, the equity curve climbs steadily. Lot size formula: (Account Balance × Risk%) ÷ (SL in points × Point Value).|RISK_PER_TRADE = 1.0%  // of current balance@@RR_MINIMUM = 1:4@@LOT_SIZE = (balance * 0.01) / (sl_points * point_value)|$10,000 account. Risk 1% = $100. Stop loss = 8 points. XAUUSD on 0.01 lot = $0.10/point. $100 / (8 × $0.10) = $100 / $0.80 = 0.125 standard lots. An 8-point adverse move = exactly $100 (1%). Target at 1:4 = 32 points → $400 profit → 4% account gain.|Never risk more than 1% on a single trade — regardless of conviction.|Recalculate lot size every time — no fixed lot.|Minimum RR must be 1:4 before entry. If target is closer, skip.|After a winning trade, compound: recalculate on the new larger balance.|Calculate your correct lot size for your current account balance right now.',
-        '4.5|Handling Losing Streaks|~20 min|"The EA had 12.4% drawdown over 847 trades. Losing is part of having an edge."|With 61.4% win rate, probability of five consecutive losses is still 1.8%. Over 847 trades that happens multiple times. It is not a sign the strategy is broken — it is statistical variance. The danger is not the losing streak itself; it is the psychological response to it. The EA does not respond emotionally to losses. It simply executes the next valid signal.|// EA response to consecutive losses@@IF (consecutive_losses >= 5):@@    PAUSE_SIGNALS(24_hours)  // built-in circuit breaker@@    LOG_REVIEW_REQUIRED = TRUE|Five consecutive losses. 5% drawdown. System 1: "Double up to recover." System 2: "At 1% risk and 61% win rate, expectancy over next 20 trades is strongly positive. Execute the rules." Take 24-hour break. Review each losing trade against the checklist. Return.|After 5 consecutive losses, stop trading for 24 hours — non-negotiable.|Review each losing trade: rule-following loss or rule-breaking loss?|Never increase position size to recover losses.|Losses that followed every rule are not mistakes — they are the cost of doing business.|Write a circuit breaker protocol: what you will do after 3 consecutive losses.',
-        '4.6|The Trading Journal and Self-Review|~25 min|"Your discipline score is 72. Emotional control is 41%. The data is telling you exactly what to fix. Are you listening?"|The RLCTA discipline dashboard shows real data on your psychology: revenge trades, off-session entries, risk consistency, plan adherence. A trading journal extends this further — recording emotional state, reasoning, and context of every trade. Review weekly and monthly to identify patterns.|// Journal entry fields@@TRADE_LOG = {@@  date, time_gmt, direction, entry, sl, tp, result_pips,@@  session, structure_confirmed, sweep_confirmed,@@  emotion_state, followed_rules: TRUE/FALSE@@}|Weekly review reveals: your three revenge trades all occurred on Mondays after a losing Friday. You add Rule 6: "No trades on Monday if Friday closed with a net loss." One rule from one week of journal review eliminates a recurring expensive pattern.|Log every trade immediately after it closes.|Rate your emotional state before entry: 1 (calm) to 5 (elevated). Avoid trading at 4–5.|Weekly review: 15 minutes every Sunday. Monthly: 45 minutes on the first of the month.|Share your journal summary in the community — external accountability accelerates improvement.|Create your journal template today using the fields above.',
-        '4.7|From Demo to Live — Your Graduation Plan|~25 min|"Demo teaches you the strategy. Micro-lots teach you the psychology. Live teaches you both at full intensity."|Moving from demo to live is a phased progression with clear criteria at each stage. Demo = prove you understand the setup. Micro-lots = experience real psychology with limited capital at risk. Small live account = build consistency. Standard account = edge compounds into significant returns. Skip a stage and you pay tuition to the market.|STAGE_1_DEMO:       3 consecutive profitable months + discipline score > 75@@STAGE_2_MICRO:      $500–$1,000 live | 0.01 lots | 3 profitable months@@STAGE_3_SMALL_LIVE: $3,000–$5,000 | correct lot sizing | rules consistent@@STAGE_4_STANDARD:   Scale when monthly return consistent over 6 months|Month 1 demo: 3 losses in week 1, then find rhythm. Months 2–3: two profitable months, discipline score 79. Month 4: open $500 micro account. First live stop-out feels completely different to demo. This is why the micro stage exists. Months 4–6 micro: three more profitable months. Ready for Stage 3.|Stage 1 graduation: 3 consecutive profitable months on demo. No exceptions.|Stage 2: trade micro until the psychology feels the same as demo.|Never fund a live account beyond your financial and emotional loss tolerance.|The EA can run on your live account from Stage 2 — let it trade alongside you.|Identify which stage you are currently in. Write the three criteria to move to the next stage.'
-      ].map(d=>{const p=d.split('|');return lessonHTML(p[0],p[1],p[2],p[3],p[4],p[5].split('@@'),p[6],p[7].split('.').filter(r=>r.trim().length>4).map(r=>r.trim()),p[8])}).join('')}
-    </div>
-    <p style="font-size:13px;color:var(--ds);font-style:italic;margin-top:2rem">⏱️ Ongoing · New lessons added every month</p>`
+/* CHART COLORS for dark */
+const CL={aqua:'#3FE0C5',gold:'#E9C97A',rust:'#E0683F',grid:'rgba(255,255,255,.12)',mut:'#878D9C'};
+</script>
+<script id="contentData">
+/* ============ PILLAR DETAIL DATA ============ */
+const pillarData={
+ structure:`<h2>Structure</h2><span class="ptg">Read the market's blueprint</span>
+   <p>Market structure is the market telling you its intent before it moves. Higher highs with higher lows is a bullish trend; lower highs with lower lows is bearish. Read it first — everything else is built on top.</p>
+   <div class="chart-box"><strong>Higher highs / higher lows = uptrend</strong>
+     <svg viewBox="0 0 560 180" style="width:100%">
+       <line x1="30" y1="150" x2="540" y2="150" stroke="${CL.grid}"/>
+       <polyline fill="none" stroke="${CL.aqua}" stroke-width="2.4" points="50,135 95,98 130,118 175,78 215,98 260,58 300,78 345,40 385,60 430,22 475,40 520,12"/>
+       <circle cx="95" cy="98" r="3.5" fill="${CL.aqua}"/><text x="95" y="86" text-anchor="middle" font-size="11" fill="${CL.aqua}" font-family="monospace">HH</text>
+       <circle cx="175" cy="78" r="3.5" fill="${CL.aqua}"/><text x="175" y="66" text-anchor="middle" font-size="11" fill="${CL.aqua}" font-family="monospace">HH</text>
+       <circle cx="260" cy="58" r="3.5" fill="${CL.aqua}"/><text x="260" y="46" text-anchor="middle" font-size="11" fill="${CL.aqua}" font-family="monospace">HH</text>
+       <circle cx="130" cy="118" r="3.5" fill="${CL.gold}"/><text x="130" y="135" text-anchor="middle" font-size="10" fill="${CL.gold}" font-family="monospace">HL</text>
+       <circle cx="215" cy="98" r="3.5" fill="${CL.gold}"/><text x="215" y="115" text-anchor="middle" font-size="10" fill="${CL.gold}" font-family="monospace">HL</text>
+       <text x="285" y="172" text-anchor="middle" font-size="11" fill="${CL.mut}" font-family="monospace">UPTREND → BULLISH BIAS</text>
+     </svg></div>
+   <h3>What you'll be able to do</h3>
+   <ul><li>Mark swing highs and lows on any timeframe in seconds</li><li>Call a Break of Structure (BOS) the moment it confirms momentum</li><li>Read a Change of Character (CHoCH) before the trend flips</li><li>Locate order blocks and fair value gaps as precision entry zones</li></ul>
+   <p class="modal-foot">Pillar I of the Refined Liquidity method.</p>`,
+ liquidity:`<h2>Liquidity</h2><span class="ptg">Follow the smart money</span>
+   <p>Banks can't fill large orders without someone to trade against. So they engineer liquidity — sweeping the obvious stops above equal highs or below equal lows — then reverse into the real move. Learn the trap and you stop being the fuel.</p>
+   <div class="chart-box"><strong>The sweep &amp; reversal</strong>
+     <svg viewBox="0 0 560 210" style="width:100%">
+       <polyline fill="none" stroke="${CL.mut}" stroke-width="1.6" stroke-dasharray="5 5" points="60,120 110,116 160,124 200,118"/>
+       <text x="120" y="104" font-size="11" fill="${CL.mut}" font-family="monospace">① accumulation</text>
+       <line x1="160" y1="115" x2="160" y2="78" stroke="${CL.gold}" stroke-width="1.6"/><circle cx="160" cy="78" r="4" fill="${CL.gold}"/><text x="160" y="68" text-anchor="middle" font-size="10" fill="${CL.gold}" font-family="monospace">EQ HIGH</text>
+       <polyline fill="none" stroke="${CL.rust}" stroke-width="2.4" points="200,118 240,92 280,42 312,52 344,72"/>
+       <text x="282" y="30" text-anchor="middle" font-size="11" fill="${CL.rust}" font-family="monospace">② sweep</text>
+       <rect x="270" y="36" width="50" height="28" fill="rgba(224,104,63,.12)" stroke="${CL.rust}" stroke-dasharray="3 3"/>
+       <polyline fill="none" stroke="${CL.aqua}" stroke-width="2.6" points="344,72 366,140 392,128 430,160 470,138 510,176"/>
+       <text x="430" y="106" text-anchor="middle" font-size="11" fill="${CL.aqua}" font-family="monospace">③ reversal → entry</text>
+       <circle cx="366" cy="140" r="5" fill="${CL.aqua}"/><text x="366" y="160" text-anchor="middle" font-size="10" fill="${CL.aqua}" font-family="monospace">ENTRY</text>
+     </svg></div>
+   <h3>What you'll be able to do</h3>
+   <ul><li>Identify equal highs / lows where stops are resting</li><li>Tell a real breakout from a liquidity grab</li><li>Enter after the sweep, with a tight stop and 1:4+ target</li><li>Stop donating your stop-loss to the next candle</li></ul>
+   <p class="modal-foot">Pillar II of the Refined Liquidity method.</p>`,
+ timing:`<h2>Timing</h2><span class="ptg">Strike in the killzone</span>
+   <p>Volatility isn't constant. The cleanest moves happen when London and New York are live, and the overlap — the killzone — is where the biggest, most reliable expansions fire. Same setup, better hour, far better odds.</p>
+   <div class="chart-box"><strong>Session volatility profile (GMT)</strong>
+     <svg viewBox="0 0 560 180" style="width:100%">
+       <line x1="30" y1="150" x2="540" y2="150" stroke="${CL.grid}"/>
+       <polyline fill="none" stroke="${CL.mut}" stroke-width="2" points="50,142 90,138 130,140"/><text x="90" y="166" text-anchor="middle" font-size="10" fill="${CL.mut}" font-family="monospace">ASIAN</text>
+       <polyline fill="none" stroke="${CL.gold}" stroke-width="2.4" points="160,120 200,82 240,96"/><text x="200" y="166" text-anchor="middle" font-size="10" fill="${CL.gold}" font-family="monospace">LONDON</text>
+       <rect x="250" y="20" width="90" height="130" fill="rgba(63,224,197,.07)" stroke="${CL.aqua}" stroke-dasharray="4 4"/><text x="295" y="36" text-anchor="middle" font-size="9" fill="${CL.aqua}" font-family="monospace">KILLZONE</text>
+       <polyline fill="none" stroke="${CL.aqua}" stroke-width="2.8" points="250,98 295,46 340,62"/><text x="295" y="166" text-anchor="middle" font-size="10" fill="${CL.aqua}" font-family="monospace">N.YORK</text>
+       <polyline fill="none" stroke="${CL.mut}" stroke-width="2" points="360,108 410,132 470,140 520,144"/><text x="450" y="166" text-anchor="middle" font-size="10" fill="${CL.mut}" font-family="monospace">CLOSE</text>
+     </svg></div>
+   <h3>What you'll be able to do</h3>
+   <ul><li>Trade the London &amp; New York windows that actually pay</li><li>Exploit the 12:00–15:00 GMT killzone overlap</li><li>Align entries with session bias for higher probability</li><li>Sit out the dead hours without FOMO</li></ul>
+   <p class="modal-foot">Pillar III of the Refined Liquidity method.</p>`
 };
 
-function openCourseModal(course){
-  const modal = document.getElementById('courseModal');
-  document.getElementById('courseContent').innerHTML = courseDetails[course];
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeCourseModal(){
-  document.getElementById('courseModal').classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-document.getElementById('courseModal').addEventListener('click', e=>{
-  if(e.target.id==='courseModal') closeCourseModal();
-});
+/* ============ CURRICULUM DATA ============ */
+function L(n,t,d){return `<div class="lesson"><span class="lnum">LESSON ${n}</span><br><strong>${t}</strong><p>${d}</p></div>`}
+const courseData={
+ structure:`<h2>Read Structure</h2><span class="ptg">Track 01 · Foundation · 6 lessons</span>
+   <p class="detail-text">Master reading market structure like a professional. By the end you'll mark any chart's bias in seconds and know exactly where the high-probability zones sit.</p>
+   <h3>Lessons</h3>
+   ${L(1,'What is market structure?','HH/HL for uptrends, LH/LL for downtrends. The foundation everything else is built on.')}
+   ${L(2,'Break of Structure (BOS)','How to confirm momentum when price violates a prior swing — and how to trade the retest.')}
+   ${L(3,'Change of Character (CHoCH)','The first warning a trend is ending, before the full break. Where the best reversals begin.')}
+   ${L(4,'Order Blocks','The candles where institutions loaded. Why price returns to them and how to use them as entries.')}
+   ${L(5,'Fair Value Gaps (FVG)','Imbalances price tends to fill. Reading them for entries, exits and confluence.')}
+   ${L(6,'Your structure checklist','A repeatable, step-by-step framework you can run on any pair, any timeframe.')}
+   <p class="modal-foot">Free foundation tier for community members.</p>`,
+ liquidity:`<h2>Hunt Liquidity</h2><span class="ptg">Track 02 · Intermediate · 5 lessons</span>
+   <p class="detail-text">Learn where banks hide their orders and how to follow them in. This is the core edge of the whole method — the difference between guessing and reading intent.</p>
+   <h3>Lessons</h3>
+   ${L(1,'What liquidity really is','Why banks need it, where retail stops cluster, and how to see the pools on a chart.')}
+   ${L(2,'Equal highs &amp; equal lows','The magnets for price. Marking the levels where the sweep is most likely to fire.')}
+   ${L(3,'The sweep &amp; reversal pattern','Accumulation → sweep → rejection → expansion. The institutional playbook, decoded.')}
+   ${L(4,'Stop-hunt mechanics','How banks trigger retail stops and why price rejects so violently afterward.')}
+   ${L(5,'The liquidity entry','The exact checklist to enter after a sweep, with tight risk and a 1:4+ target.')}
+   <p class="modal-foot">Builds directly on Track 01.</p>`,
+ timing:`<h2>Time the Killzone</h2><span class="ptg">Track 03 · Intermediate · 4 lessons</span>
+   <p class="detail-text">Trade when the market actually moves and avoid the noise the rest of the day. Timing alone can lift the same setup's win rate dramatically.</p>
+   <h3>Lessons</h3>
+   ${L(1,'The three sessions','Asian, London, New York — their personalities, volatility and where money flows.')}
+   ${L(2,'The London session','European liquidity, strong directional moves, and the setups that suit it.')}
+   ${L(3,'New York &amp; the killzone','Peak volatility in the 12:00–15:00 GMT overlap — where the biggest moves live.')}
+   ${L(4,'Session bias &amp; alignment','Using how the last session closed to stack probability on the next entry.')}
+   <p class="modal-foot">Pairs with the EA's built-in session filter.</p>`,
+ psychology:`<h2>Master the Mind</h2><span class="ptg">Track 04 · Ongoing · 7 lessons</span>
+   <p class="detail-text">The best method fails without discipline. This track builds the psychology, rules and review habits that make your edge survive you on a bad day — the reason the EA exists at all.</p>
+   <h3>Lessons</h3>
+   ${L(1,'The psychology of profitable trading','Why most traders fail with a working edge, and the mindset that fixes it.')}
+   ${L(2,'Fear, greed &amp; FOMO','How these three wreck accounts and the rules that override them.')}
+   ${L(3,'Your trading rules &amp; checklist','Written rules you never break. Pre-trade checklist, post-trade review.')}
+   ${L(4,'Position sizing &amp; risk','The 1% rule, the daily-loss cap, and the maths of staying in the game.')}
+   ${L(5,'Surviving losing streaks','Why drawdown is normal, how to respond, and when to step away.')}
+   ${L(6,'The trading journal','Documenting every trade so your reviews compound into real improvement.')}
+   ${L(7,'Demo to live','Scaling from micro lots to live confidence without blowing up.')}
+   <p class="modal-foot">New psychology lessons added monthly.</p>`
+};
+setPhase(0);
 </script>
 </body>
 </html>
