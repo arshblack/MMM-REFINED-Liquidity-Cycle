@@ -1,6 +1,7 @@
 # Existing public repo working folders
 work/
 outputs/
+tests/output/
 
 # Secrets and local configuration
 .env
