@@ -1,6 +1,30 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { sizePosition, pipDistance } = require('../assets/calculators.js');
+const { presets, preparePlan } = require('../assets/position-calculator.js');
+const basic = {instrument:'EURUSD',accountCurrency:'USD',accountSize:'10000',riskPercent:'.5',direction:'buy',entryPrice:'1.1',stopPrice:'1.095',lotStep:'.01',minLot:'.01',maxLot:'100'};
+test('beginner percentage and all seven major FX presets', () => {
+  for (const instrument of ['EURUSD','GBPUSD','USDJPY','USDCHF','USDCAD','AUDUSD','NZDUSD']) {
+    const preset = presets[instrument];
+    const plan = preparePlan({...basic,instrument,entryPrice:preset.entry,stopPrice:preset.stop});
+    assert.equal(plan.riskMoney,50);
+    const result = sizePosition(plan);
+    assert.ok(result.lots>0, instrument);
+    assert.ok(result.estimatedRisk<=50+1e-8, instrument);
+  }
+  assert.equal(sizePosition(preparePlan(basic)).lots,.1);
+});
+test('JPY, cross conversion and account-currency inversion', () => {
+  const yen = preparePlan({...basic,instrument:'USDJPY',entryPrice:150,stopPrice:149.5});
+  assert.ok(Math.abs(yen.tickValue-100/149.5)<1e-10);
+  const cross = {...basic,instrument:'GBPJPY',entryPrice:190,stopPrice:189.5};
+  assert.ok(preparePlan(cross).error);
+  assert.equal(preparePlan(cross,.006).tickValue,.6);
+  assert.equal(preparePlan({...cross,accountCurrency:'JPY'}).tickValue,100);
+  assert.ok(preparePlan({...basic,accountSize:''}).error);
+  assert.ok(preparePlan({...basic,riskPercent:101}).error);
+  assert.equal(preparePlan({...basic,brokerOverride:true,tickSize:'.001',tickValue:'3'}).tickValue,'3');
+});
 const gold = { riskMoney: '100', entryPrice: '4500', stopPrice: '4490', tickSize: '.01', tickValue: '1', lotStep: '.01', minLot: '.01', maxLot: '100', direction: 'buy' };
 test('gold example and forex example with account-currency tick value', () => {
   assert.equal(sizePosition(gold).lots, .1);

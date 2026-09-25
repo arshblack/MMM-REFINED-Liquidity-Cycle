@@ -7,3 +7,20 @@
 .calc-output strong,.pip-output strong{overflow-wrap:anywhere}
 .calc-output{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:600px){.calc-output{grid-template-columns:1fr}}
+.calculator-intro{font-size:16px;color:var(--ink2)}
+.calc-example{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0;font-size:13px;color:var(--mut)}
+.foundation-lab button{background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--gold);padding:10px 14px;min-height:44px;font:inherit;cursor:pointer}
+.foundation-lab button:hover{border-color:var(--gold)}
+.foundation-lab :focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
+.calc-detail{font-size:13px;color:var(--ink2);line-height:1.6}
+.broker-details{border-top:1px solid var(--line2);margin-top:20px;padding-top:14px}
+.broker-details summary{cursor:pointer;color:var(--gold);min-height:44px}
+.broker-details p{font-size:14px;color:var(--ink2)}
+.broker-toggle{display:flex;align-items:center;gap:10px;min-height:44px;font-size:14px}
+.broker-toggle input{width:18px;height:18px;accent-color:var(--aqua)}
+.calc-grid input:disabled{opacity:.45}
+#position-calculator{scroll-margin-top:85px}
+#position-calculator>.calc-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+#position-calculator>.calc-grid>label{grid-column:span 3}
+#position-calculator>.calc-grid>label:nth-child(n+5){grid-column:span 2}
+@media(max-width:600px){#position-calculator>.calc-grid{grid-template-columns:1fr}#position-calculator>.calc-grid>label,#position-calculator>.calc-grid>label:nth-child(n+5){grid-column:span 1}}

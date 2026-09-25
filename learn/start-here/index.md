@@ -71,33 +71,46 @@ A lot controls how much the position gains or loses as price moves. It does **no
 
 The same `0.10` lot can be a small risk with a tight stop and a much larger risk with a wide structural stop. Calculate the money at risk before choosing the volume.
 
-The estimator below also works for currency pairs when you supply their own broker specifications. Use the **loss tick value for one lot in your account currency**. Changing the currency label does not convert the numbers. The starting values are an illustrative gold example, not live broker data.
+Choose gold or a currency pair, then enter your account size, risk percentage and planned prices. **Risk percentage is the part of your account you plan to risk on this one trade.** For example, 0.5% of 10,000 is 50. The example is educational, not a recommended risk level.
 
 <div class="foundation-lab" id="position-calculator" aria-label="Gold and forex position risk calculator">
   <header>
-    <div><small>Interactive lab 02</small><strong>Estimate lot size from MT5 symbol data</strong></div>
-    <span>Check broker specification</span>
+    <div><small>Position size calculator</small><strong>How much would this trade risk?</strong></div>
+    <span>Gold + major currency pairs</span>
   </header>
+  <p class="calculator-intro">Choose a market. Set your risk. See the estimated lot size.</p>
   <div class="calc-grid">
+    <label>What are you trading?<select id="instrument"><optgroup label="Gold"><option value="XAUUSD">XAUUSD - Gold</option></optgroup><optgroup label="Major currency pairs"><option>EURUSD</option><option>GBPUSD</option><option>USDJPY</option><option>USDCHF</option><option>USDCAD</option><option>AUDUSD</option><option>NZDUSD</option></optgroup><optgroup label="Currency crosses"><option>GBPJPY</option><option>EURGBP</option><option>GBPNZD</option></optgroup></select></label>
     <label>Account currency<select id="accountCurrency"><option>USD</option><option>EUR</option><option>GBP</option><option>PLN</option><option>JPY</option><option>AUD</option><option>CAD</option><option>CHF</option><option>NZD</option></select></label>
+    <label>Account size (<span data-account-unit>USD</span>)<input id="accountSize" type="number" min="0" step="any" value="10000" aria-describedby="riskStatus"></label>
+    <label>Risk per trade (%)<input id="riskPercent" type="number" min="0" max="100" step="any" value="0.5" aria-describedby="riskStatus"></label>
     <label>Direction<select id="direction"><option value="buy">Buy / long</option><option value="sell">Sell / short</option></select></label>
-    <label>Money risk (<span data-account-unit>USD</span>)<input id="riskMoney" type="number" min="0" step="any" value="100" aria-describedby="riskStatus"></label>
     <label>Entry price<input id="entryPrice" type="number" min="0" step="any" value="4500" aria-describedby="riskStatus"></label>
     <label>Stop price<input id="stopPrice" type="number" min="0" step="any" value="4490" aria-describedby="riskStatus"></label>
-    <label>Tick size<input id="tickSize" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
-    <label>Loss tick value at 1 lot (<span data-account-unit>USD</span>)<input id="tickValue" type="number" min="0" step="any" value="1" aria-describedby="riskStatus"></label>
-    <label>Broker lot step<input id="lotStep" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
-    <label>Broker minimum lot<input id="minLot" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
-    <label>Broker maximum lot<input id="maxLot" type="number" min="0" step="any" value="100" aria-describedby="riskStatus"></label>
   </div>
-  <p id="riskStatus" class="calc-status" role="status" aria-live="polite">Enter your broker's values to estimate size.</p>
+  <div class="calc-example"><button type="button" id="loadExample">Load example</button><span>Example prices only. Replace them with your own plan.</span></div>
+  <p id="riskStatus" class="calc-status" role="status" aria-live="polite">Complete the fields to estimate size.</p>
   <div class="calc-output" aria-live="polite">
-    <div><small>Stop distance</small><strong id="stopDistance">—</strong></div>
-    <div><small>Risk at 1.00 lot</small><strong id="riskPerLot">—</strong></div>
     <div><small>Estimated lot</small><strong id="estimatedLot">—</strong></div>
-    <div><small>Estimated loss at this size</small><strong id="estimatedRisk">—</strong></div>
+    <div><small>Estimated loss at stop</small><strong id="estimatedRisk">—</strong></div>
+    <div><small>Your risk budget</small><strong id="riskBudget">—</strong></div>
+    <div><small>Entry-to-stop distance</small><strong id="stopDistance">—</strong></div>
   </div>
-  <p class="notice">An estimate using a constant tick value. It excludes commission, swap and slippage, and is not a margin or funded-account rule check. For currency crosses, conversion rates can change the result. Confirm the projected loss in MT5; broker-side OrderCalcProfit provides a more specific calculation.</p>
+  <p id="assumptions" class="calc-detail"></p>
+  <p id="conversionNote" class="calc-detail" aria-live="polite"></p>
+  <button type="button" id="retryRate" hidden>Retry conversion rate</button>
+  <details class="broker-details"><summary>Broker details / advanced</summary>
+    <p>Standard forex lots assume 100,000 units; gold assumes 100 troy ounces. If your broker differs, use its tick size and loss tick value for one lot in your account currency. Switching market or account currency resets this override.</p>
+    <label class="broker-toggle"><input type="checkbox" id="brokerOverride"> Use my broker's tick value</label>
+    <div class="calc-grid">
+      <label>Tick size<input id="tickSize" type="number" min="0" step="any" value="0.01" disabled aria-describedby="riskStatus"></label>
+      <label>Loss tick value at 1 lot (<span data-account-unit>USD</span>)<input id="tickValue" type="number" min="0" step="any" value="" disabled aria-describedby="riskStatus"></label>
+      <label>Broker lot step<input id="lotStep" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
+      <label>Broker minimum lot<input id="minLot" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
+      <label>Broker maximum lot<input id="maxLot" type="number" min="0" step="any" value="100" aria-describedby="riskStatus"></label>
+    </div>
+  </details>
+  <p class="notice">Estimate before commission, swap and slippage. Reference conversions are daily, not live broker rates. Confirm the projected loss and volume limits in MT5. This does not check margin or funded-account rules. <a href="https://frankfurter.dev/">Reference rate source: Frankfurter</a>.</p>
   <noscript><p>Enable JavaScript to use the calculator. No estimate has been calculated.</p></noscript>
 </div>
 

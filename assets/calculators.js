@@ -31,27 +31,10 @@
     return { distance: Math.abs(distance), count, direction: distance > 0 ? 'Up' : distance < 0 ? 'Down' : 'Flat' };
   }
   if (typeof module !== 'undefined' && module.exports) module.exports = { sizePosition, pipDistance };
+  root.RLCalculators = { sizePosition, pipDistance };
   if (!root.document) return;
   const el = id => document.getElementById(id);
   const format = value => value.toLocaleString('en-US', { maximumFractionDigits: 8 });
-  if (el('riskMoney')) {
-    const ids = ['riskMoney', 'entryPrice', 'stopPrice', 'tickSize', 'tickValue', 'lotStep', 'minLot', 'maxLot', 'direction', 'accountCurrency'];
-    const update = () => {
-      const values = Object.fromEntries(ids.map(id => [id, el(id).value]));
-      const result = sizePosition(values);
-      ids.forEach(id => el(id).setAttribute('aria-invalid', String((result.invalid || []).includes(id))));
-      const money = n => n.toLocaleString('en-US', { style: 'currency', currency: values.accountCurrency });
-      el('stopDistance').textContent = result.error ? '\u2014' : format(result.distance);
-      el('riskPerLot').textContent = result.error ? '\u2014' : money(result.riskPerLot);
-      el('estimatedLot').textContent = result.error ? '\u2014' : result.lots === null ? 'No size fits' : format(result.lots);
-      el('estimatedRisk').textContent = result.error || result.lots === null ? '\u2014' : money(result.estimatedRisk);
-      el('riskStatus').textContent = result.error || result.message;
-      el('riskStatus').dataset.error = String(!!result.error);
-      document.querySelectorAll('[data-account-unit]').forEach(item => { item.textContent = values.accountCurrency; });
-    };
-    ids.forEach(id => el(id).addEventListener('input', update));
-    update();
-  }
   if (el('noteStart')) {
     const ids = ['noteStart', 'noteEnd', 'notePip'];
     const update = () => {
