@@ -24,22 +24,6 @@
     });
   });
 
-  const pipInputs = ['noteStart', 'noteEnd', 'notePip'].map(id => document.getElementById(id));
-  const updatePips = () => {
-    if (pipInputs.some(item => !item)) return;
-    const start = Number(pipInputs[0].value);
-    const end = Number(pipInputs[1].value);
-    const convention = Number(pipInputs[2].value);
-    const distance = end - start;
-    const count = convention > 0 ? distance / convention : 0;
-    const direction = distance > 0 ? 'Up' : distance < 0 ? 'Down' : 'Flat';
-    document.getElementById('noteDistance').textContent = `${Math.abs(distance).toFixed(2)} USD`;
-    document.getElementById('notePipCount').textContent = `${Math.abs(count).toFixed(0)} pips`;
-    document.getElementById('noteDirection').textContent = direction;
-  };
-  pipInputs.forEach(item => item?.addEventListener('input', updatePips));
-  updatePips();
-
   const driverInputs = [...document.querySelectorAll('[data-driver]')];
   const updateDrivers = () => {
     if (!driverInputs.length) return;

@@ -9,6 +9,7 @@ author:
   bio: Building Refined Liquidity as a gold-first education and trading-systems research platform. Every public lesson separates observable market evidence from inference and execution claims.
 
 exclude:
+  - tests/
   - README.md
   - PUBLIC_DISCLOSURE.md
   - notes/

@@ -1,0 +1,9 @@
+.calc-grid select{width:100%;margin-top:6px;border:1px solid var(--line2);background:#090b10;color:var(--ink);font:13px var(--mono);padding:10px;border-radius:0}
+.calc-grid input,.calc-grid select,.pip-calc input,.pip-calc select{min-height:44px;min-width:0}
+.calc-grid label,.pip-calc label{letter-spacing:0;font-size:12px;text-transform:none}
+[aria-invalid="true"]{outline:2px solid #ef927c;outline-offset:1px}
+.calc-status{min-height:3em;font-size:14px;color:var(--aqua);margin:14px 0}
+.calc-status[data-error="true"]{color:#ef927c}
+.calc-output strong,.pip-output strong{overflow-wrap:anywhere}
+.calc-output{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:600px){.calc-output{grid-template-columns:1fr}}

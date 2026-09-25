@@ -10,7 +10,7 @@ query: "Beginner question · How are pips calculated on gold?"
 dek: "Gold traders often use the same word for different price increments. The safest language is entry, stop, price distance, and planned dollar risk."
 reading_time: 8
 published: "2026-08-30"
-updated: "2026-08-30"
+updated: "2026-09-25"
 lesson_url: /learn/start-here/
 lesson_title: "Use the Foundations risk calculator"
 ---
@@ -29,7 +29,8 @@ If gold moves from `4500.00` to `4501.00`, the unambiguous statement is: **price
     <label>End price<input id="noteEnd" type="number" step="0.01" value="4502"></label>
     <label>Pip convention<select id="notePip"><option value="0.01">0.01 per pip</option><option value="0.10">0.10 per pip</option></select></label>
   </div>
-  <div class="pip-output">
+  <p id="pipStatus" class="calc-status" role="status" aria-live="polite">Enter both prices to compare the move.</p>
+  <div class="pip-output" aria-live="polite">
     <div><small>Price distance</small><strong id="noteDistance">2.00 USD</strong></div>
     <div><small>Stated count</small><strong id="notePipCount">200 pips</strong></div>
     <div><small>Direction</small><strong id="noteDirection">Up</strong></div>

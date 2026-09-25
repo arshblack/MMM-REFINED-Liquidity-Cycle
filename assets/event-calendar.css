@@ -1,0 +1,13 @@
+#event-calendar{padding:42px 0 0;border-top:1px solid var(--line2);margin-top:36px;scroll-margin-top:90px}
+.event-heading{display:flex;justify-content:space-between;align-items:start;gap:28px;flex-wrap:wrap}
+.event-heading h3{font:400 32px var(--display);margin:8px 0 12px;color:var(--goldl)}
+.event-heading p{color:var(--ink2);max-width:64ch;font-size:15px;line-height:1.6}
+.event-filters{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.event-filters label{display:grid;gap:6px;font-size:13px;color:var(--ink2)}
+.event-filters select{min-height:44px;padding:9px 32px 9px 12px;border:1px solid var(--line);border-radius:4px;background:var(--surf);color:var(--ink);font:inherit;max-width:100%}
+.event-frame{height:540px;width:100%;min-width:0;border:1px solid var(--line2);background:var(--bg);overflow-x:auto}
+.event-frame>div{height:520px;width:100%;min-width:560px}
+.event-source,.event-zone{font-size:13px;color:var(--mut);line-height:1.6;margin:10px 0}
+.event-source a,.event-heading a{color:var(--aqua);text-underline-offset:4px}
+#calendarStatus{min-height:2.8em}
+@media(max-width:600px){.event-filters{display:grid;grid-template-columns:1fr}.event-heading h3{font-size:28px}}

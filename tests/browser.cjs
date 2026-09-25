@@ -1,0 +1,85 @@
+const { chromium } = require('playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const base = process.env.SITE_URL || 'http://127.0.0.1:4173';
+const output = path.join(__dirname, 'output/playwright');
+fs.mkdirSync(output, { recursive: true });
+(async () => {
+  const browser = await chromium.launch({ ...(process.env.BROWSER_EXECUTABLE ? { executablePath: process.env.BROWSER_EXECUTABLE } : {}), headless: true });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(base + '/learn/start-here/#position-calculator');
+    assert.equal(await page.locator('#estimatedLot').textContent(), '0.1');
+    for (const id of ['riskMoney','entryPrice','stopPrice','tickSize','tickValue','lotStep','minLot','maxLot']) {
+      const original = await page.locator('#' + id).inputValue();
+      await page.locator('#' + id).fill('');
+      assert.equal(await page.locator('#estimatedLot').textContent(), '\u2014', id);
+      assert.equal(await page.locator('#riskPerLot').textContent(), '\u2014', id);
+      assert.equal(await page.locator('#' + id).getAttribute('aria-invalid'), 'true');
+      await page.locator('#' + id).fill(original);
+    }
+    await page.locator('#direction').selectOption('sell');
+    assert.match(await page.locator('#riskStatus').textContent(), /stop must/);
+    await page.locator('#stopPrice').fill('4510');
+    assert.equal(await page.locator('#estimatedLot').textContent(), '0.1');
+    await page.locator('#riskMoney').fill('5');
+    assert.equal(await page.locator('#estimatedLot').textContent(), 'No size fits');
+    await page.locator('#riskMoney').fill('100');
+    await page.locator('#accountCurrency').selectOption('EUR');
+    assert.match(await page.locator('#estimatedRisk').textContent(), /100.00/);
+    assert.match(await page.locator('#estimatedRisk').textContent(), /€/);
+    await page.locator('#position-calculator').screenshot({ path: path.join(output,'calculator-desktop.png') });
+    await page.setViewportSize({ width: 390, height: 844 });
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    await page.locator('#position-calculator').screenshot({ path: path.join(output,'calculator-mobile.png') });
+    await page.goto(base + '/gold-notes/gold-pips-points/');
+    await page.locator('#noteStart').fill('');
+    assert.equal(await page.locator('#notePipCount').textContent(), '\u2014');
+    await page.locator('#noteStart').fill('4500');
+    await page.locator('#noteEnd').fill('4500.05');
+    await page.locator('#notePip').selectOption('0.10');
+    assert.equal(await page.locator('#notePipCount').textContent(), '0.5 pips');
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    await page.goto(base + '/#event-calendar');
+    await page.locator('#calendarWidget iframe').waitFor({ timeout: 30000 });
+    const frame = page.frameLocator('#calendarWidget iframe');
+    await frame.locator('body').waitFor();
+    console.log('Calendar visible text:', (await frame.locator('body').innerText()).slice(0,1600));
+    console.log('Calendar URL:', await page.locator('#calendarWidget iframe').getAttribute('src'));
+    await page.locator('#calendarMarket').selectOption('GBP,JPY');
+    await page.locator('#calendarWidget iframe').waitFor();
+    assert.match(await page.locator('#calendarWidget iframe').getAttribute('src'), /GBP/);
+    await page.locator('#calendarImportance').selectOption('0,1');
+    await page.locator('#calendarWidget iframe').waitFor();
+    await page.frameLocator('#calendarWidget iframe').getByText('GDP QQ', {exact:true}).waitFor();
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    await page.locator('#event-calendar').screenshot({ path: path.join(output,'calendar-mobile.png') });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.locator('#event-calendar').screenshot({ path: path.join(output,'calendar-desktop.png') });
+    await page.goto(base + '/#start');
+    await page.locator('.start-path li:first-child a').click();
+    assert.match(page.url(), /learn\/start-here/);
+    assert.deepEqual(errors, []);
+    const timeSamples = {};
+    for (const timezoneId of ['UTC', 'Europe/Warsaw']) {
+      const context = await browser.newContext({ timezoneId, viewport: {width:1440,height:1000} });
+      const probe = await context.newPage();
+      await probe.goto(base + '/#event-calendar');
+      await probe.frameLocator('#calendarWidget iframe').getByText('Initial Jobless Clm *', {exact:true}).first().waitFor();
+      const body = await probe.frameLocator('#calendarWidget iframe').locator('body').innerText();
+      timeSamples[timezoneId] = await probe.frameLocator('#calendarWidget iframe').locator('[class*="time"]').evaluateAll(items => items.slice(0,5).map(item => item.outerHTML));
+      await probe.locator('#calendarWidget').screenshot({path:path.join(output,`timezone-${timezoneId.replace('/','-')}.png`)});
+      await context.close();
+    }
+    console.log('Timezone verification:', JSON.stringify(timeSamples));
+    const blocked = await browser.newPage();
+    await blocked.route('**/embed-widget-events.js', route => route.abort());
+    await blocked.goto(base + '/#event-calendar');
+    await blocked.getByText('Calendar unavailable here. Open the source calendar below.').waitFor();
+    await blocked.close();
+    console.log('PASS: calculator validation, recovery, broker bounds, mobile overflow, calendar embed/filters and first learning step.');
+  } finally { await browser.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

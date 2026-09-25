@@ -11,7 +11,7 @@ previous_url: /learn/
 previous_title: Learn hub
 next_url: /learn/tracks/read-structure/h1-bias-before-m15/
 next_title: H1 Bias Before M15 Execution
-last_reviewed: 2026-08-30
+last_reviewed: 2026-09-25
 ---
 
 # Start with the mechanics
@@ -33,16 +33,16 @@ This page gives you the minimum foundation needed to read an XAUUSD trade plan w
         <marker id="planArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#E9C97A"/></marker>
       </defs>
       <g class="plan-grid"><path d="M70 42H700M70 96H700M70 150H700M70 204H700M70 258H700M70 312H700"/><path d="M112 28V312M196 28V312M280 28V312M364 28V312M448 28V312M532 28V312M616 28V312"/></g>
-      <rect class="reward-zone" x="70" y="42" width="630" height="138" rx="2"/><rect class="risk-zone" x="70" y="180" width="630" height="92" rx="2"/>
+      <rect class="reward-zone" x="70" y="48" width="630" height="132" rx="2"/><rect class="risk-zone" x="70" y="180" width="630" height="66" rx="2"/>
       <g class="plan-level target-level"><path d="M70 48H700"/><text x="82" y="40">FINAL TARGET · +2R</text><text x="686" y="40" text-anchor="end">TAKE PROFIT</text></g>
-      <g class="plan-level partial-level"><path d="M70 104H700"/><text x="82" y="96">FIRST OBJECTIVE · +1R</text><text x="686" y="96" text-anchor="end">PARTIAL / PROTECT</text></g>
+      <g class="plan-level partial-level"><path d="M70 114H700"/><text x="82" y="106">FIRST OBJECTIVE · +1R</text><text x="686" y="106" text-anchor="end">PARTIAL / PROTECT</text></g>
       <g class="plan-level entry-level"><path d="M70 180H700"/><text x="82" y="171">ENTRY · 0R</text><text x="686" y="171" text-anchor="end">RISK BEGINS HERE</text></g>
-      <g class="plan-level stop-level"><path d="M70 272H700"/><text x="82" y="292">INVALIDATION · -1R</text><text x="686" y="292" text-anchor="end">STOP LOSS</text></g>
+      <g class="plan-level stop-level"><path d="M70 246H700"/><text x="82" y="266">INVALIDATION · -1R</text><text x="686" y="266" text-anchor="end">STOP LOSS</text></g>
       <g class="candles">
         <g class="candle up"><path d="M116 242V207"/><rect x="109" y="218" width="14" height="17"/></g><g class="candle up"><path d="M152 230V188"/><rect x="145" y="202" width="14" height="22"/></g><g class="candle down"><path d="M188 198V242"/><rect x="181" y="204" width="14" height="25"/></g><g class="candle up"><path d="M224 226V172"/><rect x="217" y="184" width="14" height="34"/></g><g class="candle up"><path d="M260 192V142"/><rect x="253" y="154" width="14" height="29"/></g><g class="candle down"><path d="M296 145V194"/><rect x="289" y="156" width="14" height="27"/></g><g class="candle down"><path d="M332 166V216"/><rect x="325" y="174" width="14" height="29"/></g><g class="candle up entry-candle"><path d="M368 214V166"/><rect x="361" y="178" width="14" height="27"/></g><g class="candle up"><path d="M404 186V134"/><rect x="397" y="145" width="14" height="34"/></g><g class="candle down"><path d="M440 136V170"/><rect x="433" y="142" width="14" height="19"/></g><g class="candle up"><path d="M476 158V106"/><rect x="469" y="116" width="14" height="34"/></g><g class="candle up"><path d="M512 122V78"/><rect x="505" y="88" width="14" height="28"/></g><g class="candle down"><path d="M548 72V112"/><rect x="541" y="82" width="14" height="21"/></g><g class="candle up"><path d="M584 96V48"/><rect x="577" y="58" width="14" height="31"/></g>
       </g>
       <path class="projected-path" d="M368 180 C430 150 486 104 584 48" marker-end="url(#planArrow)"/><circle class="entry-marker" cx="368" cy="180" r="7"/><text class="entry-callout" x="383" y="199">confirmation closes above entry</text>
-      <path class="risk-bracket" d="M718 180h14M725 180v92M718 272h14"/><text class="risk-copy" x="742" y="229" transform="rotate(90 742 229)">1R PLANNED RISK</text>
+      <path class="risk-bracket" d="M718 180h14M725 180v66M718 246h14"/><text class="risk-copy" x="742" y="213" transform="rotate(90 742 213)">1R PLANNED RISK</text>
     </svg>
   </div>
   <div class="trade-plan-legend"><div><i class="legend-swatch reward"></i><span><b>Reward zone</b> begins only after entry.</span></div><div><i class="legend-swatch risk"></i><span><b>Risk zone</b> ends where the idea is invalid.</span></div><div><i class="legend-swatch path"></i><span>The path is a <b>scenario</b>, never a promise.</span></div></div>
@@ -69,27 +69,36 @@ When somebody says “100 pips,” ask what price distance they mean. A written 
 
 A lot controls how much the position gains or loses as price moves. It does **not** tell you the risk by itself. Risk depends on both lot size and the distance from entry to stop loss.
 
-The same `0.10` lot can be a small risk with a tight stop and a much larger risk with a wide structural stop. That is why the MMM research profile treats `0.10` as a ceiling and sizes down when the planned stop would exceed the money-risk cap.
+The same `0.10` lot can be a small risk with a tight stop and a much larger risk with a wide structural stop. Calculate the money at risk before choosing the volume.
 
-<div class="foundation-lab" aria-label="Gold position risk calculator">
+The estimator below also works for currency pairs when you supply their own broker specifications. Use the **loss tick value for one lot in your account currency**. Changing the currency label does not convert the numbers. The starting values are an illustrative gold example, not live broker data.
+
+<div class="foundation-lab" id="position-calculator" aria-label="Gold and forex position risk calculator">
   <header>
     <div><small>Interactive lab 02</small><strong>Estimate lot size from MT5 symbol data</strong></div>
     <span>Check broker specification</span>
   </header>
   <div class="calc-grid">
-    <label>Money risk ($)<input id="riskMoney" type="number" min="1" step="1" value="100"></label>
-    <label>Entry price<input id="entryPrice" type="number" step="0.01" value="4500"></label>
-    <label>Stop price<input id="stopPrice" type="number" step="0.01" value="4490"></label>
-    <label>Tick size<input id="tickSize" type="number" min="0.00001" step="0.01" value="0.01"></label>
-    <label>Tick value at 1.00 lot ($)<input id="tickValue" type="number" min="0.00001" step="0.01" value="1"></label>
-    <label>Broker lot step<input id="lotStep" type="number" min="0.001" step="0.01" value="0.01"></label>
+    <label>Account currency<select id="accountCurrency"><option>USD</option><option>EUR</option><option>GBP</option><option>PLN</option><option>JPY</option><option>AUD</option><option>CAD</option><option>CHF</option><option>NZD</option></select></label>
+    <label>Direction<select id="direction"><option value="buy">Buy / long</option><option value="sell">Sell / short</option></select></label>
+    <label>Money risk (<span data-account-unit>USD</span>)<input id="riskMoney" type="number" min="0" step="any" value="100" aria-describedby="riskStatus"></label>
+    <label>Entry price<input id="entryPrice" type="number" min="0" step="any" value="4500" aria-describedby="riskStatus"></label>
+    <label>Stop price<input id="stopPrice" type="number" min="0" step="any" value="4490" aria-describedby="riskStatus"></label>
+    <label>Tick size<input id="tickSize" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
+    <label>Loss tick value at 1 lot (<span data-account-unit>USD</span>)<input id="tickValue" type="number" min="0" step="any" value="1" aria-describedby="riskStatus"></label>
+    <label>Broker lot step<input id="lotStep" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
+    <label>Broker minimum lot<input id="minLot" type="number" min="0" step="any" value="0.01" aria-describedby="riskStatus"></label>
+    <label>Broker maximum lot<input id="maxLot" type="number" min="0" step="any" value="100" aria-describedby="riskStatus"></label>
   </div>
+  <p id="riskStatus" class="calc-status" role="status" aria-live="polite">Enter your broker's values to estimate size.</p>
   <div class="calc-output" aria-live="polite">
-    <div><small>Stop distance</small><strong id="stopDistance">10.00</strong></div>
-    <div><small>Risk at 1.00 lot</small><strong id="riskPerLot">$1,000.00</strong></div>
-    <div><small>Estimated lot</small><strong id="estimatedLot">0.10</strong></div>
+    <div><small>Stop distance</small><strong id="stopDistance">—</strong></div>
+    <div><small>Risk at 1.00 lot</small><strong id="riskPerLot">—</strong></div>
+    <div><small>Estimated lot</small><strong id="estimatedLot">—</strong></div>
+    <div><small>Estimated loss at this size</small><strong id="estimatedRisk">—</strong></div>
   </div>
-  <p class="notice">This is a teaching calculator, not an order command. Enter the tick size, tick value, and lot step shown by your own broker. Confirm the platform's projected loss before submitting any order.</p>
+  <p class="notice">An estimate using a constant tick value. It excludes commission, swap and slippage, and is not a margin or funded-account rule check. For currency crosses, conversion rates can change the result. Confirm the projected loss in MT5; broker-side OrderCalcProfit provides a more specific calculation.</p>
+  <noscript><p>Enable JavaScript to use the calculator. No estimate has been calculated.</p></noscript>
 </div>
 
 ## 4. Entry, stop loss, and take profit
@@ -119,26 +128,12 @@ You now know the order mechanics. The next layer is **context**: what the H1 cha
 
 If a term still feels unclear, do not trade around it. Write it down and ask in the community. Understanding the risk comes before trying to earn the reward.
 
-<script>
-(() => {
-  const ids=['riskMoney','entryPrice','stopPrice','tickSize','tickValue','lotStep'];
-  const el=id=>document.getElementById(id);
-  const calculate=()=>{
-    const risk=Number(el('riskMoney').value);
-    const entry=Number(el('entryPrice').value);
-    const stop=Number(el('stopPrice').value);
-    const tickSize=Number(el('tickSize').value);
-    const tickValue=Number(el('tickValue').value);
-    const step=Number(el('lotStep').value);
-    const distance=Math.abs(entry-stop);
-    const riskPerLot=tickSize>0 ? (distance/tickSize)*tickValue : 0;
-    const raw=riskPerLot>0 ? risk/riskPerLot : 0;
-    const lots=step>0 ? Math.floor(raw/step)*step : 0;
-    el('stopDistance').textContent=Number.isFinite(distance)?distance.toFixed(2):'—';
-    el('riskPerLot').textContent=Number.isFinite(riskPerLot)?riskPerLot.toLocaleString(undefined,{style:'currency',currency:'USD'}):'—';
-    el('estimatedLot').textContent=Number.isFinite(lots)&&lots>0?lots.toFixed(Math.max(2,(String(step).split('.')[1]||'').length)):'Below minimum';
-  };
-  ids.forEach(id=>el(id)?.addEventListener('input',calculate));
-  calculate();
-})();
-</script>
+## Using the same mechanics for currencies
+
+For a pair such as GBPUSD, the quote is US dollars per pound. For GBPJPY, it is yen per pound. A commonly used pip is `0.0001` for GBPUSD and `0.01` for GBPJPY; the broker's point and tick size may be smaller. Never carry gold's tick value across to a currency pair.
+
+Check scheduled events for **both currencies**, and write down the session and timezone. Several trades sharing GBP can rise or fall together, so count their combined exposure before adding another position.
+
+[Check the Gold & FX Event Calendar]({{ '/#event-calendar' | relative_url }}) before planning a session. Then use the [pre-trade journal]({{ '/learn/tracks/master-the-mind/pre-trade-journal/' | relative_url }}) to record the idea, its invalidation, and the result, including skipped trades.
+
+Sources: [MetaQuotes symbol properties](https://www.mql5.com/en/docs/constants/environment_state/marketinfoconstants) and [OrderCalcProfit](https://www.mql5.com/en/docs/trading/ordercalcprofit).
