@@ -234,26 +234,13 @@ section{position:relative;padding:88px 0}
 .mode-badge i{width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 12px rgba(233,201,122,.7)}
 .desk-panel h3{font-family:var(--display);font-size:32px;font-weight:500;line-height:1.05;margin:15px 0 8px}
 .desk-panel-top p{font-size:13px;line-height:1.65;color:var(--mut)}
-.state-list{display:grid}
-.state-row{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line2);font-family:var(--mono);font-size:11px}
-.state-row span{color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
-.state-row b{color:var(--ink2);font-weight:500;text-align:right}
-.state-row b.aq{color:var(--aqua)}.state-row b.gd{color:var(--gold)}
-.mt5-monitor{margin:16px 0;border:1px solid var(--line2);background:#08090d;box-shadow:0 18px 46px -30px rgba(63,224,197,.45)}
-.mt5-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 11px;border-bottom:1px solid var(--line2);font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
-.mt5-head b{color:var(--gold);font-weight:600}.mt5-head span{color:var(--aqua)}
-.mt5-body{padding:12px}
-.mt5-signal{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--line2)}
-.mt5-signal strong{font-family:var(--display);font-size:25px;font-weight:500;line-height:1;color:var(--ink)}
-.mt5-signal span{font-family:var(--mono);font-size:9px;color:var(--gold);border:1px solid var(--line);padding:5px 7px}
-.mt5-bars{display:grid;gap:7px;margin:12px 0}
-.mt5-row{display:grid;grid-template-columns:76px 1fr 26px;gap:8px;align-items:center;font-family:var(--mono);font-size:9px;color:var(--mut)}
-.mt5-track{height:6px;background:rgba(255,255,255,.06);overflow:hidden}
-.mt5-fill{height:100%;background:linear-gradient(90deg,var(--aqua),var(--gold));animation:monitorPulse 3.8s ease-in-out infinite}
-.mt5-row:nth-child(2) .mt5-fill{animation-delay:.45s}.mt5-row:nth-child(3) .mt5-fill{animation-delay:.9s}
-.mt5-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
-.mt5-cell{background:var(--surf);padding:9px 7px}.mt5-cell small{display:block;font-family:var(--mono);font-size:8px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}.mt5-cell b{display:block;margin-top:3px;font-family:var(--mono);font-size:10px;color:var(--ink2)}
-@keyframes monitorPulse{0%,100%{opacity:.55;transform:scaleX(.86);transform-origin:left}50%{opacity:1;transform:scaleX(1)}}
+.desk-guide{display:grid;margin:10px 0 16px}
+.desk-guide a{display:grid;grid-template-columns:30px minmax(0,1fr) 18px;gap:12px;align-items:start;padding:18px 2px;border-bottom:1px solid var(--line2);color:inherit;text-decoration:none;transition:background .2s ease}
+.desk-guide a:hover,.desk-guide a:focus-visible{background:rgba(63,224,197,.045)}
+.desk-guide .step{font-family:var(--mono);font-size:10px;color:var(--gold);padding-top:3px}
+.desk-guide strong{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.desk-guide small{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--mut)}
+.desk-guide .arrow{color:var(--aqua);font-size:16px;text-align:right}
 .desk-note{margin-top:auto;padding:18px 0 4px;color:var(--mut);font-size:11.5px;line-height:1.65}
 .desk-note a{color:var(--aqua);border-bottom:1px solid var(--line3)}
 .lifecycle{display:grid;grid-template-columns:repeat(6,1fr);margin-top:28px;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
@@ -268,8 +255,8 @@ section{position:relative;padding:88px 0}
 .life-step.active::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--aqua);box-shadow:0 0 12px var(--aqua)}
 .data-note{font-family:var(--mono);font-size:9.5px;line-height:1.6;color:var(--mut2);margin-top:14px}
 @media(max-width:980px){.desk-grid{grid-template-columns:1fr}.desk-strip{grid-template-columns:repeat(3,1fr)}.desk-stat:nth-child(3){border-right:none}.desk-stat:nth-child(-n+3){border-bottom:1px solid var(--line2)}.desk-panel{order:-1;border:1px solid var(--line2);padding:16px;background:linear-gradient(180deg,rgba(18,21,30,.88),rgba(8,9,13,.96));box-shadow:0 24px 70px -54px rgba(63,224,197,.7)}.desk-head{align-items:flex-start;flex-direction:column}.tv-shell{height:520px}}
-@media(max-width:640px){.desk-grid{gap:14px}.desk-strip{grid-template-columns:1fr 1fr}.desk-stat,.desk-stat:nth-child(3){border-right:1px solid var(--line2);border-bottom:1px solid var(--line2)}.desk-stat:nth-child(even){border-right:none}.desk-stat:last-child{grid-column:1/-1;border-right:none;border-bottom:none}.desk-panel{padding:14px}.desk-panel-top{padding:0 0 14px}.desk-panel h3{font-size:26px;margin:12px 0 7px}.desk-panel-top p{font-size:12.5px}.mode-badge{font-size:8.5px;letter-spacing:.1em}.state-list{grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.state-row{display:block;border:1px solid var(--line2);background:rgba(255,255,255,.025);padding:10px}.state-row b{display:block;text-align:left;margin-top:4px;font-size:10px}.mt5-monitor{margin:12px 0}.mt5-head{display:block}.mt5-head span{display:block;margin-top:4px}.mt5-signal{grid-template-columns:1fr}.mt5-signal span{justify-self:start}.mt5-row{grid-template-columns:68px 1fr 24px}.desk-note{margin-top:10px;padding-top:12px}.lifecycle{grid-template-columns:repeat(2,1fr)}.life-step{min-height:78px;border-bottom:1px solid var(--line2)}.life-step:nth-child(even){border-right:none}.life-step:nth-last-child(-n+2){border-bottom:none}.tv-shell{height:460px}.tool-head{align-items:flex-start;flex-direction:column;gap:3px}.chart-read{grid-template-columns:1fr}.chart-read-item{border-right:none;border-bottom:1px solid var(--line2)}.chart-read-item:last-child{border-bottom:none}}
-@media(max-width:430px){.state-list{grid-template-columns:1fr}.mt5-foot{grid-template-columns:1fr}.desk-panel h3{font-size:24px}.tv-shell{height:420px}}
+@media(max-width:640px){.desk-grid{gap:14px}.desk-strip{grid-template-columns:1fr 1fr}.desk-stat,.desk-stat:nth-child(3){border-right:1px solid var(--line2);border-bottom:1px solid var(--line2)}.desk-stat:nth-child(even){border-right:none}.desk-stat:last-child{grid-column:1/-1;border-right:none;border-bottom:none}.desk-panel{padding:14px}.desk-panel-top{padding:0 0 14px}.desk-panel h3{font-size:26px;margin:12px 0 7px}.desk-panel-top p{font-size:12.5px}.mode-badge{font-size:8.5px;letter-spacing:.1em}.desk-guide a{padding:14px 2px}.desk-note{margin-top:10px;padding-top:12px}.lifecycle{grid-template-columns:repeat(2,1fr)}.life-step{min-height:78px;border-bottom:1px solid var(--line2)}.life-step:nth-child(even){border-right:none}.life-step:nth-last-child(-n+2){border-bottom:none}.tv-shell{height:460px}.tool-head{align-items:flex-start;flex-direction:column;gap:3px}.chart-read{grid-template-columns:1fr}.chart-read-item{border-right:none;border-bottom:1px solid var(--line2)}.chart-read-item:last-child{border-bottom:none}}
+@media(max-width:430px){.desk-panel h3{font-size:24px}.tv-shell{height:420px}}
 
 /* ─────────── AUTOMATION (console) ─────────── */
 #automation{background:linear-gradient(180deg,var(--bg),var(--bg2))}
@@ -535,7 +522,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
     <div class="hmeta rv" style="transition-delay:.32s">
       <span>Method <b>Liquidity Cycle</b></span>
       <span>Specialised in <b>XAUUSD · Gold</b></span>
-      <span>Mode <b>Demo Forward Test</b></span>
+      <span>Mode <b>Public research</b></span>
     </div>
   </div>
   <div class="hscroll"><span>Scroll</span><i></i></div>
@@ -582,16 +569,16 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
     <div class="desk-head">
       <div>
         <div class="ey rv">Gold Desk · Public Research View</div>
-        <h2 class="rv">Live chart.<br><em>Honest system model.</em></h2>
+        <h2 class="rv">Market chart.<br><em>Clear next steps.</em></h2>
       </div>
-      <p class="desk-intro rv">The TradingView chart below is live or feed-delayed according to each viewer's market entitlement. The chart is real; whether it's live or slightly delayed depends on your own data access. The adjacent MetaTrader panel is an educational model of the EA workflow, not live account telemetry. MT5 remains the authority for actual execution and realized results.</p>
+      <p class="desk-intro rv">The TradingView chart below may be live or delayed, depending on your market data access. Use the guide beside it to put the chart in context. The page does not show live EA or account status; MT5 is the source for actual execution and realized results.</p>
     </div>
     <div class="desk-strip rv" aria-label="System overview">
       <div class="desk-stat"><small>Instrument</small><strong class="gd" id="statusSymbol">XAUUSD · Gold</strong></div>
-      <div class="desk-stat"><small>Mode</small><strong id="statusMode">Demo forward test</strong></div>
+      <div class="desk-stat"><small>Mode</small><strong id="statusMode">Public research</strong></div>
       <div class="desk-stat"><small>Execution</small><strong>MetaTrader 5 EA</strong></div>
       <div class="desk-stat"><small>Public updates</small><strong>EA-confirmed only</strong></div>
-      <div class="desk-stat"><small>Page state</small><strong class="aq" id="statusState">Public research view</strong></div>
+      <div class="desk-stat"><small>Live EA feed</small><strong class="aq" id="statusState">Not connected</strong></div>
     </div>
     <div class="desk-grid">
       <div class="market-tool rv">
@@ -636,35 +623,18 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
           <a class="chart-read-item" href="learn/#full-22-lesson-map"><small>03 · Fair value gap</small><p>A three-candle imbalance forms when candle three does not overlap candle one's wick. A revisit is an area of interest, never a guaranteed reaction.</p><span class="chart-read-action">Find FVG lesson →</span></a>
         </div>
       </div>
-      <aside class="desk-panel rv" aria-label="MMM system state">
+      <aside class="desk-panel rv" aria-label="How to use the Gold Desk">
         <div class="desk-panel-top">
-          <span class="mode-badge"><i></i><span id="statusBadge">Illustrative workflow</span></span>
-          <h3 id="statusHeadline">How a setup becomes public</h3>
-          <p id="statusDetail">Use the lifecycle below to inspect each stage. This panel explains the reporting logic; it does not claim that the EA is currently entering or monitoring a New York setup.</p>
+          <span class="mode-badge"><i></i><span id="statusBadge">Research guide</span></span>
+          <h3 id="statusHeadline">Read the Gold Desk</h3>
+          <p id="statusDetail">Start with the chart, check what is scheduled, then write down the risk. These steps help you study a setup; they do not confirm a trade.</p>
         </div>
-        <div class="state-list">
-
-
-
-          <div class="state-row"><span>Telegram</span><b class="aq" id="statusTelegram">EA-only lifecycle</b></div>
+        <div class="desk-guide">
+          <a href="learn/tracks/read-structure/h1-bias-before-m15/"><span class="step">01</span><span><strong>Read the structure</strong><small>Check H1 direction before interpreting an M15 move.</small></span><span class="arrow" aria-hidden="true">→</span></a>
+          <a href="#event-calendar"><span class="step">02</span><span><strong>Check scheduled events</strong><small>See when a release may change price behaviour or spreads.</small></span><span class="arrow" aria-hidden="true">→</span></a>
+          <a href="learn/start-here/#position-calculator"><span class="step">03</span><span><strong>Estimate your risk</strong><small>Set an entry and stop to see an estimated position size.</small></span><span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div class="mt5-monitor" aria-label="Illustrative MT5 workflow panel">
-          <div class="mt5-head"><b>MMM Regime Candidate</b><span>Illustrative panel</span></div>
-          <div class="mt5-body">
-            <div class="mt5-signal"><strong>MODEL</strong><span>Not live account data</span></div>
-            <div class="mt5-bars">
-              <div class="mt5-row"><span>Bias</span><div class="mt5-track"><div class="mt5-fill" style="width:72%"></div></div><b>H1</b></div>
-              <div class="mt5-row"><span>Liquidity</span><div class="mt5-track"><div class="mt5-fill" style="width:48%"></div></div><b>M15</b></div>
-              <div class="mt5-row"><span>Timing</span><div class="mt5-track"><div class="mt5-fill" style="width:61%"></div></div><b>Context</b></div>
-            </div>
-            <div class="mt5-foot">
-              <div class="mt5-cell"><small>Research</small><b>Context</b></div>
-              <div class="mt5-cell"><small>Authority</small><b>MT5 EA</b></div>
-              <div class="mt5-cell"><small>Public</small><b>After entry</b></div>
-            </div>
-          </div>
-        </div>
-        <p class="desk-note">This schematic teaches the decision flow. It will be labelled live only after a sanitized, timestamped MT5 endpoint is connected. <a href="https://github.com/arshblack/MMM-REFINED-Liquidity-Cycle" target="_blank" rel="noopener">Review the public engineering notes</a>.</p>
+        <p class="desk-note">Only an MT5-confirmed EA execution belongs in the public trade record. <a href="#labF">See how the record works</a>.</p>
       </aside>
     </div>
     <section id="event-calendar" aria-labelledby="event-title">
@@ -700,7 +670,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
     <p class="honest"><b>Research is not execution.</b> A setup enters this record only when the MT5 EA confirms a trade. A record of what the system did — not a claim about what it will do.</p>
   </div>
 <details class="static-readings"><summary>Read the observations and failure states</summary><ol><li><strong>Research setup</strong>: A setup identified on TradingView or in analysis. An observation to examine, outside the EA execution record.</li><li><strong>EA confirmed</strong>: The MT5 Expert Advisor confirms execution. This is the line where research becomes part of the public record.</li><li><strong>T1 protected</strong>: A reporting label for a confirmed first objective or protection event. It does not promise that a target will be reached or specify a stop change.</li><li><strong>T2 managed</strong>: A label for a confirmed management event. Read the actual update for what changed; no management rule is implied here.</li><li><strong>T3 / closed</strong>: The final stage, or the position closes. The outcome is recorded either way — including when it’s a loss.</li><li><strong>Evidence archived</strong>: The completed record is archived, timestamped. A record of what the system did — never a claim about what it will do.</li></ol><p>A setup can expire or invalidate before execution. A confirmed position can close at a loss without reaching any target. These are vocabulary labels, not a mandatory sequence.</p><p>Break-even describes a stop level; spread, fees and slippage can still produce a net loss.</p></details></section>
-    <p class="data-note rv">TradingView widget data may be real-time or delayed depending on the selected market feed and viewer entitlements. It is independent from the broker prices used by the MT5 EA. The lifecycle and MT5 interface shown here are explanatory, not current account status. A future live state requires a sanitized, timestamped Cloudflare endpoint.</p>
+    <p class="data-note rv">TradingView widget data may be real-time or delayed depending on the selected market feed and viewer entitlements. It is independent from the broker prices used by the MT5 EA. The lifecycle explains reporting terms; this page does not show current account status.</p>
   </div>
 <div class="w desk-resources"><a class="start-card" href="tracker/"><small>Available now · Inside the Gold Desk</small><h3>30-day discipline tracker</h3><p>Document the process, including skipped setups and invalidations.</p><strong>Open tracker →</strong></a><a href="#automation">Read about the EA forward test →</a></div><details class="w"><summary>More about the tracker</summary><section id="tracker-intro">
   <div class="aurora2"></div>
@@ -829,7 +799,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
       <div class="auto-l">
         <div class="ey rv">The Tool · MMM EA</div>
         <h2 class="rv">The methodology,<br><em>automated.</em></h2>
-        <p class="rv">The MMM Expert Advisor converts the research framework into repeatable execution rules on MetaTrader 5. It is currently being evaluated through controlled demo forward testing. Public architecture and testing notes are open; proprietary implementation and credentials remain private.</p>
+        <p class="rv">The MMM Expert Advisor converts the research framework into repeatable execution rules on MetaTrader 5. It is being evaluated through forward testing. Public architecture and testing notes are open; proprietary implementation and credentials remain private.</p>
         <div class="codeblock rv"><p>The pieces relate like this: structure sets direction, a liquidity event asks for confirmation, and session context decides whether it's worth acting on. How the EA weighs them is not published.</p></div>
         <div class="feat-list rv">
           <div class="feat"><span class="fi">01</span><div><h4>Risk guard, always on</h4><p>Hard research risk controls. Risk controls limit intended exposure; losses and slippage remain possible.</p></div></div>
@@ -841,7 +811,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
         <div class="console rv">
           <div class="con-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="path">MT5 · MMM_Liquidity_EA.ex5</span></div>
           <div class="con-body">
-            <div class="con-row"><span class="con-k">ENGINE</span><span class="con-v gd">DEMO FORWARD TEST<span class="con-cursor"></span></span></div>
+            <div class="con-row"><span class="con-k">ENGINE</span><span class="con-v gd">FORWARD-TEST RESEARCH<span class="con-cursor"></span></span></div>
             <div class="con-row"><span class="con-k">METHOD</span><span class="con-v">ICT / SMC liquidity cycle</span></div>
             <div class="con-row"><span class="con-k">SYMBOL</span><span class="con-v">XAUUSD · Gold spot</span></div>
 
@@ -987,7 +957,6 @@ async function loadSystemStatus(){
     put('statusBadge',status.badge);
     put('statusHeadline',status.headline);
     put('statusDetail',status.detail);
-    put('statusTelegram',status.telegram);
   }catch(error){}
 }
 loadSystemStatus();

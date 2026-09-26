@@ -1,9 +1,8 @@
 {
   "symbol": "XAUUSD · Gold",
-  "mode": "Demo forward test",
-  "state": "Public research view",
-  "badge": "Illustrative workflow",
-  "headline": "How a setup becomes public",
-  "detail": "Use the lifecycle to inspect each reporting stage. This panel explains the EA workflow and is not live account telemetry.",
-  "telegram": "EA-only lifecycle"
+  "mode": "Public research",
+  "state": "Not connected",
+  "badge": "Research guide",
+  "headline": "Read the Gold Desk",
+  "detail": "Start with the chart, check what is scheduled, then write down the risk. These steps help you study a setup; they do not confirm a trade."
 }
