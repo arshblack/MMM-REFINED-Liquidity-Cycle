@@ -64,6 +64,13 @@ article h1{font-family:var(--display);font-size:clamp(42px,7vw,76px);line-height
 article h2{font-family:var(--display);font-size:clamp(28px,4vw,40px);line-height:1.1;font-weight:500;margin:46px 0 14px;color:var(--goldl)}
 article h3{font-size:18px;line-height:1.3;margin:30px 0 10px;color:var(--ink)}
 article p,article li{font-size:16px;color:var(--ink2)}
+article>p,article>ul,article>ol{max-width:69ch}
+article h2[id]{scroll-margin-top:88px}
+.lesson-outline{margin:4px 0 28px;padding:14px 0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+.lesson-outline summary{cursor:pointer;color:var(--goldl);font:600 12px var(--sans)}
+.lesson-outline ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 22px;margin:12px 0 0;padding-left:20px}
+.lesson-outline li{margin:0;font-size:13px}
+.lesson-outline a{color:var(--ink2);text-decoration:none}.lesson-outline a:hover,.lesson-outline a:focus-visible{color:var(--aqua);text-decoration:underline}
 article strong{color:var(--ink)}
 article em{color:var(--goldl)}
 article hr{border:0;border-top:1px solid var(--line2);margin:32px 0}
@@ -191,9 +198,11 @@ code{font-family:var(--mono);font-size:.92em;color:var(--aqua);background:rgba(6
 @keyframes candleIn{0%,18%{opacity:0;transform:translateY(10px)}28%,82%{opacity:1;transform:none}100%{opacity:0;transform:none}}
 footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-size:12px}
 @media(max-width:760px){.w{padding:0 22px}.w.shell{padding:50px 22px 82px}.nlinks{display:none}.menu-toggle{display:flex}.mobile-nav:not([hidden]){display:block}.shell{padding-top:50px}.learn-grid,.lab-steps,.inference-meter,.bias-panels,.course-path,.status-row,.lesson-nav,.path-picker,.calc-grid,.calc-output,.micro-check{grid-template-columns:1fr}.journal-row{grid-template-columns:1fr}.market-lab,.foundation-lab{padding:14px}.market-lab header,.foundation-lab>header{display:block}.market-lab header span,.foundation-lab>header span{display:inline-block;margin-top:10px}.lesson-list a{display:block}.lesson-list small{display:block;margin-top:6px}.map-grid{grid-template-columns:38px 1fr 72px}.lesson-nav .next{text-align:left}.trade-plan-legend{grid-template-columns:1fr}.trade-plan-legend>div{border-right:none;border-bottom:1px solid var(--line2)}.trade-plan-legend>div:last-child{border-bottom:none}.trade-plan-visual{overflow-x:auto}.trade-plan-visual svg{min-width:620px}.author-signoff{grid-template-columns:44px 1fr}.author-mark{width:44px;height:44px}.author-review{grid-column:2;text-align:left}.preview-step{grid-template-columns:34px 1fr}.preview-step small{grid-column:2}}
+@media(max-width:760px){.lesson-outline ol{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.lab-path,.lab-sweep,.lab-candle{animation:none;opacity:1;stroke-dashoffset:0}}
 </style>
 <link rel="stylesheet" href="{{ '/assets/learning-labs.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/pip-game.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/calculators.css' | relative_url }}">
 <noscript><style>.mobile-nav[hidden]{display:block!important}.menu-toggle{display:none!important}</style></noscript>
 </head>
@@ -221,7 +230,8 @@ footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-si
   <article>
     <div class="crumb"><a href="{{ '/learn/' | relative_url }}">Learn</a>{% if page.track %} / {{ page.track | replace: '-', ' ' }}{% endif %}</div>
     <div class="back-row" aria-label="Page navigation">
-      <a href="{{ '/learn/' | relative_url }}">← Back to Learn</a>
+      {% if page.previous_url and page.previous_url != '/learn/' %}<a href="{{ page.previous_url | relative_url }}">← {{ page.previous_title }}</a>{% endif %}
+      <a href="{{ '/learn/' | relative_url }}">{% if page.previous_url == '/learn/' %}← {% endif %}All lessons</a>
       <a href="{{ '/' | relative_url }}">Home</a>
     </div>
     <div class="meta">
@@ -230,6 +240,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-si
       {% if page.reading_time %}<span>{{ page.reading_time }} min read</span>{% endif %}
       {% if page.status %}<span>{% if page.status == 'public' %}Available now{% elsif page.status == 'beta' %}Member beta{% else %}Planned{% endif %}</span>{% endif %}
     </div>
+    <details class="lesson-outline" id="lessonOutline" hidden><summary>In this lesson</summary><ol></ol></details>
     {{ content }}
     {% unless page.permalink == '/learn/' %}
     <div class="author-signoff" aria-label="About the author">
@@ -259,5 +270,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-si
 <script src="{{ '/assets/calculators.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/position-calculator.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/learning-labs.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/lesson-outline.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/pip-game.js' | relative_url }}" defer></script>
 </body>
 </html>

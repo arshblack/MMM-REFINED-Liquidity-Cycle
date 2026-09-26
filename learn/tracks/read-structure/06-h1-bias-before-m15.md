@@ -10,6 +10,8 @@ last_reviewed: 2026-08-16
 revision: "Gate 1 — schematic labels replace price levels; invalidation vs. exit clarified"
 status: public
 prerequisites: []
+previous_title: "Gold Trading Mechanics"
+previous_url: /learn/start-here/
 next_title: "What a Sweep Does Not Prove"
 next_url: "/learn/tracks/hunt-liquidity/what-a-sweep-does-not-prove/"
 ---

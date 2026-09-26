@@ -71,6 +71,19 @@ A lot controls how much the position gains or loses as price moves. It does **no
 
 The same `0.10` lot can be a small risk with a tight stop and a much larger risk with a wide structural stop. Calculate the money at risk before choosing the volume.
 
+<div class="foundation-lab pip-game" id="pip-lab" aria-label="Pip and position size practice">
+  <header><div><small>Practice lab · 3 rounds</small><strong>Price, pips, and position size</strong></div><span>No live prices</span></header>
+  <div class="pip-game__stage">
+    <div class="pip-game__top"><span data-game-top>Round 1 of 3</span><span class="pip-game__track" data-game-track aria-hidden="true"></span></div>
+    <div class="pip-game__prices" data-game-prices aria-hidden="true"></div>
+    <p class="pip-game__question" data-game-question tabindex="-1">Loading practice round…</p>
+    <div class="pip-game__choices" data-game-choices role="group" aria-label="Choose an answer"></div>
+    <p class="pip-game__feedback" data-game-feedback role="status" aria-live="polite"></p>
+    <button type="button" class="pip-game__next" data-game-next hidden>Next round</button>
+  </div>
+  <noscript><p>Enable JavaScript for the practice rounds. The examples and calculator below remain available to read.</p></noscript>
+</div>
+
 Choose gold or a currency pair, then enter your account size, risk percentage and planned prices. **Risk percentage is the part of your account you plan to risk on this one trade.** For example, 0.5% of 10,000 is 50. The example is educational, not a recommended risk level.
 
 <div class="foundation-lab" id="position-calculator" aria-label="Gold and forex position risk calculator">

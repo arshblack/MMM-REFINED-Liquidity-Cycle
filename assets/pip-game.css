@@ -1,0 +1,19 @@
+.pip-game{scroll-margin-top:80px}
+.pip-game__stage{border-top:1px solid var(--line2);padding:18px 0 0}
+.pip-game__top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px;color:var(--gold);font:500 11px var(--mono)}
+.pip-game__track{display:flex;gap:4px;align-items:center}.pip-game__track i{display:block;width:28px;height:4px;background:#353b42}.pip-game__track i.is-current{background:var(--gold)}.pip-game__track i.is-done{background:var(--aqua)}
+.pip-game__prices{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:12px 0 20px;margin-bottom:14px;border-bottom:1px solid var(--line2)}
+.pip-game__prices::after{content:'';position:absolute;left:0;right:0;bottom:9px;height:2px;background:linear-gradient(90deg,var(--gold),var(--aqua))}
+.pip-game__prices[hidden]{display:none}
+.pip-game__prices div{position:relative;z-index:1}.pip-game__prices div:last-child{text-align:right}
+.pip-game__prices small{display:block;color:#a5acb8;font:10px var(--mono);text-transform:uppercase}.pip-game__prices strong{display:block;color:var(--ink);font:500 24px var(--display);line-height:1.2}
+.pip-game__question{font-size:17px;color:var(--ink);line-height:1.45;margin:0 0 16px}.pip-game__choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pip-game__choices button,.pip-game__next{border:1px solid rgba(233,201,122,.32);background:#171b22;color:var(--ink);min-height:48px;padding:10px 12px;font:600 14px var(--sans);cursor:pointer;border-radius:4px}
+.pip-game__choices button:hover,.pip-game__choices button:focus-visible,.pip-game__next:hover,.pip-game__next:focus-visible{border-color:var(--aqua);outline:2px solid transparent;background:#1e292b}
+.pip-game__choices button:disabled{cursor:default;opacity:.75}.pip-game__choices button.is-correct{border-color:var(--aqua);color:var(--aqua);opacity:1}.pip-game__choices button.is-wrong{border-color:#f09978;color:#f09978;opacity:1}
+.pip-game__feedback{min-height:44px;margin:14px 0 0;color:var(--ink2);font-size:14px;line-height:1.5}.pip-game__feedback strong{color:var(--goldl)}
+.pip-game__feedback:empty{display:none}
+.pip-game__next{margin-top:8px;min-width:120px;color:var(--bg);background:var(--gold)}.pip-game__next[hidden]{display:none}
+.pip-game__finish{color:var(--ink2);font-size:15px}.pip-game__finish strong{color:var(--aqua)}
+@media(max-width:520px){.pip-game__stage{padding:14px 0 0}.pip-game__choices{grid-template-columns:1fr}.pip-game__prices strong{font-size:21px}}
+@media(prefers-reduced-motion:no-preference){.pip-game__prices{animation:pipReveal .35s ease-out}.pip-game__prices::after{animation:pipDraw .6s ease-out both}@keyframes pipReveal{from{opacity:.4;transform:translateY(7px)}to{opacity:1;transform:none}}@keyframes pipDraw{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}}

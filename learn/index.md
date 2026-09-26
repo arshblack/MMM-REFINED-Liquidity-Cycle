@@ -16,7 +16,7 @@ last_reviewed: 2026-09-04
 
 Begin with the [mechanics guide]({{ '/learn/start-here/' | relative_url }}): prices, lot size, stops and a risk estimate using your broker's numbers. Then follow [the beginner journey]({{ '/start/' | relative_url }}) through structure, liquidity and session timing. The longer Foundations series is planned; this first step is available today.
 
-For your next practice session: [estimate position size]({{ '/learn/start-here/#position-calculator' | relative_url }}), [check scheduled events]({{ '/#event-calendar' | relative_url }}), then write a [pre-trade journal]({{ '/learn/tracks/master-the-mind/pre-trade-journal/' | relative_url }}). The mechanics guide includes a bridge from gold to currency pairs.
+For your next practice session: [try the three-round price and pip lab]({{ '/learn/start-here/#pip-lab' | relative_url }}), [estimate position size]({{ '/learn/start-here/#position-calculator' | relative_url }}), [check scheduled events]({{ '/#event-calendar' | relative_url }}), then write a [pre-trade journal]({{ '/learn/tracks/master-the-mind/pre-trade-journal/' | relative_url }}). The mechanics guide includes a bridge from gold to currency pairs.
 
 <span id="public-preview-route"></span>
 Read structure, understand what a sweep does not prove, study its failure states, then explore timing and the pre-trade journal. [Open the Visual Labs]({{ '/#visual-labs' | relative_url }}) to see each idea change on a diagram.
