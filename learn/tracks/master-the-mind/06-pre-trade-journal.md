@@ -88,6 +88,8 @@ Six fields. Keep it short enough that you will do it at 09:40 with a setup formi
 
 Nothing about targets. Targets belong to trade management. Nothing about expected outcome. The entry describes a decision, not a prediction.
 
+{% include lesson-visual.html key="pre-trade-journal" %}
+
 ---
 ## Worked example
 

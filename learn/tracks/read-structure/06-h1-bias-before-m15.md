@@ -91,6 +91,8 @@ There is a version of this you may have seen stated as a rule about "always trad
 
 **Step 4 — Only now, drop to M15.** With direction and invalidation already fixed, M15 becomes a narrow question rather than an open one. You are looking for the conditions covered in Hunt Liquidity and Time the Killzone. You are not looking for a reason to change your mind about H1.
 
+{% include lesson-visual.html key="h1-bias-before-m15" %}
+
 ---
 ## Worked example — XAUUSD
 

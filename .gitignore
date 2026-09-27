@@ -55,3 +55,6 @@ research-private/
 _site/
 .jekyll-cache/
 .sass-cache/
+tools/lesson-visuals/__pycache__/
+tools/lesson-visuals/svg/
+tools/lesson-visuals/refined-lesson-visuals.html

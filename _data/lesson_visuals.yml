@@ -1,0 +1,45 @@
+h1-bias-before-m15:
+  title: H1 context before M15 execution
+  height: 560
+  alt: H1 swing structure and invalidation above a zoomed M15 pullback, ending in two equally weighted H1 outcomes.
+  steps:
+    - Label the H1 swings before looking for an M15 setup.
+    - Write the H1 bias and the level that would invalidate it.
+    - Zoom in. M15 lower highs can still be an H1 pullback; a wick below HL1 is not an H1 close.
+    - If H1 holds above HL1, the bias remains. An H1 close below HL1 invalidates it.
+what-a-sweep-does-not-prove:
+  title: What a sweep can and cannot show
+  height: 534
+  alt: A candle reaches above equal highs and closes below, followed by two equally possible futures and a ledger separating observation from inference.
+  steps:
+    - Two prior highs define a reference level, EQH1.
+    - Price trades above it and closes back below. Those are observations.
+    - Either continuation or reversal could follow the same candle.
+    - Separate what the chart shows from a story about intent before sizing risk.
+the-sweep-that-isnt:
+  title: The three-part sweep test
+  height: 590
+  alt: Three similar candles compare a wick-only probe, a breakout close, and a sweep shape that expires without follow-through.
+  steps:
+    - A wick-only probe passes the first two checks; follow-through is still unknown.
+    - A candle closing beyond the level is a breakout, not that same sweep pattern.
+    - A wick and close can pass, then chop without follow-through. The idea expires.
+    - Check wick, close, and follow-through in order. Count your own cases.
+when-london-matters:
+  title: London and New York clocks
+  height: 644
+  alt: Timelines compare the normal five-hour London-New York gap with the four-hour gap during clock-change weeks, including a scheduled US release.
+  steps:
+    - Most weeks, London and New York are five hours apart.
+    - An identical pattern can have different session and calendar context.
+    - During clock-change gaps, the cities are four hours apart and a fixed New York release shifts in London time.
+    - Derive your broker clock separately and review the dates each year.
+pre-trade-journal:
+  title: The plan, decision, and review
+  height: 600
+  alt: A journal board moves from a written plan through an invalidation gate to a review that scores execution rather than profit.
+  steps:
+    - Write the thesis before an order, in plain language.
+    - Record invalidation, risk, and what would stop the trade.
+    - No defined invalidation means no order. Log skipped and expired ideas too.
+    - Review whether you followed the plan, not only whether you made money.

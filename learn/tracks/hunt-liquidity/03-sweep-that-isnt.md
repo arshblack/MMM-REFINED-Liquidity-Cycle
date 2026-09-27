@@ -149,6 +149,8 @@ That is the trade-off, stated plainly: waiting for follow-through costs you the 
 
 **What follow-through is not.** It is not a target, a pip count, or a promise. It is the presence of directional movement away from the level, on the timeframe you are working. Its absence is a complete answer.
 
+{% include lesson-visual.html key="the-sweep-that-isnt" %}
+
 ---
 ## Worked example — XAUUSD, London session
 

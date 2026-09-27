@@ -86,6 +86,8 @@ The belief also changes behaviour after entry. If a sweep *proved* something, th
 
 Epistemic humility is not a mood. On a trading account it has a numerical expression, and that expression is lot size.
 
+{% include lesson-visual.html key="what-a-sweep-does-not-prove" %}
+
 ---
 ## Worked example — the same candle, two readings
 

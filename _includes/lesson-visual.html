@@ -1,0 +1,19 @@
+{% assign visual = site.data.lesson_visuals[include.key] %}
+{% assign frame_base = '/assets/lesson-visuals/' | append: include.key | append: '-step-' %}
+{% assign final_frame = frame_base | append: '4.svg' %}
+<figure class="lesson-visual" data-frame-base="{{ frame_base | relative_url }}" data-visual-title="{{ visual.title | escape }}">
+  <div class="lesson-visual__heading"><span>Visual reading</span><strong>{{ visual.title }}</strong></div>
+  <img class="lesson-visual__image" src="{{ final_frame | relative_url }}" alt="{{ visual.alt | escape }}" loading="lazy" decoding="async" width="360" height="{{ visual.height }}">
+  <figcaption>
+    <span class="lesson-visual__note">Synthetic teaching schematic, not a live chart or trade signal.</span>
+    <ol class="lesson-visual__steps">
+      {% for step in visual.steps %}<li data-step="{{ forloop.index }}">{{ step }}</li>{% endfor %}
+    </ol>
+  </figcaption>
+  <div class="lesson-visual__controls" hidden>
+    <button type="button" data-action="replay">Replay</button>
+    <button type="button" data-action="previous" aria-label="Previous diagram step">Previous</button>
+    <output class="lesson-visual__count" aria-live="polite">Step 4 of 4</output>
+    <button type="button" data-action="next" aria-label="Next diagram step">Next</button>
+  </div>
+</figure>

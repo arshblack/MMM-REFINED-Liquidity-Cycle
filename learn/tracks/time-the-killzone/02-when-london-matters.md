@@ -114,6 +114,8 @@ There is a second consequence, easy to miss. Because London's window is defined 
 
 **The practical version:** express your window in UTC, write down the London and New York local times it corresponds to, and re-derive it after every DST transition — four dates a year, two of which do not coincide. Or take the simpler route and anchor the window to an event rather than a clock: "the two hours after the London equity open" is correct in every week of the year without arithmetic.
 
+{% include lesson-visual.html key="when-london-matters" %}
+
 ---
 ## So when does the London window actually matter?
 
