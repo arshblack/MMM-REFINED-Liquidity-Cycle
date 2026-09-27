@@ -46,10 +46,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(8,9,13,.78);backdrop-filter
 .nlinks{display:flex;gap:22px;align-items:center}
 .nlinks a{font-size:13px;color:var(--ink2);text-decoration:none}
 .nlinks a:hover{color:var(--goldl)}
-.menu-toggle{display:none;width:38px;height:38px;border:1px solid var(--line2);background:var(--surf);color:var(--ink);align-items:center;justify-content:center;cursor:pointer}
+.menu-toggle{display:none;width:38px;height:38px;border:1px solid var(--line2);background:var(--surf);color:var(--ink);flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
 .menu-toggle span,.menu-toggle::before,.menu-toggle::after{content:'';display:block;width:16px;height:1px;background:currentColor;transition:transform .2s,opacity .2s}.menu-toggle span{margin:4px 0}
 .menu-toggle[aria-expanded="true"]::before{transform:translateY(5px) rotate(45deg)}.menu-toggle[aria-expanded="true"] span{opacity:0}.menu-toggle[aria-expanded="true"]::after{transform:translateY(-5px) rotate(-45deg)}
-.mobile-nav{display:none;background:var(--bg2);border-bottom:1px solid var(--line2);padding:10px 22px 18px}.mobile-nav a{display:block;padding:11px 0;border-bottom:1px solid var(--line2);text-decoration:none;color:var(--ink2);font-size:14px}.mobile-nav a:last-child{border-bottom:0}.mobile-nav[hidden]{display:none}
+.mobile-nav{display:none;position:fixed;top:66px;left:0;right:0;z-index:21;max-height:calc(100vh - 66px);overflow-y:auto;background:var(--bg2);border-bottom:1px solid var(--line2);padding:10px 22px 18px;box-shadow:0 16px 28px rgba(0,0,0,.4)}.mobile-nav a{display:block;padding:11px 0;border-bottom:1px solid var(--line2);text-decoration:none;color:var(--ink2);font-size:14px}.mobile-nav a:last-child{border-bottom:0}.mobile-nav[hidden]{display:none}
 .shell{padding:76px 0 92px}
 .w.shell{padding:76px 34px 92px}
 .crumb{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:22px}
@@ -214,7 +214,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-si
       <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="15" stroke="#E9C97A" stroke-width="1.2"/><circle cx="16" cy="16" r="3" fill="#E9C97A"/></svg>
       <b>Refined <span>Liquidity</span></b>
     </a>
-    <div class="nlinks"><a href="{{ '/start/' | relative_url }}">Start Here</a>
+    <div class="nlinks"><a href="{{ '/learn/start-here/' | relative_url }}">Start Here</a>
 <a href="{{ '/#gold-desk' | relative_url }}">Gold Desk</a>
 <a href="{{ '/learn/' | relative_url }}">Learn</a>
 <a href="{{ '/gold-notes/' | relative_url }}">Notes</a>
@@ -222,13 +222,14 @@ footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-si
     <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="lesson-mobile-nav" aria-label="Open navigation"><span></span></button>
   </div>
 </nav>
-<div class="mobile-nav" id="lesson-mobile-nav" hidden><a href="{{ '/start/' | relative_url }}">Start Here</a>
+<div class="mobile-nav" id="lesson-mobile-nav" hidden><a href="{{ '/learn/start-here/' | relative_url }}">Start Here</a>
 <a href="{{ '/#gold-desk' | relative_url }}">Gold Desk</a>
 <a href="{{ '/learn/' | relative_url }}">Learn</a>
 <a href="{{ '/gold-notes/' | relative_url }}">Notes</a>
 <a href="{{ '/#community' | relative_url }}">Community</a><a class="matrix-cta" href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener">Join the Matrix →</a></div>
 <main class="w shell">
   <article>
+    {% unless page.permalink == '/learn/' %}
     <div class="crumb"><a href="{{ '/learn/' | relative_url }}">Learn</a>{% if page.track %} / {{ page.track | replace: '-', ' ' }}{% endif %}</div>
     <div class="back-row" aria-label="Page navigation">
       {% if page.previous_url and page.previous_url != '/learn/' %}<a href="{{ page.previous_url | relative_url }}">← {{ page.previous_title }}</a>{% endif %}
@@ -241,6 +242,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0;color:var(--mut);font-si
       {% if page.reading_time %}<span>{{ page.reading_time }} min read</span>{% endif %}
       {% if page.status %}<span>{% if page.status == 'public' %}Available now{% elsif page.status == 'beta' %}Member beta{% else %}Planned{% endif %}</span>{% endif %}
     </div>
+    {% endunless %}
     <details class="lesson-outline" id="lessonOutline" hidden><summary>In this lesson</summary><ol></ol></details>
     {{ content }}
     {% unless page.permalink == '/learn/' %}

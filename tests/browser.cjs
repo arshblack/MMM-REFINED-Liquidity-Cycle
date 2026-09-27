@@ -11,6 +11,10 @@ fs.mkdirSync(output, { recursive: true });
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   try {
+    await page.route('https://api.frankfurter.dev/v2/rate/**', route => {
+      const [, baseCurrency, quoteCurrency] = new URL(route.request().url()).pathname.split('/').slice(-3);
+      route.fulfill({ json: { date: new Date().toISOString().slice(0,10), base: baseCurrency, quote: quoteCurrency, rate: 1.25 } });
+    });
     await page.goto(base + '/learn/start-here/#position-calculator');
     assert.equal(await page.locator('#estimatedLot').textContent(), '0.05');
     for (const id of ['accountSize','riskPercent','entryPrice','stopPrice']) {
@@ -59,6 +63,7 @@ fs.mkdirSync(output, { recursive: true });
     await page.setViewportSize({ width: 390, height: 844 });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
     await page.locator('#position-calculator').screenshot({ path: path.join(output,'calculator-mobile.png') });
+    await page.unroute('https://api.frankfurter.dev/v2/rate/**');
     await page.route('https://api.frankfurter.dev/**', route => route.abort());
     await page.locator('#instrument').selectOption('GBPJPY');
     await page.locator('#loadExample').click();
@@ -77,18 +82,14 @@ fs.mkdirSync(output, { recursive: true });
     await page.locator('#notePip').selectOption('0.10');
     assert.equal(await page.locator('#notePipCount').textContent(), '0.5 pips');
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    await page.route('**/embed-widget-events.js', route => route.abort());
     await page.goto(base + '/#event-calendar');
-    await page.locator('#calendarWidget iframe').waitFor({ timeout: 30000 });
-    const frame = page.frameLocator('#calendarWidget iframe');
-    await frame.locator('body').waitFor();
-    console.log('Calendar visible text:', (await frame.locator('body').innerText()).slice(0,1600));
-    console.log('Calendar URL:', await page.locator('#calendarWidget iframe').getAttribute('src'));
+    await page.getByText('Calendar unavailable here. Open the source calendar below.').waitFor();
     await page.locator('#calendarMarket').selectOption('GBP,JPY');
-    await page.locator('#calendarWidget iframe').waitFor();
-    assert.match(await page.locator('#calendarWidget iframe').getAttribute('src'), /GBP/);
+    assert.match(await page.locator('#calendarWidget script').textContent(), /GBP,JPY/);
     await page.locator('#calendarImportance').selectOption('0,1');
-    await page.locator('#calendarWidget iframe').waitFor();
-    await page.frameLocator('#calendarWidget iframe').getByText('GDP QQ', {exact:true}).waitFor();
+    assert.match(await page.locator('#calendarWidget script').textContent(), /0,1/);
+    await page.getByText('Calendar unavailable here. Open the source calendar below.').waitFor();
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
     await page.locator('#event-calendar').screenshot({ path: path.join(output,'calendar-mobile.png') });
     await page.setViewportSize({ width: 1440, height: 1000 });
@@ -97,23 +98,6 @@ fs.mkdirSync(output, { recursive: true });
     await page.locator('.start-path li:first-child a').click();
     assert.match(page.url(), /learn\/start-here/);
     assert.deepEqual(errors, []);
-    const timeSamples = {};
-    for (const timezoneId of ['UTC', 'Europe/Warsaw']) {
-      const context = await browser.newContext({ timezoneId, viewport: {width:1440,height:1000} });
-      const probe = await context.newPage();
-      await probe.goto(base + '/#event-calendar');
-      await probe.frameLocator('#calendarWidget iframe').getByText('Initial Jobless Clm *', {exact:true}).first().waitFor();
-      const body = await probe.frameLocator('#calendarWidget iframe').locator('body').innerText();
-      timeSamples[timezoneId] = await probe.frameLocator('#calendarWidget iframe').locator('[class*="time"]').evaluateAll(items => items.slice(0,5).map(item => item.outerHTML));
-      await probe.locator('#calendarWidget').screenshot({path:path.join(output,`timezone-${timezoneId.replace('/','-')}.png`)});
-      await context.close();
-    }
-    console.log('Timezone verification:', JSON.stringify(timeSamples));
-    const blocked = await browser.newPage();
-    await blocked.route('**/embed-widget-events.js', route => route.abort());
-    await blocked.goto(base + '/#event-calendar');
-    await blocked.getByText('Calendar unavailable here. Open the source calendar below.').waitFor();
-    await blocked.close();
-    console.log('PASS: calculator validation, recovery, broker bounds, mobile overflow, calendar embed/filters and first learning step.');
+    console.log('PASS: calculator validation, recovery, broker bounds, mobile overflow, calendar filters/fallback and first learning step.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

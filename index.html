@@ -65,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,9,13,.6);b
 @media(max-width:860px){.nlinks,.nav-cta .sign{display:none}.burger{display:block;font-size:22px;color:var(--ink);background:none;border:none;cursor:pointer}}
 
 /* ─────────── HERO ─────────── */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
+.hero{position:relative;min-height:calc(100svh - 110px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:92px 24px 48px;overflow:hidden}
 /* 3D perspective grid floor */
 .grid3d{position:absolute;inset:0;z-index:0;perspective:340px;perspective-origin:50% 42%;pointer-events:none}
 .grid3d::before{content:'';position:absolute;left:-30%;right:-30%;top:54%;height:120%;
@@ -86,16 +86,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,9,13,.6);b
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
 
 .hero-in{position:relative;z-index:5;max-width:980px}
-.hbadge{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line2);border-radius:100px;padding:7px 16px;margin-bottom:34px;background:rgba(18,21,30,.5)}
+.hbadge{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line2);border-radius:100px;padding:7px 16px;margin-bottom:22px;background:rgba(18,21,30,.5)}
 .hbadge .pip{width:6px;height:6px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 0 var(--aqua);animation:pip 2.4s infinite}
 @keyframes pip{0%{box-shadow:0 0 0 0 rgba(63,224,197,.5)}70%{box-shadow:0 0 0 7px rgba(63,224,197,0)}100%{box-shadow:0 0 0 0 rgba(63,224,197,0)}}
 .htitle{font-family:var(--display);font-weight:300;line-height:.92;letter-spacing:-.01em}
 .htitle .l1{display:block;font-size:clamp(58px,11vw,150px);font-weight:600;color:var(--ink);text-shadow:0 10px 50px rgba(0,0,0,.6)}
 .htitle .l2{display:block;font-style:italic;font-weight:300;font-size:clamp(44px,8vw,112px);background:linear-gradient(100deg,var(--goldl),var(--gold) 40%,var(--aqua) 130%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:.02em}
-.hsub{font-size:clamp(15px,1.7vw,18px);color:var(--ink2);max-width:560px;margin:30px auto 0;line-height:1.7}
+.hsub{font-size:clamp(15px,1.7vw,18px);color:var(--ink2);max-width:560px;margin:20px auto 0;line-height:1.7}
 .hsub b{color:var(--ink);font-weight:600}
 .hsub .gold{color:var(--gold)}
-.hcta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:42px}
+.hcta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:26px}
 .btn{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.01em;padding:14px 26px;border-radius:100px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:1px solid transparent;transition:all .28s cubic-bezier(.2,.7,.2,1)}
 .btn .ar{transition:transform .28s}
 .btn:hover .ar{transform:translateX(5px)}
@@ -103,7 +103,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,9,13,.6);b
 .btn-p:hover{box-shadow:0 12px 40px -6px rgba(233,201,122,.8);transform:translateY(-2px)}
 .btn-g{border-color:var(--line);color:var(--ink);background:rgba(18,21,30,.4)}
 .btn-g:hover{border-color:var(--aqua);color:var(--aqual);box-shadow:0 0 30px -10px rgba(63,224,197,.5)}
-.hmeta{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:50px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
+.hmeta{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mut)}
 .hmeta b{color:var(--ink2);font-weight:500}
 .hscroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;color:var(--mut2);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px}
 .hscroll i{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:scrolldrop 2.2s ease-in-out infinite}
@@ -435,11 +435,11 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
   section{padding:62px 0}
   #final{padding:74px 0}
   .shead{margin-bottom:34px}
-  .hero{padding:104px 22px 70px;min-height:auto}
+  .hero{padding:94px 22px 38px;min-height:auto}
   .htitle .l1{font-size:clamp(52px,16vw,88px)}
   .htitle .l2{font-size:clamp(38px,12vw,64px)}
-  .hmeta{gap:18px 26px;margin-top:34px}
-  .hcta{margin-top:34px}
+  .hmeta{gap:18px 26px;margin-top:22px}
+  .hcta{margin-top:26px}
   .cycle-wrap{gap:30px}
   .cyc-info h3{font-size:34px}
   .formula{font-size:19px;padding:18px 20px}
@@ -475,7 +475,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
       <svg class="mk" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#E9C97A" stroke-width="1.2"/><circle cx="16" cy="16" r="9" stroke="#3FE0C5" stroke-width="1" stroke-dasharray="3 3"/><circle cx="16" cy="16" r="3" fill="#E9C97A"/></svg>
       <span>Refined</span>&nbsp;<b>Liquidity</b>
     </a>
-    <div class="nlinks"><a href="start/">Start Here</a>
+    <div class="nlinks"><a href="learn/start-here/">Start Here</a>
 <a href="#gold-desk">Gold Desk</a>
 <a href="learn/">Learn</a>
 <a href="gold-notes/">Notes</a>
@@ -485,7 +485,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
       <button class="burger" id="burger" type="button" aria-label="Open navigation" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMenu()">☰</button>
     </div>
   </div>
-  <div class="mobile-menu" id="mobileMenu"><a href="start/">Start Here</a>
+  <div class="mobile-menu" id="mobileMenu"><a href="learn/start-here/">Start Here</a>
 <a href="#gold-desk">Gold Desk</a>
 <a href="learn/">Learn</a>
 <a href="gold-notes/">Notes</a>
@@ -514,9 +514,9 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
       <span class="l1 rv">REFINED</span>
       <span class="l2 rv" style="transition-delay:.08s">Liquidity</span>
     </h1>
-    <p class="hsub rv">Learn to read gold the way it actually moves — one honest concept at a time.<br><span>A beginner-friendly method, with the research forward-tested in public. Not signals. Not a guarantee.</span></p>
+    <p class="hsub rv">Learn to read gold the way it actually moves — one honest concept at a time.<br><span>Begin with price, pips and risk. Study the research and EA-confirmed updates separately; no outcome is guaranteed.</span></p>
     <div class="hcta rv" style="transition-delay:.24s">
-      <a href="#start" class="btn btn-p">Start Here <span class="ar">→</span></a>
+      <a href="learn/start-here/" class="btn btn-p">Start Here <span class="ar">→</span></a>
       <a href="gold-notes/" class="btn btn-g">Read Gold Notes <span class="ar">→</span></a>
     </div>
     <div class="hmeta rv" style="transition-delay:.32s">
@@ -533,9 +533,9 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
 <p class="start-note">Begin with the <a href="learn/start-here/">mechanics guide</a>, then work through the steps in order. Gold is our main example; the risk mechanics also apply to currency pairs using their own broker specifications.</p>
 <ol class="start-path"><li><a href="learn/start-here/" class="start-card"><small>Step 1 · Available now</small><h3>Learn the basics</h3><p>Pips, lot size, stops, targets, sessions — the mechanics every later lesson quietly assumes.</p><strong>Open the mechanics guide →</strong></a></li><li><a href="learn/tracks/read-structure/h1-bias-before-m15/" class="start-card"><small>Step 2 · Available now</small><h3>Read market structure</h3><p>Trend, higher highs and lows, and the discipline of labelling a chart the same way twice.</p><strong>Read Structure →</strong></a></li><li><a href="learn/tracks/hunt-liquidity/what-a-sweep-does-not-prove/" class="start-card"><small>Step 3 · Available now</small><h3>Understand liquidity</h3><p>What a sweep is — and, first, what it does not prove. Start here with the honest version; the confident-sounding lessons read better in its light.</p><strong>Hunt Liquidity →</strong></a></li><li><a href="learn/tracks/time-the-killzone/when-london-matters/" class="start-card"><small>Step 4 · Available now</small><h3>Time the session</h3><p>London, New York, news windows — and why the same setup isn't the same probability at 09:40 and five minutes before CPI.</p><strong>Time the Killzone →</strong></a></li><li><a href="#gold-desk" class="start-card"><small>Step 5 · Available now</small><h3>Watch the Desk</h3><p>How a research idea becomes an EA-confirmed record — and how the pre-trade journal is that same discipline done by hand.</p><strong>Gold Desk →</strong></a></li></ol>
 <p class="start-note">At step 3, read the limits first, then <a href="learn/tracks/hunt-liquidity/sweep-that-isnt/">the three ways a sweep fails</a> and <a href="#cycle">the Signature Pattern</a>. At step 5, pair the Desk with <a href="learn/tracks/master-the-mind/pre-trade-journal/">the pre-trade journal</a>.</p>
-<p class="start-note">Before your next demo session: <a href="learn/start-here/#pip-lab">practice price and pip distance</a>, <a href="learn/start-here/#position-calculator">estimate position size</a>, <a href="#event-calendar">check scheduled events</a>, and write your plan. The full Foundations series is planned; the mechanics guide is ready now.</p>
+<p class="start-note">Before your next demo session: <a href="learn/start-here/#pip-lab">play the three-round pip and price game</a>, <a href="learn/start-here/#position-calculator">estimate position size</a>, <a href="#event-calendar">check scheduled events</a>, and write your plan. The full Foundations series is planned; the mechanics guide is ready now.</p>
 </div></section>
-<section id="positioning" aria-label="What this is and is not"><div class="w positioning-grid"><div><h2>Learn, observe, document.</h2><p>Plain explanations, chart studies and a research forward test in public.</p></div><div><h2>No signals. No guarantees.</h2><p>A chart pattern is something to study. It cannot promise a trade outcome. Research is not execution.</p></div></div></section>
+<section id="positioning" aria-label="What this is and is not"><div class="w positioning-grid"><div><h2>Learn, observe, document.</h2><p>Plain explanations, chart studies and a research forward test in public.</p></div><div><h2>Evidence, not promises.</h2><p>The site is not a live EA feed. Community updates distinguish teaching from EA-confirmed execution records; neither guarantees a result.</p></div></div></section>
 
 <!-- GOLD DESK -->
 
@@ -578,7 +578,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
       <div class="desk-stat"><small>Mode</small><strong id="statusMode">Public research</strong></div>
       <div class="desk-stat"><small>Execution</small><strong>MetaTrader 5 EA</strong></div>
       <div class="desk-stat"><small>Public updates</small><strong>EA-confirmed only</strong></div>
-      <div class="desk-stat"><small>Live EA feed</small><strong class="aq" id="statusState">Not connected</strong></div>
+      <div class="desk-stat"><small>EA telemetry here</small><strong class="aq" id="statusState">Not published</strong></div>
     </div>
     <div class="desk-grid">
       <div class="market-tool rv">
@@ -620,7 +620,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
         <div class="chart-read" aria-label="How to read the public chart">
           <a class="chart-read-item" href="learn/tracks/read-structure/h1-bias-before-m15/"><small>01 · EMA context</small><p>Price holding above the EMA supports bullish momentum; below supports bearish momentum. It is context, not an entry.</p><span class="chart-read-action">Study H1 bias →</span></a>
           <a class="chart-read-item" href="learn/tracks/hunt-liquidity/sweep-that-isnt/"><small>02 · Sweep + close</small><p>Watch for a wick through a visible high or low, then judge where the candle closes before calling the liquidity taken.</p><span class="chart-read-action">Open sweep lab →</span></a>
-          <a class="chart-read-item" href="learn/#full-22-lesson-map"><small>03 · Fair value gap</small><p>A three-candle imbalance forms when candle three does not overlap candle one's wick. A revisit is an area of interest, never a guaranteed reaction.</p><span class="chart-read-action">Find FVG lesson →</span></a>
+          <a class="chart-read-item" href="learn/#full-22-lesson-map"><small>03 · Fair value gap</small><p>A three-candle imbalance forms when candle three does not overlap candle one's wick. A revisit is an area of interest, never a guaranteed reaction.</p><span class="chart-read-action">See FVG roadmap →</span></a>
         </div>
       </div>
       <aside class="desk-panel rv" aria-label="How to use the Gold Desk">
@@ -804,7 +804,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
         <div class="feat-list rv">
           <div class="feat"><span class="fi">01</span><div><h4>Risk guard, always on</h4><p>Hard research risk controls. Risk controls limit intended exposure; losses and slippage remain possible.</p></div></div>
           <div class="feat"><span class="fi">02</span><div><h4>Session-aware</h4><p>London and New York are evaluated as research windows while Asia remains visible as liquidity context.</p></div></div>
-          <div class="feat"><span class="fi">03</span><div><h4>Gold specialist</h4><p>The current engineering, forward test and community reporting are focused exclusively on XAUUSD.</p></div></div>
+          <div class="feat"><span class="fi">03</span><div><h4>Gold-first research</h4><p>The Gold Desk centers on XAUUSD. The beginner mechanics and risk exercises also cover major currency pairs.</p></div></div>
         </div>
       </div>
       <div>
@@ -913,14 +913,14 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
       Refined Liquidity · Arshly Phiri · Education + Automation
     </div>
     <div class="foot-links">
-      <a href="#start">Start Here</a><a href="#founder">About</a><a href="#methodology">Methodology</a><a href="#automation">Automation</a><a href="#cycle">Cycle</a><a href="#curriculum">Curriculum</a><a href="gold-notes/">Gold Notes</a>
+      <a href="learn/start-here/">Start Here</a><a href="#founder">About</a><a href="#methodology">Methodology</a><a href="#automation">Automation</a><a href="#cycle">Cycle</a><a href="#curriculum">Curriculum</a><a href="gold-notes/">Gold Notes</a>
       <a href="tracker/">30-Day Tracker</a>
       <a href="https://github.com/arshblack/MMM-REFINED-Liquidity-Cycle" target="_blank" rel="noopener">GitHub</a>
       <a href="https://t.me/+C0YWOPmOFu02YmVk" target="_blank" rel="noopener">Telegram</a>
       <a href="https://www.instagram.com/refinedliquidity/" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
-  <p class="disc" id="disclaimer">Refined Liquidity is an educational platform. Nothing here is financial advice, a signal service, or a guarantee of profit. Trading XAUUSD and leveraged FX carries significant risk of capital loss. Past or simulated performance does not indicate future results. © 2026 Refined Liquidity.</p>
+  <p class="disc" id="disclaimer">Refined Liquidity provides education and may share EA-confirmed execution updates in its community. Those updates are not personalized trading instructions or a guarantee of profit. Trading XAUUSD and leveraged FX carries significant risk of capital loss. Past or simulated performance does not indicate future results. © 2026 Refined Liquidity.</p>
 </footer>
 
 <!-- MODALS -->

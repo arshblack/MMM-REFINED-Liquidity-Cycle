@@ -8,15 +8,15 @@ last_reviewed: 2026-09-04
 
 # Choose your next useful step
 
-<div class="learn-hero"><p>You do not need to understand the whole system at once. Follow Start Here for the beginner order, choose a track, or use Gold Notes when you need one direct answer.</p></div>
-
-<div class="notice">TradingView marks research context. A public trade exists only after the MT5 EA confirms execution. Manual trades are kept outside the EA record.</div>
+You do not need to understand the whole system at once. Start with one practical guide, then choose the next lesson.
 
 ## Start Here
 
-Begin with the [mechanics guide]({{ '/learn/start-here/' | relative_url }}): prices, lot size, stops and a risk estimate using your broker's numbers. Then follow [the beginner journey]({{ '/start/' | relative_url }}) through structure, liquidity and session timing. The longer Foundations series is planned; this first step is available today.
+Begin with the [mechanics guide]({{ '/learn/start-here/' | relative_url }}): prices, lot size, stops and a risk estimate using your broker's numbers. Then follow [the five-step beginner journey]({{ '/#start' | relative_url }}) through structure, liquidity and session timing. The longer Foundations series is planned; this first step is available today.
 
 For your next practice session: [try the three-round price and pip lab]({{ '/learn/start-here/#pip-lab' | relative_url }}), [estimate position size]({{ '/learn/start-here/#position-calculator' | relative_url }}), [check scheduled events]({{ '/#event-calendar' | relative_url }}), then write a [pre-trade journal]({{ '/learn/tracks/master-the-mind/pre-trade-journal/' | relative_url }}). The mechanics guide includes a bridge from gold to currency pairs.
+
+<div class="notice">TradingView marks research context. A public trade exists only after the MT5 EA confirms execution. Manual trades are kept outside the EA record.</div>
 
 <span id="public-preview-route"></span>
 Read structure, understand what a sweep does not prove, study its failure states, then explore timing and the pre-trade journal. [Open the Visual Labs]({{ '/#visual-labs' | relative_url }}) to see each idea change on a diagram.
