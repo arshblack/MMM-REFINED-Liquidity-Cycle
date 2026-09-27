@@ -65,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,9,13,.6);b
 @media(max-width:860px){.nlinks,.nav-cta .sign{display:none}.burger{display:block;font-size:22px;color:var(--ink);background:none;border:none;cursor:pointer}}
 
 /* ─────────── HERO ─────────── */
-.hero{position:relative;min-height:calc(100svh - 110px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:92px 24px 48px;overflow:hidden}
+.hero{position:relative;min-height:calc(100svh - 190px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:92px 24px 48px;overflow:hidden}
 /* 3D perspective grid floor */
 .grid3d{position:absolute;inset:0;z-index:0;perspective:340px;perspective-origin:50% 42%;pointer-events:none}
 .grid3d::before{content:'';position:absolute;left:-30%;right:-30%;top:54%;height:120%;
@@ -122,6 +122,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,9,13,.6);b
 
 /* ─────────── SECTION SHELL ─────────── */
 section{position:relative;padding:88px 0}
+#start{padding-top:64px}
 .shead{margin-bottom:48px}
 .shead h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,60px);line-height:1.04;letter-spacing:-.01em;margin-top:20px;max-width:760px}
 .shead h2 em{font-style:italic;color:var(--gold)}
@@ -433,6 +434,7 @@ footer{border-top:1px solid var(--line2);padding:40px 0;background:var(--bg)}
 }
 @media(max-width:760px){
   section{padding:62px 0}
+  #start{padding-top:62px}
   #final{padding:74px 0}
   .shead{margin-bottom:34px}
   .hero{padding:94px 22px 38px;min-height:auto}

@@ -14,6 +14,11 @@ const base = process.env.SITE_URL || 'http://127.0.0.1:4173';
     await page.goto(base + '/start/');
     await page.waitForURL('**/learn/start-here/');
 
+    const desktop = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    await desktop.goto(base + '/');
+    assert.ok(await desktop.evaluate(() => document.querySelector('#start-title').getBoundingClientRect().top < innerHeight), 'desktop should hint at the beginner section');
+    await desktop.close();
+
     for (const route of ['/learn/start-here/', '/gold-notes/gold-pips-points/']) {
       await page.goto(base + route);
       await page.evaluate(() => scrollTo(0, document.body.scrollHeight / 2));
